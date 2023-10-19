@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,20 +11,22 @@ win32: RC_ICONS = $$PWD/Images/gandalf.ico
 
 
 SOURCES += \
+    AppParameters/AppParameters.cpp \
+    LogginCategories/loggincategories.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    AppParameters/AppParameters.h \
+    LogginCategories/loggincategories.h \
     mainwindow.h
 
 FORMS += \
     mainwindow.ui
-RESOURCES += \
-    resource.qrc
-TRANSLATIONS += \
-    /Translations/Gandalf_en_US.ts \
-    /Translations/Gandalf_ru_RU.ts \
-    /Translations/Gandalf_uk_UA.ts \
+
+
+
+
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -33,7 +35,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+RESOURCES += \
+    resource.qrc
 
-
+TRANSLATIONS += Gandalf_uk.ts \
+                Gandalf_en.ts \
+                Gandalf_ru.ts
 

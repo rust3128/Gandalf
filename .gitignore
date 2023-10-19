@@ -14,7 +14,7 @@
 *.so.*
 *_pch.h.cpp
 *_resource.rc
-*.qm
+#*.qm
 .#*
 *.*#
 core
@@ -71,4 +71,4 @@ CMakeLists.txt.user*
 # --------
 *.dll
 *.exe
-
+*.json

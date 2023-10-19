@@ -1,8 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>Translations/Gandalf_en_US.ts</file>
-        <file>Translations/Gandalf_ru_RU.ts</file>
-        <file>Translations/Gandalf_uk_UA.ts</file>
         <file>Images/gandalf.ico</file>
+        <file>Gandalf_en.qm</file>
+        <file>Gandalf_ru.qm</file>
+        <file>Gandalf_uk.qm</file>
+        <file>Translations/qtbase_en.qm</file>
+        <file>Translations/qtbase_ru.qm</file>
+        <file>Translations/qtbase_uk.qm</file>
     </qresource>
 </RCC>
