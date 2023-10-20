@@ -1,7 +1,10 @@
 ﻿// AppParameters.cpp
 
 #include "appparameters.h"
+#include "DbSettingsDialog/dbsettingsdialog.h"
+#include "AppParameters/criptpass.h"
 #include <QSettings>
+#include <QFile>
 
 const QString AppParameters::CONFIG_FILE_NAME = "Gandalf.ini";          // Файл настроек
 const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Лог файл
@@ -10,7 +13,12 @@ const QString AppParameters::VEKTOR_KEY = "Poltava1970Rust";
 
 AppParameters::AppParameters() {
     setDefaultParameters(); // Ініціалізація параметрів за замовчуванням
-    readDatabaseParametersFromIniFile(); // Зчитування параметрів підключення до бази даних
+    if(QFile(CONFIG_FILE_NAME).exists()){
+        readDatabaseParametersFromIniFile(); // Зчитування параметрів підключення до бази даних
+    } else {
+        DbSettingsDialog *dlgSetting = new DbSettingsDialog(true);
+        dlgSetting->exec();
+    }
 }
 
 AppParameters& AppParameters::instance() {
@@ -38,7 +46,8 @@ void AppParameters::readDatabaseParametersFromIniFile() {
     QString dbDatabasePort = settings.value("Database/Port").toString();
     QString dbDatabaseName = settings.value("Database/DatabaseName").toString();
     QString dbUserName = settings.value("Database/UserName").toString();
-    QString dbPassword = settings.value("Database/Password").toString();
+    CriptPass crP;
+    QString dbPassword = crP.decriptPass(settings.value("Database/Password").toString());
 
     // Встановити параметри підключення до бази даних
     setParameter("dbHostName", dbHostName);

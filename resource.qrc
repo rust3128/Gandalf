@@ -7,5 +7,8 @@
         <file>Translations/qtbase_en.qm</file>
         <file>Translations/qtbase_ru.qm</file>
         <file>Translations/qtbase_uk.qm</file>
+        <file>Images/database_settings.png</file>
+        <file>Images/file_open_icon.png</file>
+        <file>Images/eye_icon.png</file>
     </qresource>
 </RCC>

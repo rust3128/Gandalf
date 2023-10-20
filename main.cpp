@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "LogginCategories/loggincategories.h"
 #include "AppParameters/AppParameters.h"
+#include "DbSettingsDialog/dbsettingsdialog.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -10,6 +11,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QMessageBox>
 
 
 static QScopedPointer<QFile>   m_logFile;
@@ -95,6 +97,17 @@ bool openDatabaseConnection() {
         return true;
     } else {
         qCritical(logCritical()) << QApplication::tr("Ошибка открытия базы данных:") << db.lastError().text();
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText(QApplication::tr("Ошибка подключения к базе данных!"));
+        msgBox.setInformativeText(QApplication::tr("Проверить настройки подключения?"));
+        msgBox.setStandardButtons(QMessageBox::Yes |  QMessageBox::No);
+        msgBox.setDetailedText(db.lastError().text());
+        int ret = msgBox.exec();
+        if(ret == QMessageBox::Yes){
+            DbSettingsDialog *dlgSetting = new DbSettingsDialog(false);
+            dlgSetting->exec();
+        }
         return false;
     }
 }
