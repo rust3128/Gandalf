@@ -16,6 +16,7 @@ SOURCES += \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
     LogginCategories/loggincategories.cpp \
+    Users/userprofiledialog.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -25,10 +26,12 @@ HEADERS += \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
     LogginCategories/loggincategories.h \
+    Users/userprofiledialog.h \
     mainwindow.h
 
 FORMS += \
     DbSettingsDialog/dbsettingsdialog.ui \
+    Users/userprofiledialog.ui \
     mainwindow.ui
 
 

@@ -3,8 +3,10 @@
 #include "appparameters.h"
 #include "DbSettingsDialog/dbsettingsdialog.h"
 #include "AppParameters/criptpass.h"
+#include "LogginCategories/loggincategories.h"
 #include <QSettings>
 #include <QFile>
+#include <QApplication>
 
 const QString AppParameters::CONFIG_FILE_NAME = "Gandalf.ini";          // Файл настроек
 const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Лог файл
@@ -37,7 +39,14 @@ void AppParameters::setParameter(const QString& paramName, const QString& paramV
 }
 
 QString AppParameters::getParameter(const QString& paramName) const {
-    return parameters.value(paramName, QString());
+    QString retValue;
+    if(parameters.contains(paramName)){
+        retValue = parameters.value(paramName, QString());
+    } else {
+        qCritical(logCritical()) << QApplication::tr("Не возможно найти параметр по ключу") << paramName;
+        retValue.clear();
+    }
+    return retValue;
 }
 
 void AppParameters::readDatabaseParametersFromIniFile() {

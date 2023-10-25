@@ -10,5 +10,9 @@
         <file>Images/database_settings.png</file>
         <file>Images/file_open_icon.png</file>
         <file>Images/eye_icon.png</file>
+        <file>Images/user_profile.png</file>
+        <file>Images/flag_ru.png</file>
+        <file>Images/flag_ua_ukraine.png</file>
+        <file>Images/flag_usa.png</file>
     </qresource>
 </RCC>
