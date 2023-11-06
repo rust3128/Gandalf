@@ -56,8 +56,8 @@ void DbSettingsDialog::readSettings()
     ui->spinBoxPort->setValue(settings.value("Database/Port").toInt());
     ui->lineEditDBFileName->setText(settings.value("Database/DatabaseName").toString());
     ui->lineEditUser->setText(settings.value("Database/UserName").toString());
-    CriptPass *crP = new CriptPass();
-    ui->lineEditPass->setText(crP->decriptPass(settings.value("Database/Password").toString()));
+    CriptPass crP;
+    ui->lineEditPass->setText(crP.decriptPass(settings.value("Database/Password").toString()));
 }
 
 void DbSettingsDialog::writeSettings()
@@ -67,8 +67,8 @@ void DbSettingsDialog::writeSettings()
     settings.setValue("Database/Port", ui->spinBoxPort->value());
     settings.setValue("Database/DatabaseName", ui->lineEditDBFileName->text());
     settings.setValue("Database/UserName", ui->lineEditUser->text());
-    CriptPass *crP = new CriptPass();
-    settings.setValue("Database/Password", crP->criptPass(ui->lineEditPass->text()));
+    CriptPass crP;
+    settings.setValue("Database/Password", crP.criptPass(ui->lineEditPass->text()));
 }
 
 void DbSettingsDialog::on_buttonBox_accepted()

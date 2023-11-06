@@ -13,9 +13,12 @@ win32: RC_ICONS = $$PWD/Images/gandalf.ico
 SOURCES += \
     AppParameters/AppParameters.cpp \
     AppParameters/criptpass.cpp \
+    AppParameters/parametersdialog.cpp \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
     LogginCategories/loggincategories.cpp \
+    Terminals/searchform.cpp \
+    Terminals/termdata.cpp \
     Users/userprofiledialog.cpp \
     main.cpp \
     mainwindow.cpp
@@ -23,14 +26,19 @@ SOURCES += \
 HEADERS += \
     AppParameters/AppParameters.h \
     AppParameters/criptpass.h \
+    AppParameters/parametersdialog.h \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
     LogginCategories/loggincategories.h \
+    Terminals/searchform.h \
+    Terminals/termdata.h \
     Users/userprofiledialog.h \
     mainwindow.h
 
 FORMS += \
+    AppParameters/parametersdialog.ui \
     DbSettingsDialog/dbsettingsdialog.ui \
+    Terminals/searchform.ui \
     Users/userprofiledialog.ui \
     mainwindow.ui
 

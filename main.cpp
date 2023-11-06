@@ -2,6 +2,7 @@
 #include "LogginCategories/loggincategories.h"
 #include "AppParameters/AppParameters.h"
 #include "DbSettingsDialog/dbsettingsdialog.h"
+#include "Users/userprofiledialog.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -16,7 +17,7 @@
 
 static QScopedPointer<QFile>   m_logFile;
 bool openDatabaseConnection();
-void readParametersFromDatabase();
+bool readParametersFromDatabase();
 void readUserProfile();
 
 // Объявление обработчика
@@ -39,11 +40,17 @@ int main(int argc, char *argv[])
         // З'єднання з базою даних вдало встановлено
 
         // Прочитати параметри з бази даних
-        readParametersFromDatabase();
+        if(!readParametersFromDatabase()){
+            qCritical(logCritical()) << QApplication::tr("Не удалось загрузить параметры приложения. Завершение работы");
+            return 1;
+        }
     } else {
         qCritical(logCritical()) << QApplication::tr("База данных приложения не открыта. Завершение работы.");
         return 1;
     }
+
+
+
 
     QString qUsername = QString::fromLocal8Bit (qgetenv ("USERNAME").constData ()).toUtf8 ();
     QSqlQuery q;
@@ -157,17 +164,21 @@ bool openDatabaseConnection() {
 }
 
 // Функція для читання параметрів з бази даних
-void readParametersFromDatabase() {
+bool readParametersFromDatabase() {
+    bool result = false;
     // Виконати запити SQL для отримання параметрів
     QSqlQuery query;
-    query.exec("SELECT param_name, param_value FROM your_parameters_table");
-
-    // Отримати та встановити параметри в AppParameters
-    while (query.next()) {
-        QString paramName = query.value(0).toString();
-        QString paramValue = query.value(1).toString();
-        AppParameters::instance().setParameter(paramName, paramValue);
+    if (query.exec("SELECT param_name, param_value FROM PARAMETERS")) {
+        // Отримати та встановити параметри в AppParameters
+        while (query.next()) {
+            QString paramName = query.value(0).toString();
+            QString paramValue = query.value(1).toString();
+            AppParameters::instance().setParameter(paramName, paramValue);
+        }
+        qInfo(logInfo()) << QApplication::tr("Параметры приложения успешно загружены.");
+        result = true;
     }
+    return result;
 }
 
 void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)

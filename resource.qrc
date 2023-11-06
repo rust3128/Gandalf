@@ -14,5 +14,7 @@
         <file>Images/flag_ru.png</file>
         <file>Images/flag_ua_ukraine.png</file>
         <file>Images/flag_usa.png</file>
+        <file>Images/settings_icon.png</file>
+        <file>Images/search_icon.png</file>
     </qresource>
 </RCC>

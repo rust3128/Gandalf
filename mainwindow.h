@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "Users/userprofiledialog.h"
+#include "Terminals/termdata.h"
 #include <QMainWindow>
 #include <QTranslator>
 #include <QLabel>
@@ -17,13 +17,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-
+    void on_actionUserProfile_triggered();
+    void on_actionParametrs_triggered();
 protected:
 
 private:
+    bool openMposDB();
     void createUI();
+    void getListAZS();                      //Отримання спису АЗС
 private:
     Ui::MainWindow *ui;
+    QMap<int, TermData *> listAzs;            //Список терміналів
 
 
 };
