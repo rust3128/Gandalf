@@ -20,6 +20,7 @@ bool openDatabaseConnection();
 bool readParametersFromDatabase();
 void readUserProfile();
 
+
 // Объявление обработчика
 void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
@@ -180,6 +181,8 @@ bool readParametersFromDatabase() {
     }
     return result;
 }
+// Встановлення параметів додатка за замовчуванням
+
 
 void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {

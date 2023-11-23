@@ -32,6 +32,8 @@ void AppParameters::setDefaultParameters() {
     // Встановити константи за замовчуванням
 //    parameters["logFileName"] = LOG_FILE_NAME;
     // Додати інші параметри за замовчуванням
+    parameters["minTerminalID"] = "1000";
+    parameters["maxTerminalID"] = "99999";
 }
 
 void AppParameters::setParameter(const QString& paramName, const QString& paramValue) {

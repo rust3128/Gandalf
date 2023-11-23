@@ -38,6 +38,9 @@ void ParametersDialog::createUI()
     });
     // Додаємо QAction до QLineEdit у кінцевій позиції
     ui->lineEditPass->addAction(showPasswordAction, QLineEdit::TrailingPosition);
+    // Вкладка Общие
+    ui->lineEditMinTemID->setText(AppParameters::instance().getParameter("minTerminalID"));
+    ui->lineEditMaxTermID->setText(AppParameters::instance().getParameter("maxTerminalID"));
 }
 
 void ParametersDialog::on_buttonBox_rejected()
@@ -60,7 +63,11 @@ void ParametersDialog::on_buttonBox_accepted()
     CriptPass crP;
     AppParameters::instance().setParameter("mposPass",crP.criptPass(ui->lineEditPass->text().trimmed()));
     updateParam("mposPass");
-
+    // Зміна параметрів вкладки Загалні
+    AppParameters::instance().setParameter("minTerminalID",ui->lineEditMinTemID->text().trimmed());
+    updateParam("minTerminalID");
+    AppParameters::instance().setParameter("maxTerminalID",ui->lineEditMaxTermID->text().trimmed());
+    updateParam("maxTerminalID");
     this->accept();
 }
 

@@ -6,57 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>258</width>
-    <height>114</height>
+    <width>168</width>
+    <height>80</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>55</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>55</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>26</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(31, 177, 72);</string>
-     </property>
-     <property name="text">
-      <string>ITBI</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QLineEdit" name="lineEditSearch">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>240</width>
+       <width>150</width>
        <height>35</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>240</width>
+       <width>150</width>
        <height>35</height>
       </size>
      </property>
@@ -73,14 +52,29 @@
 	padding-right: 20px;
 }</string>
      </property>
+     <property name="maxLength">
+      <number>5</number>
+     </property>
      <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <set>Qt::AlignCenter</set>
      </property>
      <property name="placeholderText">
-      <string>Введите номер АЗС</string>
+      <string/>
      </property>
      <property name="clearButtonEnabled">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Введите номер АЗС</string>
      </property>
     </widget>
    </item>

@@ -17,6 +17,7 @@ SOURCES += \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
     LogginCategories/loggincategories.cpp \
+    Terminals/objectform.cpp \
     Terminals/searchform.cpp \
     Terminals/termdata.cpp \
     Users/userprofiledialog.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
     LogginCategories/loggincategories.h \
+    Terminals/objectform.h \
     Terminals/searchform.h \
     Terminals/termdata.h \
     Users/userprofiledialog.h \
@@ -38,6 +40,7 @@ HEADERS += \
 FORMS += \
     AppParameters/parametersdialog.ui \
     DbSettingsDialog/dbsettingsdialog.ui \
+    Terminals/objectform.ui \
     Terminals/searchform.ui \
     Users/userprofiledialog.ui \
     mainwindow.ui

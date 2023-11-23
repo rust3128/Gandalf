@@ -19,15 +19,21 @@ public:
 private slots:
     void on_actionUserProfile_triggered();
     void on_actionParametrs_triggered();
+    void slotGetTerminalID(int terminalID);
+    void on_tabWidgetTerminals_tabCloseRequested(int index);
+
 protected:
 
 private:
     bool openMposDB();
     void createUI();
     void getListAZS();                      //Отримання спису АЗС
+    void createConnections();
+
 private:
     Ui::MainWindow *ui;
-    QMap<int, TermData *> listAzs;            //Список терміналів
+    QMap<int, QSharedPointer<TermData>> listAzs;            //Список терміналів
+
 
 
 };
