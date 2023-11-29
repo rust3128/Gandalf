@@ -22,6 +22,10 @@ private slots:
     void slotGetTerminalID(int terminalID);
     void on_tabWidgetTerminals_tabCloseRequested(int index);
 
+    void on_action_AboutQt_triggered();
+
+    void on_actionAbout_triggered();
+
 protected:
 
 private:

@@ -1,6 +1,7 @@
 // objectform.cpp
 #include "objectform.h"
 #include "ui_objectform.h"
+#include "AppParameters/AppParameters.h"
 
 #include <QClipboard>
 
@@ -21,7 +22,11 @@ ObjectForm::~ObjectForm()
 void ObjectForm::createUI()
 {
     ui->labelAZSNumber->setText(("АЗС № "+QString::number(m_termData->getTerminalID())));
-    ui->labelAddress->setText(m_termData->getAdress());
+    if(AppParameters::instance().getParameter("showKodZem").toInt()){
+        ui->labelAddress->setText(m_termData->getAdress()+tr("\nКод земельного участка: ")+QString::number(m_termData->getOwnerID()));
+    } else {
+        ui->labelAddress->setText(m_termData->getAdress())    ;
+    }
     ui->labelPhone->setText(m_termData->getPhone());
 }
 

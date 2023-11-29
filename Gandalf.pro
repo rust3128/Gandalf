@@ -8,7 +8,8 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 win32: RC_ICONS = $$PWD/Images/gandalf.ico
-
+# Додати макрос з датою збірки для використання у коді
+VERSION = $$system(date /t)
 
 SOURCES += \
     AppParameters/AppParameters.cpp \
@@ -62,4 +63,5 @@ RESOURCES += \
 TRANSLATIONS += Gandalf_uk.ts \
                 Gandalf_en.ts \
                 Gandalf_ru.ts
+
 

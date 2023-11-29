@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "qdatetime.h"
 #include "ui_mainwindow.h"
 #include "AppParameters/AppParameters.h"
 #include "LogginCategories/loggincategories.h"
@@ -160,8 +161,24 @@ void MainWindow::on_tabWidgetTerminals_tabCloseRequested(int index)
 {
     ui->tabWidgetTerminals->setCurrentIndex(index);
     ui->tabWidgetTerminals->currentWidget()->deleteLater();
-    if(ui->tabWidgetTerminals->count()<=0)
+    qDebug() << "Deleted index" << index;
+    if(index==0)
         ui->tabWidgetTerminals->hide();
-//    tabList.removeAt(index);
+}
+
+
+void MainWindow::on_action_AboutQt_triggered()
+{
+    QMessageBox::aboutQt(this, "About Qt");
+}
+
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QString aboutText = QString("Version: %1\nBuild date: %2")
+                            .arg(QApplication::applicationVersion())
+                            .arg(__DATE__);
+    qDebug() << aboutText;
+    QMessageBox::about(this, tr("Про програму"), aboutText);
 }
 

@@ -41,6 +41,19 @@ void ParametersDialog::createUI()
     // Вкладка Общие
     ui->lineEditMinTemID->setText(AppParameters::instance().getParameter("minTerminalID"));
     ui->lineEditMaxTermID->setText(AppParameters::instance().getParameter("maxTerminalID"));
+    ui->checkBoxShowKodZem->setChecked(AppParameters::instance().getParameter("showKodZem").toInt());
+
+    // Отримати екземпляр AppParameters
+    AppParameters& appParameters = AppParameters::instance();
+
+    // Вивести TEMPLATE_HOSTNAME
+    QMap<int, QString> templateHostnameMap = appParameters.TEMPLATE_HOSTNAME;
+    for (auto it = templateHostnameMap.begin(); it != templateHostnameMap.end(); ++it) {
+//        qDebug() << "Index:" << it.key() << "Value:" << it.value();
+        ui->comboBoxHostTemplate->addItem(it.value(), QVariant(it.key()));
+    }
+    ui->comboBoxHostTemplate->setCurrentIndex(AppParameters);
+
 }
 
 void ParametersDialog::on_buttonBox_rejected()
@@ -68,6 +81,8 @@ void ParametersDialog::on_buttonBox_accepted()
     updateParam("minTerminalID");
     AppParameters::instance().setParameter("maxTerminalID",ui->lineEditMaxTermID->text().trimmed());
     updateParam("maxTerminalID");
+    AppParameters::instance().setParameter("showKodZem",QString::number(ui->checkBoxShowKodZem->isChecked()));
+    updateParam("showKodZem");
     this->accept();
 }
 

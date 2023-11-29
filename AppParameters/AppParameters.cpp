@@ -12,6 +12,12 @@ const QString AppParameters::CONFIG_FILE_NAME = "Gandalf.ini";          // Фа�
 const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Лог файл
 const QString AppParameters::KEY_SOLT = "SapForever";
 const QString AppParameters::VEKTOR_KEY = "Poltava1970Rust";
+const QMap<int, QString> AppParameters::TEMPLATE_HOSTNAME = {
+    {1, "Avias"},
+    {2, "UkrNafta"},
+    {3, "Marshal"},
+    {4, "Database"}
+};
 
 AppParameters::AppParameters() {
     setDefaultParameters(); // Ініціалізація параметрів за замовчуванням
@@ -34,6 +40,8 @@ void AppParameters::setDefaultParameters() {
     // Додати інші параметри за замовчуванням
     parameters["minTerminalID"] = "1000";
     parameters["maxTerminalID"] = "99999";
+    parameters["showKodZem"] = "1";
+    parameters["templataHostname"] = "-1";
 }
 
 void AppParameters::setParameter(const QString& paramName, const QString& paramValue) {
