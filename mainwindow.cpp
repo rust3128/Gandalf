@@ -175,9 +175,14 @@ void MainWindow::on_action_AboutQt_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
+    QDate versionDate = QDate::fromString(__DATE__,"MMM dd yyyy");
+    if (!versionDate.isValid())
+    {
+        versionDate = QDate::fromString(__DATE__,"MMM d yyyy");
+    }
     QString aboutText = QString("Version: %1\nBuild date: %2")
                             .arg(QApplication::applicationVersion())
-                            .arg(__DATE__);
+                            .arg(versionDate.toString("dd.MM.yyyy"));
     qDebug() << aboutText;
     QMessageBox::about(this, tr("Про програму"), aboutText);
 }

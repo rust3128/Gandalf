@@ -3,6 +3,7 @@
 #define OBJECTFORM_H
 
 #include "Terminals/termdata.h"
+#include "Terminals/connectiondata.h"
 #include <QDialog>
 #include <QSharedPointer>  // Додайте цей імпорт
 
@@ -19,12 +20,14 @@ public:
     ~ObjectForm();
 private slots:
     void on_toolButtonClipboard_clicked();
-
 private:
     void createUI();
+    void createConnList();
+    void connListAvias();
 private:
     Ui::ObjectForm *ui;
     QSharedPointer<TermData> m_termData;
+    QList<ConnectionData> connList;
 };
 
 #endif // OBJECTFORM_H

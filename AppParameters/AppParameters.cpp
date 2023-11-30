@@ -4,6 +4,7 @@
 #include "DbSettingsDialog/dbsettingsdialog.h"
 #include "AppParameters/criptpass.h"
 #include "LogginCategories/loggincategories.h"
+#include "AppParameters/criptpass.h"
 #include <QSettings>
 #include <QFile>
 #include <QApplication>
@@ -13,10 +14,10 @@ const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Ло�
 const QString AppParameters::KEY_SOLT = "SapForever";
 const QString AppParameters::VEKTOR_KEY = "Poltava1970Rust";
 const QMap<int, QString> AppParameters::TEMPLATE_HOSTNAME = {
-    {1, "Avias"},
-    {2, "UkrNafta"},
-    {3, "Marshal"},
-    {4, "Database"}
+    {0, "Avias"},
+    {1, "UkrNafta"},
+    {2, "Marshal"},
+    {3, "Database"}
 };
 
 AppParameters::AppParameters() {
@@ -35,13 +36,16 @@ AppParameters& AppParameters::instance() {
 }
 
 void AppParameters::setDefaultParameters() {
+    CriptPass crP;
     // Встановити константи за замовчуванням
 //    parameters["logFileName"] = LOG_FILE_NAME;
     // Додати інші параметри за замовчуванням
     parameters["minTerminalID"] = "1000";
     parameters["maxTerminalID"] = "99999";
     parameters["showKodZem"] = "1";
-    parameters["templataHostname"] = "-1";
+    parameters["templatеHostname"] = "-1";
+    parameters["maxCountPC"] = "4";                 //Максимальна кількість ПК на АЗС
+    parameters["defaultVNCPass"] = crP.criptPass("88888888");
 }
 
 void AppParameters::setParameter(const QString& paramName, const QString& paramValue) {

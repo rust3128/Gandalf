@@ -9,7 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 win32: RC_ICONS = $$PWD/Images/gandalf.ico
 # Додати макрос з датою збірки для використання у коді
-VERSION = $$system(date /t)
+VERSION = 0.0.0.1
 
 SOURCES += \
     AppParameters/AppParameters.cpp \
@@ -18,6 +18,7 @@ SOURCES += \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
     LogginCategories/loggincategories.cpp \
+    Terminals/connectiondata.cpp \
     Terminals/objectform.cpp \
     Terminals/searchform.cpp \
     Terminals/termdata.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
     LogginCategories/loggincategories.h \
+    Terminals/connectiondata.h \
     Terminals/objectform.h \
     Terminals/searchform.h \
     Terminals/termdata.h \

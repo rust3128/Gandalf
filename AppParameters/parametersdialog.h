@@ -15,9 +15,11 @@ public:
     explicit ParametersDialog(QWidget *parent = nullptr);
     ~ParametersDialog();
 private slots:
+    void slotOpenClentVNC();
+    void slotOpenMPosDBFile();
     void on_buttonBox_rejected();
-
     void on_buttonBox_accepted();
+    void on_comboBoxHostTemplate_activated(int index);
 
 private:
     void createUI();

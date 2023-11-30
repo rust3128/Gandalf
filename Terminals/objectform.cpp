@@ -2,6 +2,7 @@
 #include "objectform.h"
 #include "ui_objectform.h"
 #include "AppParameters/AppParameters.h"
+#include "LogginCategories/loggincategories.h"
 
 #include <QClipboard>
 
@@ -12,6 +13,7 @@ ObjectForm::ObjectForm(QSharedPointer<TermData> tData, QWidget *parent) :
 {
     ui->setupUi(this);
     createUI();
+    createConnList();
 }
 
 ObjectForm::~ObjectForm()
@@ -28,6 +30,23 @@ void ObjectForm::createUI()
         ui->labelAddress->setText(m_termData->getAdress())    ;
     }
     ui->labelPhone->setText(m_termData->getPhone());
+}
+
+void ObjectForm::createConnList()
+{
+    switch (AppParameters::instance().getParameter("templatеHostname").toInt()) {
+    case 0:
+        //Avias
+        connListAvias();
+        break;
+    default:
+        break;
+    }
+}
+
+void ObjectForm::connListAvias()
+{
+    qInfo(logInfo()) << "Generate Avias. Term ID" << m_termData->getTerminalID();
 }
 
 void ObjectForm::on_toolButtonClipboard_clicked()
