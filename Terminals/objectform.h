@@ -20,14 +20,17 @@ public:
     ~ObjectForm();
 private slots:
     void on_toolButtonClipboard_clicked();
+    void on_toolButtonAdres2Clip_clicked();
+
 private:
     void createUI();
     void createConnList();
     void connListAvias();
+    QString getVNCPassword();
 private:
     Ui::ObjectForm *ui;
     QSharedPointer<TermData> m_termData;
-    QList<ConnectionData> connList;
+    QList<QSharedPointer<ConnectionData>> connList;
 };
 
 #endif // OBJECTFORM_H

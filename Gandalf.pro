@@ -20,6 +20,7 @@ SOURCES += \
     LogginCategories/loggincategories.cpp \
     Terminals/connectiondata.cpp \
     Terminals/objectform.cpp \
+    Terminals/pingmodel.cpp \
     Terminals/searchform.cpp \
     Terminals/termdata.cpp \
     Users/userprofiledialog.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     LogginCategories/loggincategories.h \
     Terminals/connectiondata.h \
     Terminals/objectform.h \
+    Terminals/pingmodel.h \
     Terminals/searchform.h \
     Terminals/termdata.h \
     Users/userprofiledialog.h \

@@ -33,10 +33,6 @@ void ConnectionData::setPort(int newPort)
     emit portChanged();
 }
 
-QString ConnectionData::getPassVNC() const
-{
-    return passVNC;
-}
 
 int ConnectionData::getTernID() const
 {
@@ -49,5 +45,18 @@ void ConnectionData::setTernID(int newTernID)
         return;
     ternID = newTernID;
     emit ternIDChanged();
+}
+
+void ConnectionData::setPassVNC(const QString &newPassVNC)
+{
+    if (passVNC == newPassVNC)
+        return;
+    passVNC = newPassVNC;
+    emit passVNCChanged();
+}
+
+QString ConnectionData::getPassVNC() const
+{
+    return passVNC;
 }
 

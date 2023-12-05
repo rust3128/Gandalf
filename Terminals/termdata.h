@@ -32,7 +32,6 @@ signals:
     void phoneChanged();
     void ownerSystemIDChanged();
     void ownerIDChanged();
-
     void ownerNameChanged();
 
 private:

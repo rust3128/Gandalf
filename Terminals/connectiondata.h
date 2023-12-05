@@ -20,12 +20,16 @@ public:
     int getTernID() const;
     void setTernID(int newTernID);
 
+    void setPassVNC(const QString &newPassVNC);
+
 signals:
     void ternIDChanged();
 
     void hostNameChanged();
 
     void portChanged();
+
+    void passVNCChanged();
 
 private:
     int ternID;
@@ -35,8 +39,8 @@ private:
 
     Q_PROPERTY(QString hostName READ getHostName WRITE setHostName NOTIFY hostNameChanged FINAL)
     Q_PROPERTY(int port READ getPort WRITE setPort NOTIFY portChanged FINAL)
-    Q_PROPERTY(QString passVNC READ getPassVNC CONSTANT FINAL)
     Q_PROPERTY(int ternID READ getTernID WRITE setTernID NOTIFY ternIDChanged FINAL)
+    Q_PROPERTY(QString passVNC READ getPassVNC WRITE setPassVNC NOTIFY passVNCChanged FINAL)
 };
 
 #endif // CONNECTIONDATA_H

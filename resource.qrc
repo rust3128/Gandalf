@@ -20,5 +20,7 @@
         <file>Images/about_icon.png</file>
         <file>Images/qt_icon.png</file>
         <file>Images/template_icon.png</file>
+        <file>Images/ping_icon.png</file>
+        <file>Images/clear_icon.png</file>
     </qresource>
 </RCC>

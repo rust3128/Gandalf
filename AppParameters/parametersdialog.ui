@@ -42,7 +42,7 @@
    <item row="1" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <property name="documentMode">
       <bool>true</bool>
@@ -183,7 +183,7 @@
        <item row="3" column="0" colspan="2">
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Метод формирования  адерса для подключения АЗС</string>
+          <string>Метод формирования адреса для подключения АЗС</string>
          </property>
         </widget>
        </item>
