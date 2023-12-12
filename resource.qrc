@@ -22,5 +22,14 @@
         <file>Images/template_icon.png</file>
         <file>Images/ping_icon.png</file>
         <file>Images/clear_icon.png</file>
+        <file>Images/waiting_icon.png</file>
+        <file>Images/waiting_icon_big.png</file>
+        <file>Images/tanks.png</file>
+        <file>Images/dispenser.png</file>
+        <file>Images/pos1.png</file>
+        <file>Images/pos2.png</file>
+        <file>Images/pos3.png</file>
+        <file>Images/tovaroved.png</file>
+        <file>Images/pc_icon.png</file>
     </qresource>
 </RCC>

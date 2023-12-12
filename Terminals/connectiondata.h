@@ -24,11 +24,8 @@ public:
 
 signals:
     void ternIDChanged();
-
     void hostNameChanged();
-
     void portChanged();
-
     void passVNCChanged();
 
 private:

@@ -124,7 +124,7 @@
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="groupBoxPing">
          <property name="title">
           <string>Состояние канала связи</string>
          </property>
@@ -228,23 +228,39 @@ color: rgb(0, 255, 0);</string>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="groupBoxConnections">
          <property name="title">
           <string>Доступные подключения</string>
          </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
-           <widget class="QListWidget" name="listWidget">
-            <property name="isWrapping" stdset="0">
-             <bool>false</bool>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="selectionRectVisible">
-             <bool>true</bool>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayoutButton">
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QProgressBar" name="progressBar">
+              <property name="maximum">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>2</number>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="textVisible">
+               <bool>true</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -256,23 +272,20 @@ color: rgb(0, 255, 0);</string>
        <string>Резервуары</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="1" column="0" colspan="2">
-        <widget class="QTableView" name="tableViewTanks">
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <bold>true</bold>
+          </font>
          </property>
-         <property name="alternatingRowColors">
+         <property name="text">
+          <string>Резервуарный парк</string>
+         </property>
+         <property name="scaledContents">
           <bool>true</bool>
          </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
         </widget>
        </item>
        <item row="0" column="0">
@@ -293,27 +306,30 @@ color: rgb(0, 255, 0);</string>
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>:/Images/tanks.png</pixmap>
+          <pixmap resource="../resource.qrc">:/Images/tanks.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <pointsize>16</pointsize>
-           <bold>true</bold>
-          </font>
+       <item row="1" column="0" colspan="2">
+        <widget class="QTableView" name="tableViewTanks">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
          </property>
-         <property name="text">
-          <string>Резервуарный парк</string>
-         </property>
-         <property name="scaledContents">
+         <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
         </widget>
        </item>
        <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
@@ -322,30 +338,7 @@ color: rgb(0, 255, 0);</string>
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>:/Images/waiting_icon_big.png</pixmap>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-        <widget class="QLabel" name="labelTankNotFound">
-         <property name="font">
-          <font>
-           <pointsize>16</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(170, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>Данные по ререзрвуарам не доступны.
-Нет подключения к центральной БД.</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <pixmap resource="../resource.qrc">:/Images/waiting_icon_big.png</pixmap>
          </property>
         </widget>
        </item>
@@ -356,25 +349,6 @@ color: rgb(0, 255, 0);</string>
        <string>ТРК</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelDispenserLogo">
-         <property name="maximumSize">
-          <size>
-           <width>120</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>:/Images/dispenser.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0" colspan="2">
         <widget class="QTreeWidget" name="treeWidgetTRK">
          <property name="autoFillBackground">
@@ -427,6 +401,35 @@ color: rgb(0, 255, 0);</string>
          </column>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelDispenserLogo">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../resource.qrc">:/Images/dispenser.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="labelWaitingDisp">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../resource.qrc">:/Images/waiting_icon_big.png</pixmap>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="label_2">
          <property name="font">
@@ -440,36 +443,6 @@ color: rgb(0, 255, 0);</string>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
-        <widget class="QLabel" name="labelWaitingDisp">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>:/Images/waiting_icon_big.png</pixmap>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QLabel" name="labelTRKNotFound">
-         <property name="font">
-          <font>
-           <pointsize>16</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(170, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>Данные по ТРК не доступны.
-Нет подключения к центральной БД.</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>

@@ -74,6 +74,7 @@ void ParametersDialog::createUI()
     QAction *openVNCFileAction = new QAction(QIcon(":/Images/file_open_icon.png"), tr("Открыть файл"), this);
     connect(openVNCFileAction, &QAction::triggered,this,&ParametersDialog::slotOpenClentVNC);
     ui->lineEditClientVNC->addAction(openVNCFileAction, QLineEdit::TrailingPosition);
+    ui->lineEditClientVNC->setText(AppParameters::instance().getParameter("clientVNCPath"));
     ui->lineEditPassDefault->setText(crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass")));
     QAction *showPasswordVNCAction = new QAction(QIcon(":/Images/eye_icon.png"), tr("Показать пароль"), this);
     connect(showPasswordVNCAction, &QAction::triggered, [this] {

@@ -48,17 +48,22 @@ void MainWindow::getListAZS()
 {
     QSqlDatabase db = QSqlDatabase::database("mpos");
     QSqlQuery q(db);
-    q.prepare("select t.terminal_id, (select o.name from terminals o where o.terminal_id = t.owner_id) as reg,  t.adress, t.phone, TRIM(t.ownersystem_id), TRIM(t.owner_id)  from terminals t "
-                  "where t.terminal_id BETWEEN ? and ? and t.terminaltype = 3 and t.isactive='T' and t.iswork ='T' "
-                  "order by t.terminal_id");
-    q.bindValue(0, AppParameters::instance().getParameter("minTerminalID").toInt());
-    q.bindValue(1, AppParameters::instance().getParameter("maxTerminalID").toInt());
-    if(!q.exec()) {
+    QString strSql = QString("select t.terminal_id, (select o.name from terminals o where o.terminal_id = t.owner_id) as reg, t.adress, t.phone, TRIM(t.ownersystem_id), TRIM(t.owner_id) from terminals t "
+                             "where t.terminal_id BETWEEN %1 and %2 and t.terminaltype = 3 and t.isactive='T' and t.iswork ='T' "
+                             "order by t.terminal_id")
+                         .arg(AppParameters::instance().getParameter("minTerminalID"))
+                         .arg(AppParameters::instance().getParameter("maxTerminalID"));
+    qInfo(logInfo()) << "strSQL" << strSql;
+
+    // q.bindValue(0, AppParameters::instance().getParameter("minTerminalID").toInt());
+    // q.bindValue(1, AppParameters::instance().getParameter("maxTerminalID").toInt());
+    if(!q.exec(strSql)) {
         qCritical(logCritical()) << tr("Не удалось получить данные по терминалах.") << q.lastError().text();
         return;
     }
     while (q.next()) {
         QSharedPointer<TermData> azs = QSharedPointer<TermData>::create();
+        qInfo(logInfo()) << "terminal added" << q.value(0).toInt();
         azs->setTerminalID(q.value(0).toInt());
         azs->setOwnerName(q.value(1).toString());
         azs->setAdress(q.value(2).toString());
@@ -161,8 +166,7 @@ void MainWindow::on_tabWidgetTerminals_tabCloseRequested(int index)
 {
     ui->tabWidgetTerminals->setCurrentIndex(index);
     ui->tabWidgetTerminals->currentWidget()->deleteLater();
-    qDebug() << "Deleted index" << index;
-    if(index==0)
+    if(ui->tabWidgetTerminals->count()==0)
         ui->tabWidgetTerminals->hide();
 }
 

@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql core5compat network concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,10 +18,18 @@ SOURCES += \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
     LogginCategories/loggincategories.cpp \
+    Terminals/buttonvnc.cpp \
     Terminals/connectiondata.cpp \
+    Terminals/connstatusvnc.cpp \
+    Terminals/dispenserinfo.cpp \
+    Terminals/dispenserproperty.cpp \
     Terminals/objectform.cpp \
     Terminals/pingmodel.cpp \
+    Terminals/punpproperty.cpp \
     Terminals/searchform.cpp \
+    Terminals/tankproperty.cpp \
+    Terminals/tanksinfo.cpp \
+    Terminals/tanksinfomodel.cpp \
     Terminals/termdata.cpp \
     Users/userprofiledialog.cpp \
     main.cpp \
@@ -34,10 +42,18 @@ HEADERS += \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
     LogginCategories/loggincategories.h \
+    Terminals/buttonvnc.h \
     Terminals/connectiondata.h \
+    Terminals/connstatusvnc.h \
+    Terminals/dispenserinfo.h \
+    Terminals/dispenserproperty.h \
     Terminals/objectform.h \
     Terminals/pingmodel.h \
+    Terminals/punpproperty.h \
     Terminals/searchform.h \
+    Terminals/tankproperty.h \
+    Terminals/tanksinfo.h \
+    Terminals/tanksinfomodel.h \
     Terminals/termdata.h \
     Users/userprofiledialog.h \
     mainwindow.h
