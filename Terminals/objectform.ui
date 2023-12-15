@@ -112,13 +112,29 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="elideMode">
+      <enum>Qt::ElideNone</enum>
      </property>
      <property name="documentMode">
       <bool>true</bool>
      </property>
      <widget class="QWidget" name="tabWorkPlace">
+      <attribute name="icon">
+       <iconset resource="../resource.qrc">
+        <normaloff>:/Images/pc_icon.png</normaloff>:/Images/pc_icon.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Рабочие места</string>
       </attribute>
@@ -268,6 +284,10 @@ color: rgb(0, 255, 0);</string>
       </layout>
      </widget>
      <widget class="QWidget" name="tabTanks">
+      <attribute name="icon">
+       <iconset resource="../resource.qrc">
+        <normaloff>:/Images/tanks.png</normaloff>:/Images/tanks.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Резервуары</string>
       </attribute>
@@ -345,6 +365,10 @@ color: rgb(0, 255, 0);</string>
       </layout>
      </widget>
      <widget class="QWidget" name="tabTRK">
+      <attribute name="icon">
+       <iconset resource="../resource.qrc">
+        <normaloff>:/Images/dispenser.png</normaloff>:/Images/dispenser.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>ТРК</string>
       </attribute>

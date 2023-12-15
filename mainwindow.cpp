@@ -8,12 +8,15 @@
 #include "AppParameters/criptpass.h"
 #include "Terminals/searchform.h"
 #include "Terminals/objectform.h"
+#include "Deploys/getdeploys.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QTimer>
 #include <QLabel>
 #include <QMessageBox>
+#include <QThread>
+#include <QPropertyAnimation>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,6 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
     getListAZS();
     createUI();
     createConnections();
+
+    timer = new QTimer();
+    connect(timer,&QTimer::timeout,this,&MainWindow::deploysShow);
+    timer->setInterval(ui->spinBoxInterval->value()*60000);
+    timer->start(); // И запустим таймер
  }
 
 MainWindow::~MainWindow()
@@ -41,6 +49,14 @@ void MainWindow::createUI()
     ui->tabWidgetTerminals->hide();
 //    QLabel *labelStatus =new QLabel(strTitle);
 //    ui->statusbar->addWidget(labelStatus);
+    ui->splitter->setStyleSheet(
+        "QSplitter::handle:vertical { background-color: #3498db; border: 1px solid #2980b9; }"
+        "QSplitter::handle:horizontal { background-color: #3498db; border: 1px solid #2980b9; }"
+        );
+    ui->splitter->setStretchFactor(0,4);
+    ui->splitter->setStretchFactor(1,1);
+    deploysShow();
+
 
 }
 
@@ -83,6 +99,7 @@ void MainWindow::createConnections()
 {
     connect(ui->widgetSearch,&SearchForm::signalSendSearchTerminalID,this,&MainWindow::slotGetTerminalID);
 }
+
 
 
 void MainWindow::on_actionUserProfile_triggered()
@@ -170,6 +187,117 @@ void MainWindow::on_tabWidgetTerminals_tabCloseRequested(int index)
         ui->tabWidgetTerminals->hide();
 }
 
+void MainWindow::deploysShow()
+{
+    // Создаем объект класса и передаем ему параметры
+    GetDeploys *getDeps = new GetDeploys(ui->spinBoxPorog->value());
+    // Создаем поток в которм будут производиться наша выборка
+    QThread *thread = new QThread();
+    // Перемещаем объект класса в поток
+    getDeps->moveToThread(thread);
+
+    //// Сигналы и слоты для взаимидействия с потоком
+
+    // при старте потока выполняем некоторые действия в текущем потоке.
+    // В моем случае на просто засекаю начало выбоки данных
+    connect(thread,&QThread::started,this,&MainWindow::slotStartGetDeploys);
+    // При старте потока начинаем выборку данных
+    connect(thread,&QThread::started,getDeps,&GetDeploys::createListDeploys);
+    // Передача сообщения об ошибке при подключении к БД
+    connect(getDeps, &GetDeploys::signalError, this, &MainWindow::slotErrorGetDeploys);
+    // Передача результирующего объекта QVertor из дочернего потока в основной
+    connect(getDeps, &GetDeploys::signalSendDeployList, this, &MainWindow::slotGetDeploys);
+    // Окончание работы потока по завершению выбрки данных
+    connect(getDeps, &GetDeploys::finish,thread,&QThread::quit);
+    // Удаляем объект в потоке
+    connect(getDeps, &GetDeploys::finish,getDeps, &GetDeploys::deleteLater);
+    // Вы полняем действия по в основном потоке после завершения дочернего
+    connect(getDeps, &GetDeploys::finish,this,&MainWindow::slotFinishGetDeploys);
+    // Прощаемся с дочерним потоком
+    connect(thread,&QThread::finished,thread,&QThread::deleteLater);
+    // Запускаем поток
+    thread->start();
+}
+
+void MainWindow::slotErrorGetDeploys(QString message)
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle(tr("Ошибка подключения."));
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.setText(tr("Произошла ошибка при подключении к центральной базе данных!"));
+    msgBox.setInformativeText(tr("Текст ошибки:\n")+message);
+    QString strDetali = QString("Server:\t"+AppParameters::instance().getParameter("mposHostName")+":"+AppParameters::instance().getParameter("mposPort")+
+                                "\nDatabase:\t"+AppParameters::instance().getParameter("mposDB")+
+                                "\nUser:\t"+AppParameters::instance().getParameter("mposUser"));
+    msgBox.setDetailedText(strDetali);
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+}
+
+void MainWindow::slotStartGetDeploys()
+{
+    showDeploysData(false);
+}
+
+void MainWindow::slotGetDeploys(QVector<DeployData> dp)
+{
+    deploys = dp;
+    QString mess;
+    if(deploys.size() == 0){
+        ui->toolBox->setItemIcon(0,QIcon(":/Images/green_icon.png"));
+        mess = " Обмен с АЗС - Нет проблем с отзвонами! ";
+    } else {
+        mess = QString("Обмен с АЗС - %1 АЗС нет данных за последние %2")
+                           .arg(deploys.size())
+                           .arg(ui->spinBoxPorog->text());
+        ui->toolBox->setItemIcon(0,QIcon(":/Images/alert_icon.png"));
+
+    }
+    ui->toolBox->setItemText(0,"Статисика обмена с АЗС");
+    setMarqueeText(mess);
+}
+
+void MainWindow::setMarqueeText(const QString& text)
+{
+    QLabel *marqueeLabel = ui->labelDepInfo;
+    marqueeLabel->setText(text);
+
+    QTimer *marqueeTimer = new QTimer(this);
+    connect(marqueeTimer, &QTimer::timeout, [=]() {
+        QString marqueeText = marqueeLabel->text();
+        marqueeText.push_back(marqueeText.at(0));
+        marqueeText.remove(0, 1);
+        marqueeLabel->setText(marqueeText);
+    });
+
+    marqueeTimer->start(300);  // Змініть цей інтервал в залежності від швидкості бігучої стрічки
+}
+
+void MainWindow::slotFinishGetDeploys()
+{
+    ui->labelLastDeploys->setText(QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss"));
+    showDeploysData(true);
+
+    depModel = new DeploysModel(deploys);
+    proxyDep = new QSortFilterProxyModel();
+    proxyDep->setSourceModel(depModel);
+    ui->tableViewDeploys->setModel(proxyDep);
+    ui->tableViewDeploys->resizeColumnsToContents();
+    ui->tableViewDeploys->verticalHeader()->setDefaultSectionSize(ui->tableViewDeploys->verticalHeader()->minimumSectionSize());
+}
+
+void MainWindow::showDeploysData(bool show)
+{
+    ui->labelWaiting->setHidden(show);
+    ui->labelDepInfo->setVisible(show);
+    ui->labelLastDeploys->setVisible(show);
+    ui->tableViewDeploys->setVisible(show);
+    ui->labelDap2->setVisible(show);
+    ui->spinBoxInterval->setVisible(show);
+    ui->labelDep3->setVisible(show);
+    ui->spinBoxPorog->setVisible(show);
+    ui->pushButtonRefreshDeploys->setVisible(show);
+}
 
 void MainWindow::on_action_AboutQt_triggered()
 {
@@ -189,5 +317,11 @@ void MainWindow::on_actionAbout_triggered()
                             .arg(versionDate.toString("dd.MM.yyyy"));
     qDebug() << aboutText;
     QMessageBox::about(this, tr("Про програму"), aboutText);
+}
+
+
+void MainWindow::on_pushButtonRefreshDeploys_clicked()
+{
+    deploysShow();
 }
 

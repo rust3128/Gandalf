@@ -17,6 +17,9 @@ SOURCES += \
     AppParameters/parametersdialog.cpp \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
+    Deploys/deploydata.cpp \
+    Deploys/deploysmodel.cpp \
+    Deploys/getdeploys.cpp \
     LogginCategories/loggincategories.cpp \
     Terminals/buttonvnc.cpp \
     Terminals/connectiondata.cpp \
@@ -41,6 +44,9 @@ HEADERS += \
     AppParameters/parametersdialog.h \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
+    Deploys/deploydata.h \
+    Deploys/deploysmodel.h \
+    Deploys/getdeploys.h \
     LogginCategories/loggincategories.h \
     Terminals/buttonvnc.h \
     Terminals/connectiondata.h \

@@ -31,5 +31,7 @@
         <file>Images/pos3.png</file>
         <file>Images/tovaroved.png</file>
         <file>Images/pc_icon.png</file>
+        <file>Images/refresh_icon.png</file>
+        <file>Images/alert_icon.png</file>
     </qresource>
 </RCC>

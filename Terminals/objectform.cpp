@@ -252,7 +252,8 @@ void ObjectForm::on_toolButtonPingAddres_clicked()
         pingModel = new PingModel();
     } else {
         // Об'єкт існує, видалення та створення нового
-        delete pingModel;
+        pingModel->finished();
+        pingModel->deleteLater();
         pingModel = new PingModel();
     }
     pingModel = new PingModel();
