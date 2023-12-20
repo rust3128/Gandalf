@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     getListAZS();
     createUI();
     createConnections();
-
+    marqueeTimer = new QTimer(this);
     timer = new QTimer();
     connect(timer,&QTimer::timeout,this,&MainWindow::deploysShow);
     timer->setInterval(ui->spinBoxInterval->value()*60000);
@@ -79,7 +79,7 @@ void MainWindow::getListAZS()
     }
     while (q.next()) {
         QSharedPointer<TermData> azs = QSharedPointer<TermData>::create();
-        qInfo(logInfo()) << "terminal added" << q.value(0).toInt();
+//        qInfo(logInfo()) << "terminal added" << q.value(0).toInt();
         azs->setTerminalID(q.value(0).toInt());
         azs->setOwnerName(q.value(1).toString());
         azs->setAdress(q.value(2).toString());
@@ -243,26 +243,29 @@ void MainWindow::slotGetDeploys(QVector<DeployData> dp)
 {
     deploys = dp;
     QString mess;
+    QColor textColor;
     if(deploys.size() == 0){
         ui->toolBox->setItemIcon(0,QIcon(":/Images/green_icon.png"));
-        mess = " Обмен с АЗС - Нет проблем с отзвонами! ";
+        mess = "  Нет проблем с отзвонами!  ";
+        textColor= QColor("green");
     } else {
-        mess = QString("Обмен с АЗС - %1 АЗС нет данных за последние %2")
+        mess = QString(" %1 АЗС нет данных за последние %2  ")
                            .arg(deploys.size())
                            .arg(ui->spinBoxPorog->text());
         ui->toolBox->setItemIcon(0,QIcon(":/Images/alert_icon.png"));
-
+        textColor= QColor("red");
     }
     ui->toolBox->setItemText(0,"Статисика обмена с АЗС");
-    setMarqueeText(mess);
+    setMarqueeText(mess, textColor);
 }
 
-void MainWindow::setMarqueeText(const QString& text)
+void MainWindow::setMarqueeText(const QString& text, const QColor &textColor)
 {
     QLabel *marqueeLabel = ui->labelDepInfo;
+    marqueeLabel->setStyleSheet("color: " + textColor.name());
     marqueeLabel->setText(text);
 
-    QTimer *marqueeTimer = new QTimer(this);
+
     connect(marqueeTimer, &QTimer::timeout, [=]() {
         QString marqueeText = marqueeLabel->text();
         marqueeText.push_back(marqueeText.at(0));

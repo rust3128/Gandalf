@@ -21,6 +21,8 @@ SOURCES += \
     Deploys/deploysmodel.cpp \
     Deploys/getdeploys.cpp \
     LogginCategories/loggincategories.cpp \
+    Logs/logdata.cpp \
+    Logs/logger.cpp \
     Terminals/buttonvnc.cpp \
     Terminals/connectiondata.cpp \
     Terminals/connstatusvnc.cpp \
@@ -48,6 +50,8 @@ HEADERS += \
     Deploys/deploysmodel.h \
     Deploys/getdeploys.h \
     LogginCategories/loggincategories.h \
+    Logs/logdata.h \
+    Logs/logger.h \
     Terminals/buttonvnc.h \
     Terminals/connectiondata.h \
     Terminals/connstatusvnc.h \

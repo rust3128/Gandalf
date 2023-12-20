@@ -50,7 +50,9 @@
 	border-radius: 17px;
 	padding-left: 20px;
 	padding-right: 20px;
-}</string>
+background-color: rgb(85, 255, 255);
+}
+</string>
      </property>
      <property name="maxLength">
       <number>5</number>
@@ -72,6 +74,9 @@
       <font>
        <pointsize>12</pointsize>
       </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
      </property>
      <property name="text">
       <string>Введите номер АЗС</string>

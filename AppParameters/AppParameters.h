@@ -18,7 +18,7 @@ public:
     static const QString KEY_SOLT;
     static const QString VEKTOR_KEY;
     static const QMap<int, QString> TEMPLATE_HOSTNAME;
-
+    static const QString LOG_DIRECTORY;
     // Додати метод для встановлення значень за замовчуванням
     void setDefaultParameters();
 

@@ -41,7 +41,7 @@ private:
     void getListAZS();                      //Отримання спису АЗС
     void createConnections();
     void showDeploysData(bool show);
-    void setMarqueeText(const QString& text);
+    void setMarqueeText(const QString& text, const QColor& textColor);
 private:
     Ui::MainWindow *ui;
     QMap<int, QSharedPointer<TermData>> listAzs;            //Список терміналів
@@ -49,5 +49,6 @@ private:
     DeploysModel *depModel;                                 // Модель для отображения
     QSortFilterProxyModel *proxyDep;                        // Модель для сортировки неотзвонов
     QTimer *timer;                                          // Тайсер для обновления
+    QTimer *marqueeTimer;
 };
 #endif // MAINWINDOW_H

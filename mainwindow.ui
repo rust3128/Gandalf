@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>954</width>
+    <width>1173</width>
     <height>652</height>
    </rect>
   </property>
@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="0" column="1">
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -63,45 +63,11 @@
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="pageDeploys">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>635</width>
-          <height>492</height>
-         </rect>
-        </property>
+       <widget class="QWidget" name="toolBoxPage1" native="true">
         <attribute name="label">
-         <string>Page 1</string>
+         <string/>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0" colspan="2">
-          <widget class="QLabel" name="labelDepInfo">
-           <property name="text">
-            <string>Задержки обена с ЦБ</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="2" alignment="Qt::AlignHCenter">
-          <widget class="QLabel" name="labelLastDeploys">
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="0" colspan="2">
           <widget class="QTableView" name="tableViewDeploys">
            <property name="editTriggers">
@@ -121,56 +87,96 @@
            </attribute>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="labelDap2">
+         <item row="1" column="0" colspan="2" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="labelLastDeploys">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
-            <string>Отображать если нет данных более</string>
+            <string>TextLabel</string>
            </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QSpinBox" name="spinBoxPorog">
-           <property name="suffix">
-            <string> мин.</string>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>1440</number>
-           </property>
-           <property name="value">
-            <number>120</number>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="labelDep3">
+         <item row="3" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="labelDap2">
+             <property name="text">
+              <string>Отображать если нет данных более</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBoxPorog">
+             <property name="suffix">
+              <string> мин.</string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>1440</number>
+             </property>
+             <property name="value">
+              <number>120</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="labelDep3">
+             <property name="text">
+              <string>Интервал проверки каждые</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBoxInterval">
+             <property name="suffix">
+              <string> мин.</string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>300</number>
+             </property>
+             <property name="value">
+              <number>30</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="6" column="0" colspan="2" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="labelWaiting">
            <property name="text">
-            <string>Интервал проверки каждые</string>
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="resource.qrc">:/Images/waiting_icon_big.png</pixmap>
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="QSpinBox" name="spinBoxInterval">
-           <property name="suffix">
-            <string> мин.</string>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>300</number>
-           </property>
-           <property name="value">
-            <number>30</number>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0" colspan="2">
+         <item row="5" column="0" colspan="2" alignment="Qt::AlignHCenter">
           <widget class="QPushButton" name="pushButtonRefreshDeploys">
            <property name="text">
             <string>Обновить</string>
@@ -181,29 +187,36 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="labelWaiting">
-           <property name="text">
-            <string/>
+         <item row="0" column="0" colspan="2" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="labelDepInfo">
+           <property name="maximumSize">
+            <size>
+             <width>300</width>
+             <height>16777215</height>
+            </size>
            </property>
-           <property name="pixmap">
-            <pixmap resource="resource.qrc">:/Images/waiting_icon_big.png</pixmap>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Задержки обена с ЦБ</string>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>635</width>
-          <height>492</height>
-         </rect>
-        </property>
+       <widget class="QWidget" name="toolBoxPage2" native="true">
         <attribute name="label">
-         <string>Page 2</string>
+         <string/>
         </attribute>
        </widget>
       </widget>
@@ -216,7 +229,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>954</width>
+     <width>1173</width>
      <height>21</height>
     </rect>
    </property>

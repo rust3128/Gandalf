@@ -35,21 +35,22 @@ void GetDeploys::createListDeploys()
     }
     // Привязыем запрос к соединению
     QSqlQuery q = QSqlQuery(dbth);
-    q.prepare("select s.terminal_id, s.doper, "
-              "datediff(minute,s.doper,current_timestamp) as deploy "
-              "from "
-                "(select t.terminal_id, "
-                   "(select first 1 doper from mgt$packets p "
-                   "where p.terminal_id = t.terminal_id and p.apply = 'T' "
-                   "order by p.doper desc) "
-                "from terminals t "
-                "where t.terminaltype = 3 and t.isactive = 'T' and t.iswork = 'T') s "
-              "where "
-              "(datediff(minute,s.doper,current_timestamp) > :porog) "
-              "order by s.doper");
-    q.bindValue(0, m_porog);
-
-    if(!q.exec()) {
+    QString strSQL =QString("select s.terminal_id, s.doper, "
+                             "datediff(minute,s.doper,current_timestamp) as deploy "
+                             "from "
+                             "(select t.terminal_id, "
+                             "(select first 1 doper from mgt$packets p "
+                             "where p.terminal_id = t.terminal_id and p.apply = 'T' "
+                             "order by p.doper desc) "
+                             "from terminals t "
+                             "where t.terminal_id BETWEEN %1 and %2 and t.terminaltype = 3 and t.isactive = 'T' and t.iswork = 'T') s "
+                             "where "
+                             "(datediff(minute,s.doper,current_timestamp) > %3) "
+                             "order by s.doper")
+                            .arg(AppParameters::instance().getParameter("minTerminalID"))
+                            .arg(AppParameters::instance().getParameter("maxTerminalID"))
+                            .arg(m_porog);
+    if(!q.exec(strSQL)) {
             qInfo(logInfo()) << "Errog get deploys" << q.lastError().text();
             emit finish();
     }

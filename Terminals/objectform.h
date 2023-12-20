@@ -10,6 +10,7 @@
 #include "Terminals/tanksinfomodel.h"
 #include "Terminals/dispenserproperty.h"
 #include "Terminals/punpproperty.h"
+#include "Logs/logdata.h"
 
 #include <QDialog>
 #include <QSharedPointer>
@@ -45,7 +46,7 @@ private slots:
     void slotVNCButtonClicked();
     void slotGetStatus(const ConnStatus &status);
     void slotFinishConStatus();
-    void slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
+    void slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitStatus, LogData _ld);
     void slotStartGetTanksInfo();
     void slotFinishGetTanks();
     void slotStartGetDispInfo();

@@ -13,6 +13,7 @@ const QString AppParameters::CONFIG_FILE_NAME = "Gandalf.ini";          // Фа�
 const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Лог файл
 const QString AppParameters::KEY_SOLT = "SapForever";
 const QString AppParameters::VEKTOR_KEY = "Poltava1970Rust";
+const QString AppParameters::LOG_DIRECTORY = "D:/MPos3/Logs";
 const QMap<int, QString> AppParameters::TEMPLATE_HOSTNAME = {
     {0, "Avias"},
     {1, "UkrNafta"},

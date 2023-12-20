@@ -7,6 +7,7 @@
 #include "AppParameters/criptpass.h"
 #include "Terminals/tanksinfo.h"
 #include "Terminals/dispenserinfo.h"
+#include "Logs/logger.h"
 
 
 
@@ -41,6 +42,7 @@ ObjectForm::ObjectForm(QSharedPointer<TermData> tData, QWidget *parent) :
 
 ObjectForm::~ObjectForm()
 {
+    pingModel->deleteLater();
     delete ui;
 }
 
@@ -267,6 +269,9 @@ void ObjectForm::on_toolButtonPingAddres_clicked()
 void ObjectForm::slotVNCButtonClicked()
 {
     ButtonVNC *button = static_cast<ButtonVNC*>(sender());
+    int posID=button->getButtonID()+1;
+    LogData ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), posID, 1,"testcomments");
+    Logger log(ld);
     qInfo(logInfo()) << "Pushed" << connList.at(button->getButtonID())->getHostName()+":"+QString::number(connList.at(button->getButtonID())->getPort());
     QString clientVNCpath = AppParameters::instance().getParameter("clientVNCPath");
     QFile file(clientVNCpath);
@@ -285,15 +290,22 @@ void ObjectForm::slotVNCButtonClicked()
     myProcess = new QProcess();
 
     // Підключення слоту до сигналу finished()
-    QObject::connect(myProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-                     this, &ObjectForm::slotVNCProcessFinished);
+    connect(myProcess, &QProcess::finished, this, [this, ld](int exitCode, QProcess::ExitStatus exitStatus) {
+        slotVNCProcessFinished(exitCode, exitStatus, ld);
+    });
+
 
     // Запуск програми з аргументами
     myProcess->start(clientVNCpath, arguments);
+
+    log.writeToLog();
 }
 
-void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitStatus, LogData _ld)
 {
+    _ld.setLogTypeID(2);
+    Logger lg(_ld);
+    lg.writeToLog();
     qDebug() << "vncviewer.exe finished with exit code:" << exitCode;
     qDebug() << "Exit status:" << (exitStatus == QProcess::NormalExit ? "Normal Exit" : "Crash Exit");
 }
