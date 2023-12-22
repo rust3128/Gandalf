@@ -19,6 +19,17 @@ public:
     static const QString VEKTOR_KEY;
     static const QMap<int, QString> TEMPLATE_HOSTNAME;
     static const QString LOG_DIRECTORY;
+    //Типи логів
+    enum LogType {
+        Connect = 1,
+        Disconnect,
+        UpdateUserProfile
+        // Додайте інші типи логу, якщо потрібно
+    };
+    static const LogType LOG_TYPE_CONNECT;
+    static const LogType LOG_TYPE_DISCONNECT;
+    static const LogType LOG_TYPE_UPDATE_USER_PROFILE;
+    static const QMap<int, QString> TEMPLATE_VNC_PASS;
     // Додати метод для встановлення значень за замовчуванням
     void setDefaultParameters();
 

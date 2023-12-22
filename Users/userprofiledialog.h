@@ -22,6 +22,7 @@ private slots:
 
 private:
     void createUI();
+    void writeLogUpdateUser();
 private:
     Ui::UserProfileDialog *ui;
     int m_userID;

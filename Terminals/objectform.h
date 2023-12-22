@@ -51,11 +51,14 @@ private slots:
     void slotFinishGetTanks();
     void slotStartGetDispInfo();
     void slotFinishGetDispInfo();
- private:
+    void on_pushButtonRefreshAcces_clicked();
+
+private:
     void createUI();
     void createConnList();
     void connListAvias();
-    QString getVNCPassword();
+    QString getVNCPassword();               //Генерація паролю VNC
+    QString genPassVNCUkrnafta();
     void сheckingСonnections();
     void createConnections();
     void addButtonConnections();

@@ -2,6 +2,7 @@
 #include "ui_userprofiledialog.h"
 #include "AppParameters/AppParameters.h"
 #include <LogginCategories/loggincategories.h>
+#include "Logs/logger.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -73,6 +74,8 @@ void UserProfileDialog::createUI()
 
 }
 
+
+
 void UserProfileDialog::on_buttonBox_rejected()
 {
     this->reject();
@@ -117,6 +120,7 @@ void UserProfileDialog::on_buttonBox_accepted()
     q.bindValue(7, m_userID);
     if(q.exec()){
         qInfo(logInfo()) << tr("Информация о пользователе успешно обновлена. ID=") << m_userID;
+        writeLogUpdateUser();
         this->accept();
     } else {
         qCritical(logCritical()) << tr("Не удалось обнвить информацию о пользователе. ID=") << m_userID << q.lastError().text();
@@ -124,3 +128,11 @@ void UserProfileDialog::on_buttonBox_accepted()
     }
 }
 
+void UserProfileDialog::writeLogUpdateUser()
+{
+    QString strComments = QString(tr("Пользователь ")+AppParameters::instance().getParameter("userLogin")+tr(" обновил профиль ")+ui->lineEditLogin->text());
+    LogData logDat(AppParameters::instance().getParameter("userID").toInt(),0,0,AppParameters::LOG_TYPE_UPDATE_USER_PROFILE,strComments);
+    Logger logger(logDat);
+    logger.writeToLog();
+
+}

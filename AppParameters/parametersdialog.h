@@ -21,6 +21,10 @@ private slots:
     void on_buttonBox_accepted();
     void on_comboBoxHostTemplate_activated(int index);
 
+    void on_comboBoxTemplatePass_activated(int index);
+
+    void on_groupBoxTemplatePass_toggled(bool checked);
+
 private:
     void createUI();
     void updateOrInsertParameter(const QString& paramName, const QString& paramValue);  // Функція для оновлення або додавання параметрів в базу даних

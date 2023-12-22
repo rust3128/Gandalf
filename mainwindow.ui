@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1173</width>
-    <height>652</height>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,7 +63,15 @@
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
-       <widget class="QWidget" name="toolBoxPage1" native="true">
+       <widget class="QWidget" name="toolBoxPage1">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>784</width>
+          <height>608</height>
+         </rect>
+        </property>
         <attribute name="label">
          <string/>
         </attribute>
@@ -214,7 +222,15 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="toolBoxPage2" native="true">
+       <widget class="QWidget" name="toolBoxPage2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>784</width>
+          <height>608</height>
+         </rect>
+        </property>
         <attribute name="label">
          <string/>
         </attribute>
@@ -243,6 +259,8 @@
      </property>
     </widget>
     <addaction name="menu_3"/>
+    <addaction name="actionUsers"/>
+    <addaction name="separator"/>
     <addaction name="actionParametrs"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -303,6 +321,15 @@
    </property>
    <property name="text">
     <string>Версия Qt</string>
+   </property>
+  </action>
+  <action name="actionUsers">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/users_icon.png</normaloff>:/Images/users_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Пользователи</string>
    </property>
   </action>
  </widget>

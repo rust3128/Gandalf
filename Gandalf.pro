@@ -36,7 +36,9 @@ SOURCES += \
     Terminals/tanksinfo.cpp \
     Terminals/tanksinfomodel.cpp \
     Terminals/termdata.cpp \
+    Users/userlistdialog.cpp \
     Users/userprofiledialog.cpp \
+    Users/usersmodel.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -65,6 +67,8 @@ HEADERS += \
     Terminals/tanksinfo.h \
     Terminals/tanksinfomodel.h \
     Terminals/termdata.h \
+    Users/UsersModel.h \
+    Users/userlistdialog.h \
     Users/userprofiledialog.h \
     mainwindow.h
 
@@ -73,6 +77,7 @@ FORMS += \
     DbSettingsDialog/dbsettingsdialog.ui \
     Terminals/objectform.ui \
     Terminals/searchform.ui \
+    Users/userlistdialog.ui \
     Users/userprofiledialog.ui \
     mainwindow.ui
 

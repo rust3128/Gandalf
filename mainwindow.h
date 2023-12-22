@@ -33,6 +33,8 @@ private slots:
     void slotFinishGetDeploys();
     void on_pushButtonRefreshDeploys_clicked();
 
+    void on_actionUsers_triggered();
+
 protected:
 
 private:

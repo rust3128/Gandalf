@@ -9,6 +9,7 @@
 #include "Terminals/searchform.h"
 #include "Terminals/objectform.h"
 #include "Deploys/getdeploys.h"
+#include "Users/userlistdialog.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -43,9 +44,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::createUI()
 {
-    QString strTitle = tr("Маг не приходит поздно, %1, и рано тоже не приходит. Он появляется тогда, когда положено.")
-                           .arg((AppParameters::instance().getParameter("userFIO").isEmpty()) ? tr("Неизвестный") : AppParameters::instance().getParameter("userFIO"));
-    this->setWindowTitle("Gamdalf "+strTitle);
+    // QString strTitle = tr("Маг не приходит поздно, %1, и рано тоже не приходит. Он появляется тогда, когда положено.")
+    //                        .arg((AppParameters::instance().getParameter("userFIO").isEmpty()) ? tr("Неизвестный") : AppParameters::instance().getParameter("userFIO"));
+    this->setWindowTitle("Gandalf ");
     ui->tabWidgetTerminals->hide();
 //    QLabel *labelStatus =new QLabel(strTitle);
 //    ui->statusbar->addWidget(labelStatus);
@@ -326,5 +327,12 @@ void MainWindow::on_actionAbout_triggered()
 void MainWindow::on_pushButtonRefreshDeploys_clicked()
 {
     deploysShow();
+}
+
+
+void MainWindow::on_actionUsers_triggered()
+{
+    UserListDialog *userList = new UserListDialog();
+    userList->exec();
 }
 

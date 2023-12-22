@@ -14,13 +14,22 @@ const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Ло�
 const QString AppParameters::KEY_SOLT = "SapForever";
 const QString AppParameters::VEKTOR_KEY = "Poltava1970Rust";
 const QString AppParameters::LOG_DIRECTORY = "D:/MPos3/Logs";
+//Типи гкекрайії адреси підключень
 const QMap<int, QString> AppParameters::TEMPLATE_HOSTNAME = {
     {0, "Avias"},
     {1, "UkrNafta"},
     {2, "Marshal"},
     {3, "Database"}
 };
-
+// Типи логів
+const AppParameters::LogType AppParameters::LOG_TYPE_CONNECT = AppParameters::Connect;
+const AppParameters::LogType AppParameters::LOG_TYPE_DISCONNECT = AppParameters::Disconnect;
+const AppParameters::LogType AppParameters::LOG_TYPE_UPDATE_USER_PROFILE = AppParameters::UpdateUserProfile;
+// Типи генерації паролів VNC
+const QMap<int, QString> AppParameters::TEMPLATE_VNC_PASS = {
+    {0, "UkrNafta"},
+    {1, "Database"}
+};
 AppParameters::AppParameters() {
     setDefaultParameters(); // Ініціалізація параметрів за замовчуванням
     if(QFile(CONFIG_FILE_NAME).exists()){
@@ -45,8 +54,11 @@ void AppParameters::setDefaultParameters() {
     parameters["maxTerminalID"] = "99999";
     parameters["showKodZem"] = "1";
     parameters["templatеHostname"] = "-1";
-    parameters["maxCountPC"] = "4";                 //Максимальна кількість ПК на АЗС
-    parameters["defaultVNCPass"] = crP.criptPass("88888888");
+    parameters["maxCountPC"] = "4";                             //Максимальна кількість ПК на АЗС
+    parameters["typeVNC"] = "TightVNC";                         //Тип сервера на АЗС
+    parameters["defaultVNCPass"] = crP.criptPass("88888888");   //Пароль VNC за замовчуванням
+    parameters["useTemplatePassVNC"] = "0";                     //Використовувати шаблон для пароля (0-ні, 1-Так)
+
 }
 
 void AppParameters::setParameter(const QString& paramName, const QString& paramValue) {

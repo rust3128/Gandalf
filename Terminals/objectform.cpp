@@ -34,6 +34,7 @@ ObjectForm::ObjectForm(QSharedPointer<TermData> tData, QWidget *parent) :
     dbCenter = QSqlDatabase::database("mpos");
     createConnList();
     createUI();
+
     сheckingСonnections();
     createConnections();
     tanksTabShow();
@@ -59,6 +60,11 @@ void ObjectForm::createUI()
     ui->labelPhone->setText(m_termData->getPhone());
     ui->lineEditPingAdress->setText(connList[0]->getHostName());
     ui->tabWidget->setCurrentIndex(0);
+    if (AppParameters::instance().getParameter("typeVNC") == "TightVNC") {
+        ui->radioButtonTightVNC->setChecked(true);
+    } else  {
+        ui->radioButtonUltraVNC->setChecked(true);
+    }
 }
 
 void ObjectForm::createConnList()
@@ -92,6 +98,8 @@ void ObjectForm::connListAvias()
 
 void ObjectForm::сheckingСonnections()
 {
+
+    buttonMap.clear();
     on_toolButtonPingAddres_clicked();
     addButtonConnections();
 
@@ -214,8 +222,27 @@ void ObjectForm::slotFinishConStatus()
 
 QString ObjectForm::getVNCPassword()
 {
-    CriptPass crP;
-    return crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass"));
+    QString passVNC;
+    if(AppParameters::instance().getParameter("useTemplatePassVNC").toInt()){
+        switch (AppParameters::instance().getParameter("templatеVNCPass").toInt()) {
+        case 0:
+            passVNC = genPassVNCUkrnafta();
+            break;
+        default:
+            break;
+        }
+    } else {
+        CriptPass crP;
+        passVNC = crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass"));
+    }
+    return passVNC;
+}
+
+QString ObjectForm::genPassVNCUkrnafta()
+{
+    QString passVNCUkrnafta="ukrnaftaPass";
+
+    return passVNCUkrnafta;
 }
 
 
@@ -270,7 +297,7 @@ void ObjectForm::slotVNCButtonClicked()
 {
     ButtonVNC *button = static_cast<ButtonVNC*>(sender());
     int posID=button->getButtonID()+1;
-    LogData ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), posID, 1,"testcomments");
+    LogData ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), posID, AppParameters::LOG_TYPE_CONNECT,"");
     Logger log(ld);
     qInfo(logInfo()) << "Pushed" << connList.at(button->getButtonID())->getHostName()+":"+QString::number(connList.at(button->getButtonID())->getPort());
     QString clientVNCpath = AppParameters::instance().getParameter("clientVNCPath");
@@ -285,6 +312,7 @@ void ObjectForm::slotVNCButtonClicked()
     // Аргументи для передачі
     QStringList arguments;
     arguments << QString("-host=%1").arg(hostName) << QString("-port=%2").arg(port) << QString("-password=%3").arg(passVNC);
+    qInfo(logInfo()) << "VNC arguments" << arguments;
 
     // Створення об'єкту QProcess
     myProcess = new QProcess();
@@ -303,7 +331,7 @@ void ObjectForm::slotVNCButtonClicked()
 
 void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitStatus, LogData _ld)
 {
-    _ld.setLogTypeID(2);
+    _ld.setLogTypeID(AppParameters::LOG_TYPE_DISCONNECT);
     Logger lg(_ld);
     lg.writeToLog();
     qDebug() << "vncviewer.exe finished with exit code:" << exitCode;
@@ -434,4 +462,9 @@ void ObjectForm::slotGetQueryDisp(QList<DispenserProperty> disp, QList<PunpPrope
     for (int i = 0; i < ui->treeWidgetTRK->columnCount(); ++i) {
         ui->treeWidgetTRK->resizeColumnToContents(i);
     }
+}
+
+void ObjectForm::on_pushButtonRefreshAcces_clicked()
+{
+    сheckingСonnections();
 }

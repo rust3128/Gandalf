@@ -33,5 +33,8 @@
         <file>Images/pc_icon.png</file>
         <file>Images/refresh_icon.png</file>
         <file>Images/alert_icon.png</file>
+        <file>Images/users_icon.png</file>
+        <file>Images/tightvnc-logo.png</file>
+        <file>Images/UltraVNC_Icon.png</file>
     </qresource>
 </RCC>

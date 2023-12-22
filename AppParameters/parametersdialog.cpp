@@ -70,7 +70,12 @@ void ParametersDialog::createUI()
         ui->comboBoxHostTemplate->addItem(it.value(), QVariant(it.key()));
     }
     ui->comboBoxHostTemplate->setCurrentIndex(AppParameters::instance().getParameter("templatеHostname").toInt());
-
+// VNC options
+    if (AppParameters::instance().getParameter("typeVNC") == "TightVNC") {
+        ui->radioButtonTightVNC->setChecked(true);
+     } else  {
+        ui->radioButtonUltraVNC->setChecked(true);
+    }
     QAction *openVNCFileAction = new QAction(QIcon(":/Images/file_open_icon.png"), tr("Открыть файл"), this);
     connect(openVNCFileAction, &QAction::triggered,this,&ParametersDialog::slotOpenClentVNC);
     ui->lineEditClientVNC->addAction(openVNCFileAction, QLineEdit::TrailingPosition);
@@ -81,7 +86,18 @@ void ParametersDialog::createUI()
         // Змінюємо режим відображення паролю
         ui->lineEditPassDefault->setEchoMode(ui->lineEditPassDefault->echoMode() == QLineEdit::Password ? QLineEdit::Normal : QLineEdit::Password);
     });
-     ui->lineEditPassDefault->addAction(showPasswordVNCAction, QLineEdit::TrailingPosition);
+    ui->lineEditPassDefault->addAction(showPasswordVNCAction, QLineEdit::TrailingPosition);
+
+    ui->groupBoxTemplatePass->setChecked(AppParameters::instance().getParameter("useTemplatePassVNC").toInt());
+    QMap<int, QString> templateVNCPassMap = AppParameters::instance().TEMPLATE_VNC_PASS;
+    for(auto it = templateVNCPassMap.begin(); it != templateVNCPassMap.end(); ++it){
+        ui->comboBoxTemplatePass->addItem(it.value(), QVariant(it.key()));
+    }
+    if(!ui->groupBoxTemplatePass->isChecked()){
+        ui->comboBoxTemplatePass->setCurrentIndex(-1);
+    } else {
+        ui->comboBoxTemplatePass->setCurrentIndex(AppParameters::instance().getParameter("templatеVNCPass").toInt());
+    }
 }
 
 void ParametersDialog::on_buttonBox_rejected()
@@ -116,10 +132,21 @@ void ParametersDialog::on_buttonBox_accepted()
     updateParam("maxCountPC");
     AppParameters::instance().setParameter("templatеHostname", QString::number(ui->comboBoxHostTemplate->currentIndex()));
     updateParam("templatеHostname");
+
+    if(ui->radioButtonTightVNC->isChecked()){
+        AppParameters::instance().setParameter("typeVNC","TightVNC");
+    } else {
+        AppParameters::instance().setParameter("typeVNC","UltraVNC");
+    }
+    updateParam("typeVNC");
     AppParameters::instance().setParameter("clientVNCPath", ui->lineEditClientVNC->text().trimmed());
     updateParam("clientVNCPath");
     AppParameters::instance().setParameter("defaultVNCPass",crP.criptPass(ui->lineEditPassDefault->text().trimmed()));
     updateParam("defaultVNCPass");
+    AppParameters::instance().setParameter("useTemplatePassVNC",QString::number(ui->groupBoxTemplatePass->isChecked()));
+    updateParam("useTemplatePassVNC");
+    AppParameters::instance().setParameter("templatеVNCPass", QString::number(ui->comboBoxTemplatePass->currentIndex()));
+    updateParam("templatеVNCPass");
     this->accept();
 }
 
@@ -156,6 +183,25 @@ void ParametersDialog::on_comboBoxHostTemplate_activated(int index)
     // Перевірити, чи отримано правильне значення
     if (selectedData.isValid()) {
         AppParameters::instance().setParameter("templatеHostname", selectedData.toString());
+    }
+}
+
+
+void ParametersDialog::on_comboBoxTemplatePass_activated(int index)
+{
+    QVariant selectedData = ui->comboBoxTemplatePass->itemData(index);
+    if(selectedData.isValid()){
+        AppParameters::instance().setParameter("templatеVNCPass", selectedData.toString());
+    }
+}
+
+
+void ParametersDialog::on_groupBoxTemplatePass_toggled(bool checked)
+{
+    if(checked) {
+        ui->comboBoxTemplatePass->setCurrentIndex(AppParameters::instance().getParameter("templatеVNCPass").toInt());
+    } else {
+        ui->comboBoxTemplatePass->setCurrentIndex(-1);
     }
 }
 
