@@ -23,10 +23,18 @@ ParametersDialog::~ParametersDialog()
 
 void ParametersDialog::slotOpenClentVNC()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Файл VNC клиента"), "",
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Файл TightVNC клиента"), "",
                                                     tr("Приложение (*.exe);;Все файлы (*.*)"),nullptr,QFileDialog::DontUseNativeDialog);
     if(!fileName.isEmpty())
-        ui->lineEditClientVNC->setText(fileName);
+        ui->lineEditClientTightVNC->setText(fileName);
+}
+
+void ParametersDialog::slotOpenClentVNCUltra()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Файл UltraVNC клиента"), "",
+                                                    tr("Приложение (*.exe);;Все файлы (*.*)"),nullptr,QFileDialog::DontUseNativeDialog);
+    if(!fileName.isEmpty())
+        ui->lineEditClientUltraVNC->setText(fileName);
 }
 
 void ParametersDialog::slotOpenMPosDBFile()
@@ -78,8 +86,14 @@ void ParametersDialog::createUI()
     }
     QAction *openVNCFileAction = new QAction(QIcon(":/Images/file_open_icon.png"), tr("Открыть файл"), this);
     connect(openVNCFileAction, &QAction::triggered,this,&ParametersDialog::slotOpenClentVNC);
-    ui->lineEditClientVNC->addAction(openVNCFileAction, QLineEdit::TrailingPosition);
-    ui->lineEditClientVNC->setText(AppParameters::instance().getParameter("clientVNCPath"));
+    ui->lineEditClientTightVNC->addAction(openVNCFileAction, QLineEdit::TrailingPosition);
+    ui->lineEditClientTightVNC->setText(AppParameters::instance().getParameter("clientVNCPath"));
+
+    QAction *openUltraVNCFileAction = new QAction(QIcon(":/Images/file_open_icon.png"), tr("Открыть файл"), this);
+    connect(openUltraVNCFileAction,&QAction::triggered,this,&ParametersDialog::slotOpenClentVNCUltra);
+    ui->lineEditClientUltraVNC->addAction(openUltraVNCFileAction, QLineEdit::TrailingPosition);
+    ui->lineEditClientUltraVNC->setText(AppParameters::instance().getParameter("clientUltraVNCPath"));
+
     ui->lineEditPassDefault->setText(crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass")));
     QAction *showPasswordVNCAction = new QAction(QIcon(":/Images/eye_icon.png"), tr("Показать пароль"), this);
     connect(showPasswordVNCAction, &QAction::triggered, [this] {
@@ -98,6 +112,14 @@ void ParametersDialog::createUI()
     } else {
         ui->comboBoxTemplatePass->setCurrentIndex(AppParameters::instance().getParameter("templatеVNCPass").toInt());
     }
+    ui->lineEditPrefix->setText(AppParameters::instance().getParameter("TemplPassPrefix"));
+    ui->lineEditSufix->setText(AppParameters::instance().getParameter("TemplPassSufix"));
+    createTemplatePass();
+}
+
+void ParametersDialog::createConnections()
+{
+
 }
 
 void ParametersDialog::on_buttonBox_rejected()
@@ -139,14 +161,20 @@ void ParametersDialog::on_buttonBox_accepted()
         AppParameters::instance().setParameter("typeVNC","UltraVNC");
     }
     updateParam("typeVNC");
-    AppParameters::instance().setParameter("clientVNCPath", ui->lineEditClientVNC->text().trimmed());
+    AppParameters::instance().setParameter("clientVNCPath", ui->lineEditClientTightVNC->text().trimmed());
     updateParam("clientVNCPath");
+    AppParameters::instance().setParameter("clientUltraVNCPath", ui->lineEditClientUltraVNC->text().trimmed());
+    updateParam("clientUltraVNCPath");
     AppParameters::instance().setParameter("defaultVNCPass",crP.criptPass(ui->lineEditPassDefault->text().trimmed()));
     updateParam("defaultVNCPass");
     AppParameters::instance().setParameter("useTemplatePassVNC",QString::number(ui->groupBoxTemplatePass->isChecked()));
     updateParam("useTemplatePassVNC");
     AppParameters::instance().setParameter("templatеVNCPass", QString::number(ui->comboBoxTemplatePass->currentIndex()));
     updateParam("templatеVNCPass");
+    AppParameters::instance().setParameter("TemplPassPrefix", ui->lineEditPrefix->text().trimmed());
+    updateParam("TemplPassPrefix");
+    AppParameters::instance().setParameter("TemplPassSufix", ui->lineEditSufix->text().trimmed());
+    updateParam("TemplPassSufix");
     this->accept();
 }
 
@@ -174,6 +202,8 @@ void ParametersDialog::updateParam(const QString& paramName)
     QString paramValue = AppParameters::instance().getParameter(paramName);
     updateOrInsertParameter(paramName, paramValue);
 }
+
+
 
 void ParametersDialog::on_comboBoxHostTemplate_activated(int index)
 {
@@ -203,5 +233,38 @@ void ParametersDialog::on_groupBoxTemplatePass_toggled(bool checked)
     } else {
         ui->comboBoxTemplatePass->setCurrentIndex(-1);
     }
+}
+
+
+void ParametersDialog::on_lineEditTermIDTemplate_textChanged(const QString &arg1)
+{
+    Q_UNUSED(arg1);
+    createTemplatePass();
+}
+
+void ParametersDialog::createTemplatePass()
+{
+    QString templatePass;
+    QString termID = ui->lineEditTermIDTemplate->text().trimmed();
+    templatePass = ui->lineEditPrefix->text().trimmed();
+    if(termID.length() == 0) {
+        termID="XXXXX";
+    } else {
+        termID = termID.rightJustified(5,'0');
+    }
+    templatePass = templatePass+termID+ui->lineEditSufix->text().trimmed();
+    ui->labelPassSample->setText(templatePass);
+}
+void ParametersDialog::on_lineEditPrefix_textChanged(const QString &arg1)
+{
+    Q_UNUSED(arg1);
+    createTemplatePass();
+}
+
+
+void ParametersDialog::on_lineEditSufix_textChanged(const QString &arg1)
+{
+    Q_UNUSED(arg1);
+    createTemplatePass();
 }
 

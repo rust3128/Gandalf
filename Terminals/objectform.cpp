@@ -20,6 +20,7 @@
 #include <QtConcurrent>
 #include <QFile>
 #include <QMessageBox>
+#include <QInputDialog>
 
 
 
@@ -33,6 +34,7 @@ ObjectForm::ObjectForm(QSharedPointer<TermData> tData, QWidget *parent) :
 
     dbCenter = QSqlDatabase::database("mpos");
     createConnList();
+    getTypeVNCClient();
     createUI();
 
     сheckingСonnections();
@@ -60,15 +62,18 @@ void ObjectForm::createUI()
     ui->labelPhone->setText(m_termData->getPhone());
     ui->lineEditPingAdress->setText(connList[0]->getHostName());
     ui->tabWidget->setCurrentIndex(0);
-    if (AppParameters::instance().getParameter("typeVNC") == "TightVNC") {
-        ui->radioButtonTightVNC->setChecked(true);
-    } else  {
-        ui->radioButtonUltraVNC->setChecked(true);
-    }
+    //Типи клієнтів VNC
+    ui->comboBoxTypeVNC->addItem(QIcon(":/Images/tightvnc-logo.png"),"TightVNC", AppParameters::instance().TIGHT_CLIENT_VNC);
+    ui->comboBoxTypeVNC->addItem(QIcon(":/Images/UltraVNC_Icon.png"),"UltraVNC", AppParameters::instance().ULTRA_CLIENT_VNC);
+
+    // Встановіть індекс для вибору
+    ui->comboBoxTypeVNC->setCurrentText(m_typeVNC);
+
 }
 
 void ObjectForm::createConnList()
 {
+
     switch (AppParameters::instance().getParameter("templatеHostname").toInt()) {
     case 0:
         //Avias
@@ -79,6 +84,40 @@ void ObjectForm::createConnList()
     }
 
 }
+
+void ObjectForm::getTypeVNCClient()
+{
+    QString queryText = "SELECT t.type_vnc FROM type_exception_vnc t WHERE t.terminal_id = ?";
+
+    QSqlQuery query;
+    query.prepare(queryText);
+    query.bindValue(0, m_termData->getTerminalID());
+
+    if (query.exec() && query.next()) {
+        // Записів є, обробляємо результат
+        int typeVNC = query.value(0).toInt();  // Отримуємо значення типу VNC
+        // Обробка значення typeVNC
+        qDebug() << "Type VNC: " << typeVNC;
+        switch (typeVNC) {
+        case 1:
+            m_typeVNC = "TightVNC";
+            break;
+        case 2:
+            m_typeVNC = "UltraVNC";
+            break;
+        default:
+            break;
+        }
+    } else {
+        // Немає записів, обробляємо цю ситуацію
+        qDebug() << "Немає записів для terminalId" << m_termData->getTerminalID();
+        m_typeVNC = AppParameters::instance().getParameter("typeVNC");
+    }
+
+
+}
+
+
 
 void ObjectForm::connListAvias()
 {
@@ -99,7 +138,6 @@ void ObjectForm::connListAvias()
 void ObjectForm::сheckingСonnections()
 {
 
-    buttonMap.clear();
     on_toolButtonPingAddres_clicked();
     addButtonConnections();
 
@@ -115,6 +153,7 @@ void ObjectForm::createConnections()
 
 void ObjectForm::addButtonConnections()
 {
+    buttonMap.clear();
     aviableConnections = false;
     ui->progressBar->show();
     threadCount = connList.size();
@@ -240,8 +279,10 @@ QString ObjectForm::getVNCPassword()
 
 QString ObjectForm::genPassVNCUkrnafta()
 {
-    QString passVNCUkrnafta="ukrnaftaPass";
-
+    QString passVNCUkrnafta = AppParameters::instance().getParameter("TemplPassPrefix").trimmed();
+    QString termID = QString::number(m_termData->getTerminalID());
+    passVNCUkrnafta += termID.rightJustified(5,'0');
+    passVNCUkrnafta += AppParameters::instance().getParameter("TemplPassSufix").trimmed();
     return passVNCUkrnafta;
 }
 
@@ -300,18 +341,29 @@ void ObjectForm::slotVNCButtonClicked()
     LogData ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), posID, AppParameters::LOG_TYPE_CONNECT,"");
     Logger log(ld);
     qInfo(logInfo()) << "Pushed" << connList.at(button->getButtonID())->getHostName()+":"+QString::number(connList.at(button->getButtonID())->getPort());
-    QString clientVNCpath = AppParameters::instance().getParameter("clientVNCPath");
-    QFile file(clientVNCpath);
-    if(!file.exists()){
-        QMessageBox::critical(this, tr("Ошибка"), tr("Файл запуска VNC клиента не найден:\n")+clientVNCpath+tr("\nПроверьте настройки приложения и наличие файла по указанному пути."));
-        return;
-    }
+
+    QString clientVNCpath;
+ //   QString VNCType = AppParameters::instance().getParameter("typeVNC");
     QString hostName = connList.at(button->getButtonID())->getHostName();
     int port = connList.at(button->getButtonID())->getPort();
     QString passVNC = connList.at(button->getButtonID())->getPassVNC();
     // Аргументи для передачі
     QStringList arguments;
-    arguments << QString("-host=%1").arg(hostName) << QString("-port=%2").arg(port) << QString("-password=%3").arg(passVNC);
+    if (m_typeVNC == "TightVNC") {
+        clientVNCpath = AppParameters::instance().getParameter("clientVNCPath");
+        arguments << QString("-host=%1").arg(hostName) << QString("-port=%2").arg(port) << QString("-password=%3").arg(passVNC);
+    } else if (m_typeVNC == "UltraVNC") {
+        clientVNCpath = AppParameters::instance().getParameter("clientUltraVNCPath");
+        arguments << QString("-password %3").arg(passVNC) << QString("%1::%2").arg(hostName).arg(port);
+    } else {
+        // Обробка невідомого типу VNC, якщо потрібно
+    }
+
+    QFile file(clientVNCpath);
+    if(!file.exists()){
+        QMessageBox::critical(this, tr("Ошибка"), tr("Файл запуска VNC клиента не найден:\n")+clientVNCpath+tr("\nПроверьте настройки приложения и наличие файла по указанному пути."));
+        return;
+    }
     qInfo(logInfo()) << "VNC arguments" << arguments;
 
     // Створення об'єкту QProcess
@@ -338,6 +390,22 @@ void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitS
     qDebug() << "Exit status:" << (exitStatus == QProcess::NormalExit ? "Normal Exit" : "Crash Exit");
 }
 
+void ObjectForm::on_pushButtonRefreshAcces_clicked()
+{
+    QVBoxLayout *layout = ui->verticalLayoutButton;
+    QList<int> sortedButtonIDs = buttonMap.keys();
+    // Видаліть тільки об'єкти ButtonVNC
+    for (const int &buttonID : sortedButtonIDs) {
+        ButtonVNC *button = buttonMap.value(buttonID);
+        if (button) {
+            layout->removeWidget(button); // Видалити кнопку з макету
+            delete button; // Видалити об'єкт кнопки
+        }
+    }
+    buttonMap.clear();
+    сheckingСonnections();
+
+}
 
 void ObjectForm::tanksTabShow()
 {
@@ -398,6 +466,7 @@ void ObjectForm::trkTabShow()
     thread->start();
 }
 
+
 void ObjectForm::slotStartGetDispInfo()
 {
     ui->tabWidget->setTabIcon(2,QIcon(":/Images/waiting_icon.png"));
@@ -410,6 +479,7 @@ void ObjectForm::slotFinishGetDispInfo()
     ui->tabWidget->setTabIcon(2,QIcon());
     ui->treeWidgetTRK->show();
     ui->labelWaitingDisp->hide();
+
 }
 
 void ObjectForm::slotGetQueryDisp(QList<DispenserProperty> disp, QList<PunpProperty> pump)
@@ -464,7 +534,114 @@ void ObjectForm::slotGetQueryDisp(QList<DispenserProperty> disp, QList<PunpPrope
     }
 }
 
-void ObjectForm::on_pushButtonRefreshAcces_clicked()
+
+
+void ObjectForm::on_comboBoxTypeVNC_activated(int index)
 {
-    сheckingСonnections();
+    QString selectedText = ui->comboBoxTypeVNC->itemText(index);
+    if (selectedText != m_typeVNC) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, tr("Изменение типа клиента VNC"),
+                                      tr("Вы действительно хотите изменить тип клиента VNC для данной АЗС?"), QMessageBox::Yes|QMessageBox::No);
+
+        if (reply == QMessageBox::Yes) {
+            // Користувач вибрав "Так"
+            // Тут виконайте дії, які потрібно виконати при зміні
+            m_typeVNC = selectedText;  // Оновити значення typeVNC
+            if(m_typeVNC != AppParameters::instance().getParameter("typeVNC")){
+                writeExeptionVNC(m_typeVNC);
+            } else {
+                QString queryText = "DELETE FROM type_exception_vnc t WHERE t.terminal_id = ?";
+                QSqlQuery query;
+                query.prepare(queryText);
+                query.bindValue(0, m_termData->getTerminalID());
+                query.exec();
+                query.finish();
+            }
+            // Додайте додаткову логіку, яку вам потрібно виконати
+        } else {
+            // Користувач вибрав "Ні" або натиснув "Відмінити"
+            // Тут виконайте дії, які потрібно виконати, якщо зміна відмінена
+            // Наприклад, не змінюйте значення typeVNC
+        }
+    }
+
+}
+
+void ObjectForm::writeExeptionVNC(QString typeVNC)
+{
+    QSqlQuery q;
+    int codeVNC = (typeVNC == "TightVNC") ? AppParameters::TIGHT_CLIENT_VNC : AppParameters::ULTRA_CLIENT_VNC;
+    QString strSQL = QString("INSERT INTO TYPE_EXCEPTION_VNC (TERMINAL_ID, TYPE_VNC) VALUES (%1, %2)")
+        .arg(m_termData->getTerminalID())
+        .arg(codeVNC);
+    qInfo(logInfo()) << "sqrSQL" << strSQL;
+    if(!q.exec(strSQL)) {
+        qCritical(logCritical()) << tr("Не удалоь записать тип клиента в таблицу исключений.") << q.lastError().text();
+    }
+    q.finish();
+}
+
+
+void ObjectForm::on_pushButtonChangePassVNC_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, tr("Изменение пароля VNC"),
+                                  tr("Вы действительно хотите изменить пароль VNC для подключения к данной АЗС?"), QMessageBox::Yes|QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        bool ok;
+        QInputDialog inputDialog;
+        inputDialog.setWindowTitle(QString::number(m_termData->getTerminalID())+tr(" Изменение пароля"));
+        inputDialog.setLabelText(tr("Введите новый пароль для VNC:"));
+        inputDialog.setInputMode(QInputDialog::TextInput);
+        inputDialog.setTextEchoMode(QLineEdit::Password);  // Встановлення режиму паролю
+        inputDialog.setTextValue("");  // Початкове значення
+
+        ok = inputDialog.exec();
+
+        if (ok) {
+            QString password = inputDialog.textValue().left(8);  // Обмеження довжини тексту
+            if (!password.isEmpty()) {
+                // Введений пароль успішно отриманий
+                qDebug() << "Ви ввели пароль: " << password;
+                writeExceptionPass(password);
+            } else {
+                // Введено порожній пароль
+                qDebug() << "Введено порожній пароль";
+                QMessageBox::information(this,tr("Внимание!"),tr("Пароль был пустым. Изменения не выполнятся."));
+                return;
+            }
+        } else {
+            // Введення скасовано
+            qDebug() << "Введення скасовано";
+            return;
+        }
+    }
+}
+
+void ObjectForm::writeExceptionPass(QString passVNC) {
+    QSqlDatabase db = QSqlDatabase::database();  // Отримати існуюче підключення до бази даних
+
+    if (!db.isOpen()) {
+        qDebug() << "Помилка: підключення до бази даних відсутнє.";
+        return;
+    }
+
+    QString strSQL = QString("UPDATE OR INSERT INTO PASS_EXCEPTION_VNC (TERMINAL_ID, PASSVNC) VALUES (%1, '%2') MATCHING (TERMINAL_ID); ")
+                         .arg(m_termData->getTerminalID())
+                         .arg(passVNC);
+
+    qDebug() << strSQL;
+    QSqlQuery query;
+
+    if (!query.exec(strSQL)) {
+        qDebug() << "Помилка виконання SQL-запиту:" << query.lastError().text();
+        return;
+    }
+    query.exec("COMMIT WORK");
+    query.finish();
+    qDebug() << "Запис виконано успішно.";
+
+    db.commit();
 }

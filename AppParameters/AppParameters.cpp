@@ -25,6 +25,10 @@ const QMap<int, QString> AppParameters::TEMPLATE_HOSTNAME = {
 const AppParameters::LogType AppParameters::LOG_TYPE_CONNECT = AppParameters::Connect;
 const AppParameters::LogType AppParameters::LOG_TYPE_DISCONNECT = AppParameters::Disconnect;
 const AppParameters::LogType AppParameters::LOG_TYPE_UPDATE_USER_PROFILE = AppParameters::UpdateUserProfile;
+//Типи клієнтів МТС
+const AppParameters::clientVNC AppParameters::TIGHT_CLIENT_VNC = AppParameters::TightVNC;
+const AppParameters::clientVNC AppParameters::ULTRA_CLIENT_VNC = AppParameters::UltraVNC;
+
 // Типи генерації паролів VNC
 const QMap<int, QString> AppParameters::TEMPLATE_VNC_PASS = {
     {0, "UkrNafta"},

@@ -30,6 +30,14 @@ public:
     static const LogType LOG_TYPE_DISCONNECT;
     static const LogType LOG_TYPE_UPDATE_USER_PROFILE;
     static const QMap<int, QString> TEMPLATE_VNC_PASS;
+
+    //VNC клієнти
+    enum clientVNC {
+        TightVNC = 1,
+        UltraVNC
+    };
+    static const clientVNC TIGHT_CLIENT_VNC;
+    static const clientVNC ULTRA_CLIENT_VNC;
     // Додати метод для встановлення значень за замовчуванням
     void setDefaultParameters();
 

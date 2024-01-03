@@ -53,6 +53,10 @@ private slots:
     void slotFinishGetDispInfo();
     void on_pushButtonRefreshAcces_clicked();
 
+    void on_comboBoxTypeVNC_activated(int index);
+
+    void on_pushButtonChangePassVNC_clicked();
+
 private:
     void createUI();
     void createConnList();
@@ -64,7 +68,9 @@ private:
     void addButtonConnections();
     void tanksTabShow();
     void trkTabShow();
-
+    void getTypeVNCClient();
+    void writeExeptionVNC(QString typeVNC);
+    void writeExceptionPass(QString passVNC);
 private:
     Ui::ObjectForm *ui;
     QSharedPointer<TermData> m_termData;
@@ -77,6 +83,7 @@ private:
     QProcess *myProcess;
     QSqlDatabase dbCenter;
     TanksInfoModel *modelTanks;
+    QString m_typeVNC;
 
 
 };
