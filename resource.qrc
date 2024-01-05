@@ -36,5 +36,10 @@
         <file>Images/users_icon.png</file>
         <file>Images/tightvnc-logo.png</file>
         <file>Images/UltraVNC_Icon.png</file>
+        <file>Images/password_icon.png</file>
+        <file>Images/add_icon.png</file>
+        <file>Images/edit_icon.png</file>
+        <file>Images/remove_icon.png</file>
+        <file>Images/csv_file_icon.png</file>
     </qresource>
 </RCC>

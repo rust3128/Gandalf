@@ -262,17 +262,28 @@ void ObjectForm::slotFinishConStatus()
 QString ObjectForm::getVNCPassword()
 {
     QString passVNC;
-    if(AppParameters::instance().getParameter("useTemplatePassVNC").toInt()){
-        switch (AppParameters::instance().getParameter("templatеVNCPass").toInt()) {
-        case 0:
-            passVNC = genPassVNCUkrnafta();
-            break;
-        default:
-            break;
-        }
+    QString queryText = "SELECT p.passvnc from pass_exception_vnc p WHERE p.terminal_id = ?";
+    CriptPass crP;
+    QSqlQuery query;
+    query.prepare(queryText);
+    query.bindValue(0, m_termData->getTerminalID());
+
+    if (query.exec() && query.next()){
+        QString newPassword = crP.decriptPass(query.value(0).toString());
+        newPassword = newPassword.mid(3, newPassword.length() - 5);
+        passVNC = newPassword;
     } else {
-        CriptPass crP;
-        passVNC = crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass"));
+        if(AppParameters::instance().getParameter("useTemplatePassVNC").toInt()){
+            switch (AppParameters::instance().getParameter("templatеVNCPass").toInt()) {
+            case 0:
+                passVNC = genPassVNCUkrnafta();
+                break;
+            default:
+                break;
+            }
+        } else {
+            passVNC = crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass"));
+        }
     }
     return passVNC;
 }
@@ -627,10 +638,15 @@ void ObjectForm::writeExceptionPass(QString passVNC) {
         qDebug() << "Помилка: підключення до бази даних відсутнє.";
         return;
     }
-
+    QString termID = QString::number(m_termData->getTerminalID());
+    if(termID.length() ==4) {
+        termID = "0"+termID;
+    }
+    QString cryptPass = termID.right(3)+passVNC+termID.left(2);
+    CriptPass crP;
     QString strSQL = QString("UPDATE OR INSERT INTO PASS_EXCEPTION_VNC (TERMINAL_ID, PASSVNC) VALUES (%1, '%2') MATCHING (TERMINAL_ID); ")
                          .arg(m_termData->getTerminalID())
-                         .arg(passVNC);
+                         .arg(crP.criptPass(cryptPass));
 
     qDebug() << strSQL;
     QSqlQuery query;
@@ -639,8 +655,7 @@ void ObjectForm::writeExceptionPass(QString passVNC) {
         qDebug() << "Помилка виконання SQL-запиту:" << query.lastError().text();
         return;
     }
-    query.exec("COMMIT WORK");
-    query.finish();
+    db.commit();
     qDebug() << "Запис виконано успішно.";
 
     db.commit();

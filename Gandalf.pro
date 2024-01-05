@@ -14,7 +14,9 @@ VERSION = 0.0.0.1
 SOURCES += \
     AppParameters/AppParameters.cpp \
     AppParameters/criptpass.cpp \
+    AppParameters/editpassexcepdialog.cpp \
     AppParameters/parametersdialog.cpp \
+    AppParameters/passmanagerdialog.cpp \
     AppParameters/qaesencryption.cpp \
     DbSettingsDialog/dbsettingsdialog.cpp \
     Deploys/deploydata.cpp \
@@ -45,7 +47,9 @@ SOURCES += \
 HEADERS += \
     AppParameters/AppParameters.h \
     AppParameters/criptpass.h \
+    AppParameters/editpassexcepdialog.h \
     AppParameters/parametersdialog.h \
+    AppParameters/passmanagerdialog.h \
     AppParameters/qaesencryption.h \
     DbSettingsDialog/dbsettingsdialog.h \
     Deploys/deploydata.h \
@@ -73,7 +77,9 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
+    AppParameters/editpassexcepdialog.ui \
     AppParameters/parametersdialog.ui \
+    AppParameters/passmanagerdialog.ui \
     DbSettingsDialog/dbsettingsdialog.ui \
     Terminals/objectform.ui \
     Terminals/searchform.ui \

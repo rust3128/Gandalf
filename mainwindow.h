@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QString sendAdressAZS(int termID);
 private slots:
     void on_actionUserProfile_triggered();
     void on_actionParametrs_triggered();
@@ -34,6 +35,8 @@ private slots:
     void on_pushButtonRefreshDeploys_clicked();
 
     void on_actionUsers_triggered();
+
+    void on_actionPassManager_triggered();
 
 protected:
 

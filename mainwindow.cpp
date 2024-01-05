@@ -10,6 +10,7 @@
 #include "Terminals/objectform.h"
 #include "Deploys/getdeploys.h"
 #include "Users/userlistdialog.h"
+#include "AppParameters/passmanagerdialog.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -42,6 +43,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QString MainWindow::sendAdressAZS(int termID)
+{
+    QString adress = listAzs.value(termID)->getNameAZS();
+    return adress;
+
+}
+
 void MainWindow::createUI()
 {
     // QString strTitle = tr("Маг не приходит поздно, %1, и рано тоже не приходит. Он появляется тогда, когда положено.")
@@ -65,7 +73,7 @@ void MainWindow::getListAZS()
 {
     QSqlDatabase db = QSqlDatabase::database("mpos");
     QSqlQuery q(db);
-    QString strSql = QString("select t.terminal_id, (select o.name from terminals o where o.terminal_id = t.owner_id) as reg, t.adress, t.phone, TRIM(t.ownersystem_id), TRIM(t.owner_id) from terminals t "
+    QString strSql = QString("select t.terminal_id, (select o.name from terminals o where o.terminal_id = t.owner_id) as reg, t.adress, t.phone, TRIM(t.ownersystem_id), TRIM(t.owner_id), t.name from terminals t "
                              "where t.terminal_id BETWEEN %1 and %2 and t.terminaltype = 3 and t.isactive='T' and t.iswork ='T' "
                              "order by t.terminal_id")
                          .arg(AppParameters::instance().getParameter("minTerminalID"))
@@ -87,6 +95,7 @@ void MainWindow::getListAZS()
         azs->setPhone(q.value(3).toString());
         azs->setOwnerSystemID(q.value(4).toInt());
         azs->setOwnerID(q.value(5).toInt());
+        azs->setNameAZS(q.value(6).toString());
         listAzs.insert(azs->getTerminalID(), azs);
 //        qDebug() << "Value:" << listAzs.value(azs.getTerminalID())->getAdress();
     }
@@ -334,5 +343,12 @@ void MainWindow::on_actionUsers_triggered()
 {
     UserListDialog *userList = new UserListDialog();
     userList->exec();
+}
+
+
+void MainWindow::on_actionPassManager_triggered()
+{
+    PassManagerDialog *passMan = new PassManagerDialog(this);
+    passMan->exec();
 }
 

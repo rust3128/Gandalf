@@ -253,12 +253,7 @@
     <property name="title">
      <string>Настройка </string>
     </property>
-    <widget class="QMenu" name="menu_3">
-     <property name="title">
-      <string>Справочники</string>
-     </property>
-    </widget>
-    <addaction name="menu_3"/>
+    <addaction name="actionPassManager"/>
     <addaction name="actionUsers"/>
     <addaction name="separator"/>
     <addaction name="actionParametrs"/>
@@ -330,6 +325,15 @@
    </property>
    <property name="text">
     <string>Пользователи</string>
+   </property>
+  </action>
+  <action name="actionPassManager">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/password_icon.png</normaloff>:/Images/password_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Менеджер паролей</string>
    </property>
   </action>
  </widget>

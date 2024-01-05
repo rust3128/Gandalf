@@ -9,7 +9,7 @@ public:
     CriptPass();
     QString criptPass(QString password);
     QString decriptPass(QString password);
-private:
+ private:
     QString key;
     QString iv;
     QByteArray hashKey;

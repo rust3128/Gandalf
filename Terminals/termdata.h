@@ -26,6 +26,9 @@ public:
     QString getOwnerName() const;
     void setOwnerName(const QString &newOwnerName);
 
+    QString getNameAZS() const;
+    void setNameAZS(const QString &newNameAZS);
+
 signals:
     void terminalIDChanged();
     void adressChanged();
@@ -34,8 +37,11 @@ signals:
     void ownerIDChanged();
     void ownerNameChanged();
 
+    void nameAZSChanged();
+
 private:
     int terminalID;     //Terminal ID
+    QString nameAZS;
     QString adress;
     QString phone;
     int ownerSystemID;  // Код зовнішньої системи
@@ -48,6 +54,7 @@ private:
     Q_PROPERTY(int ownerSystemID READ getOwnerSystemID WRITE setOwnerSystemID NOTIFY ownerSystemIDChanged FINAL)
     Q_PROPERTY(int ownerID READ getOwnerID WRITE setOwnerID NOTIFY ownerIDChanged FINAL)
     Q_PROPERTY(QString ownerName READ getOwnerName WRITE setOwnerName NOTIFY ownerNameChanged FINAL)
+    Q_PROPERTY(QString nameAZS READ getNameAZS WRITE setNameAZS NOTIFY nameAZSChanged FINAL)
 };
 
 #endif // TERMDATA_H

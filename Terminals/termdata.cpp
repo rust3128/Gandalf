@@ -84,3 +84,16 @@ void TermData::setOwnerName(const QString &newOwnerName)
     emit ownerNameChanged();
 }
 
+QString TermData::getNameAZS() const
+{
+    return nameAZS;
+}
+
+void TermData::setNameAZS(const QString &newNameAZS)
+{
+    if (nameAZS == newNameAZS)
+        return;
+    nameAZS = newNameAZS;
+    emit nameAZSChanged();
+}
+
