@@ -38,6 +38,10 @@ private slots:
 
     void on_actionPassManager_triggered();
 
+    void on_actionListConnections_triggered();
+
+    void on_tableViewDeploys_doubleClicked(const QModelIndex &index);
+
 protected:
 
 private:

@@ -69,6 +69,8 @@ void ObjectForm::createUI()
     // Встановіть індекс для вибору
     ui->comboBoxTypeVNC->setCurrentText(m_typeVNC);
 
+    ui->labelLastPackage->setText(getLastPackage());
+
 }
 
 void ObjectForm::createConnList()
@@ -269,9 +271,7 @@ QString ObjectForm::getVNCPassword()
     query.bindValue(0, m_termData->getTerminalID());
 
     if (query.exec() && query.next()){
-        QString newPassword = crP.decriptPass(query.value(0).toString());
-        newPassword = newPassword.mid(3, newPassword.length() - 5);
-        passVNC = newPassword;
+        passVNC = crP.decryptVNCPass(query.value(0).toString());
     } else {
         if(AppParameters::instance().getParameter("useTemplatePassVNC").toInt()){
             switch (AppParameters::instance().getParameter("templatеVNCPass").toInt()) {
@@ -568,6 +568,9 @@ void ObjectForm::on_comboBoxTypeVNC_activated(int index)
                 query.bindValue(0, m_termData->getTerminalID());
                 query.exec();
                 query.finish();
+                LogData _ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), 0, AppParameters::LOG_TYPE_CHANGE_VNC_CLIENT, m_typeVNC + tr(" - По умолчанию"));
+                Logger _log(_ld);
+                _log.writeToLog();
             }
             // Додайте додаткову логіку, яку вам потрібно виконати
         } else {
@@ -591,6 +594,9 @@ void ObjectForm::writeExeptionVNC(QString typeVNC)
         qCritical(logCritical()) << tr("Не удалоь записать тип клиента в таблицу исключений.") << q.lastError().text();
     }
     q.finish();
+    LogData _ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), 0, AppParameters::LOG_TYPE_CHANGE_VNC_CLIENT, typeVNC);
+    Logger _log(_ld);
+    _log.writeToLog();
 }
 
 
@@ -639,14 +645,10 @@ void ObjectForm::writeExceptionPass(QString passVNC) {
         return;
     }
     QString termID = QString::number(m_termData->getTerminalID());
-    if(termID.length() ==4) {
-        termID = "0"+termID;
-    }
-    QString cryptPass = termID.right(3)+passVNC+termID.left(2);
     CriptPass crP;
     QString strSQL = QString("UPDATE OR INSERT INTO PASS_EXCEPTION_VNC (TERMINAL_ID, PASSVNC) VALUES (%1, '%2') MATCHING (TERMINAL_ID); ")
                          .arg(m_termData->getTerminalID())
-                         .arg(crP.criptPass(cryptPass));
+                         .arg(crP.cryptVNCPass(termID, passVNC));
 
     qDebug() << strSQL;
     QSqlQuery query;
@@ -656,7 +658,44 @@ void ObjectForm::writeExceptionPass(QString passVNC) {
         return;
     }
     db.commit();
+    LogData _ld(AppParameters::instance().getParameter("userID").toInt(), m_termData->getTerminalID(), 0, AppParameters::LOG_TYPE_CHANGE_VNC_PASS, "");
+    Logger _log(_ld);
+    _log.writeToLog();
     qDebug() << "Запис виконано успішно.";
 
     db.commit();
+}
+
+QString ObjectForm::getLastPackage()
+{
+    QString depMessages;
+    QSqlQuery q(dbCenter);
+    q.prepare("select first 1 p.doper from mgt$packets p where p.terminal_id = :term  and p.apply='T' order by p.doper desc");
+    q.bindValue(":term", m_termData->getTerminalID());
+    if(!q.exec()){
+        qCritical(logCritical()) << "Не могу получить данные об отзвоне" << q.lastError().text();
+        return "Не могу получить данные об отзвоне";
+    }
+    q.next();
+
+    quint64 secDeploy = q.value(0).toDateTime().secsTo(QDateTime::currentDateTime());
+    const qint64 SIX_HOURS = 6 * 60 * 60;  // 6 годин у секундах
+
+    if (secDeploy > SIX_HOURS) {
+        ui->labelLastPackage->setStyleSheet("color: red;");
+    } else {
+        ui->labelLastPackage->setStyleSheet("color: green;");
+    }
+    const qint64 DAY = 86400;
+    qint64 days = secDeploy / DAY;
+    QTime t = QTime(0,0).addSecs(secDeploy % DAY);
+
+    depMessages = QString(tr("Крайняя передача данных %1\n"))
+                              .arg(q.value(0).toDateTime().toString("dd.MM.yyyy hh:mm:ss"));
+    depMessages += tr("%1 дн %2 ч %3 м %4 с назад.")
+                       .arg(days).arg(t.hour()).arg(t.minute()).arg(t.second());
+
+    q.finish();
+    dbCenter.commit();
+    return depMessages;
 }

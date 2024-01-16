@@ -1,12 +1,13 @@
 #ifndef LOGGER_H
 #define LOGGER_H
+#include <Logs/logdata.h>
 
-#include "Logs/logdata.h"
-
-#include <QString>
 #include <QMutex>
-#include <QDateTime>
 #include <QFile>
+#include <QDateTime>
+#include <QDataStream>
+
+class LogData;
 
 class Logger
 {
@@ -15,16 +16,19 @@ public:
     ~Logger();
 
     void writeToLog();
+    QString generateLogFileName() const;
 
 private:
-    QString generateLogFileName() const;
-private:
-    void writeToFile();
+    void writeToFile(const QString &fileName);
+    void writeToBinFile(const QString &fileName);
     void writeToDB();
-private:
-    QString m_logDirectory;
-    QFile m_file;
+
     static QMutex m_mutex;
+
+    QFile m_file;
+    QFile m_binFile;
+
+    QString m_logDirectory;
     LogData m_logData;
 };
 

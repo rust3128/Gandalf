@@ -48,17 +48,25 @@
     </widget>
    </item>
    <item row="4" column="0" colspan="3">
-    <widget class="QLineEdit" name="lineEditPass1"/>
+    <widget class="QLineEdit" name="lineEditPass1">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
    </item>
    <item row="5" column="0" colspan="2">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Повторите парольl</string>
+      <string>Повторите пароль:</string>
      </property>
     </widget>
    </item>
    <item row="6" column="0" colspan="3">
-    <widget class="QLineEdit" name="lineEditPass2"/>
+    <widget class="QLineEdit" name="lineEditPass2">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
    </item>
    <item row="7" column="0" colspan="3" alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="labelInfo">
@@ -72,7 +80,10 @@
       <string notr="true">color: rgb(255, 0, 0);</string>
      </property>
      <property name="text">
-      <string>Пароли не совпадают</string>
+      <string>Информация</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>

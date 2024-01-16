@@ -71,6 +71,7 @@ private:
     void getTypeVNCClient();
     void writeExeptionVNC(QString typeVNC);
     void writeExceptionPass(QString passVNC);
+    QString getLastPackage();
 private:
     Ui::ObjectForm *ui;
     QSharedPointer<TermData> m_termData;

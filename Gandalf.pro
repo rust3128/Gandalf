@@ -15,6 +15,7 @@ SOURCES += \
     AppParameters/AppParameters.cpp \
     AppParameters/criptpass.cpp \
     AppParameters/editpassexcepdialog.cpp \
+    AppParameters/impostpassvncdialog.cpp \
     AppParameters/parametersdialog.cpp \
     AppParameters/passmanagerdialog.cpp \
     AppParameters/qaesencryption.cpp \
@@ -23,6 +24,8 @@ SOURCES += \
     Deploys/deploysmodel.cpp \
     Deploys/getdeploys.cpp \
     LogginCategories/loggincategories.cpp \
+    Logs/connectionslistdialog.cpp \
+    Logs/connectionsmodel.cpp \
     Logs/logdata.cpp \
     Logs/logger.cpp \
     Terminals/buttonvnc.cpp \
@@ -48,6 +51,7 @@ HEADERS += \
     AppParameters/AppParameters.h \
     AppParameters/criptpass.h \
     AppParameters/editpassexcepdialog.h \
+    AppParameters/impostpassvncdialog.h \
     AppParameters/parametersdialog.h \
     AppParameters/passmanagerdialog.h \
     AppParameters/qaesencryption.h \
@@ -56,6 +60,8 @@ HEADERS += \
     Deploys/deploysmodel.h \
     Deploys/getdeploys.h \
     LogginCategories/loggincategories.h \
+    Logs/connectionslistdialog.h \
+    Logs/connectionsmodel.h \
     Logs/logdata.h \
     Logs/logger.h \
     Terminals/buttonvnc.h \
@@ -78,9 +84,11 @@ HEADERS += \
 
 FORMS += \
     AppParameters/editpassexcepdialog.ui \
+    AppParameters/impostpassvncdialog.ui \
     AppParameters/parametersdialog.ui \
     AppParameters/passmanagerdialog.ui \
     DbSettingsDialog/dbsettingsdialog.ui \
+    Logs/connectionslistdialog.ui \
     Terminals/objectform.ui \
     Terminals/searchform.ui \
     Users/userlistdialog.ui \

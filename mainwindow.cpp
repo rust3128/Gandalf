@@ -11,6 +11,7 @@
 #include "Deploys/getdeploys.h"
 #include "Users/userlistdialog.h"
 #include "AppParameters/passmanagerdialog.h"
+#include "Logs/connectionslistdialog.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -350,5 +351,37 @@ void MainWindow::on_actionPassManager_triggered()
 {
     PassManagerDialog *passMan = new PassManagerDialog(this);
     passMan->exec();
+}
+
+
+void MainWindow::on_actionListConnections_triggered()
+{
+    ConnectionsListDialog *conDialog = new ConnectionsListDialog();
+    conDialog->exec();
+}
+
+
+void MainWindow::on_tableViewDeploys_doubleClicked(const QModelIndex &index)
+{
+    // Перевірка, чи індекс дійсний
+    if (index.isValid())
+    {
+        // Отримання індексу першого стовбця поточного рядка
+        QModelIndex firstColumnIndex = index.sibling(index.row(), 0);
+
+        // Перевірка, чи індекс першого стовбця дійсний
+        if (firstColumnIndex.isValid())
+        {
+            // Отримання значення першого стовбця для обраного рядка
+            QVariant value = firstColumnIndex.data(Qt::DisplayRole);
+
+            // Перевірка, чи вдалося отримати значення
+            if (value.isValid())
+            {
+                // Зробіть щось з отриманим значенням, наприклад, виведіть його на консоль
+                slotGetTerminalID(value.toInt());
+            }
+        }
+    }
 }
 

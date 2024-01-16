@@ -16,12 +16,17 @@ public:
     ~EditPassExcepDialog();
 private slots:
     void passChanged();
+    void on_buttonBox_rejected();
+
+    void on_buttonBox_accepted();
+
 private:
     void createUI();
     void createConnections();
 private:
     Ui::EditPassExcepDialog *ui;
     int m_terminalID;
+    bool passOK;
 };
 
 #endif // EDITPASSEXCEPDIALOG_H

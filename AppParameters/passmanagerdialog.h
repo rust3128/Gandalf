@@ -26,9 +26,16 @@ private slots:
 
     void on_toolButtonAdd_clicked();
 
+    void on_toolButtonEdit_clicked();
+
+    void on_toolButton_clicked();
+
+    void on_toolButton_2_clicked();
+
 private:
     void createUI();
     void createModel();
+    void handleItemAction(const QModelIndex &index);
 private:
     Ui::PassManagerDialog *ui;
     QStandardItemModel *model;

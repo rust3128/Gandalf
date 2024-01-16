@@ -23,12 +23,17 @@ public:
     enum LogType {
         Connect = 1,
         Disconnect,
-        UpdateUserProfile
+        UpdateUserProfile,
+        ChangeVNCClient,
+        ChangePassVNC
         // Додайте інші типи логу, якщо потрібно
     };
     static const LogType LOG_TYPE_CONNECT;
     static const LogType LOG_TYPE_DISCONNECT;
     static const LogType LOG_TYPE_UPDATE_USER_PROFILE;
+    static const LogType LOG_TYPE_CHANGE_VNC_CLIENT;
+    static const LogType LOG_TYPE_CHANGE_VNC_PASS;
+
     static const QMap<int, QString> TEMPLATE_VNC_PASS;
 
     //VNC клієнти

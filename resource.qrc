@@ -41,5 +41,7 @@
         <file>Images/edit_icon.png</file>
         <file>Images/remove_icon.png</file>
         <file>Images/csv_file_icon.png</file>
+        <file>Images/file_import_icon.png</file>
+        <file>Images/list_icon.png</file>
     </qresource>
 </RCC>

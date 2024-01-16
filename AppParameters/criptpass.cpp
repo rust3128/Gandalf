@@ -30,4 +30,22 @@ QString CriptPass::decriptPass(QString password)
     return result;
 }
 
+QString CriptPass::cryptVNCPass(QString termID, QString pass)
+{
+    int desiredLength = 5;
+    while (termID.length() < desiredLength) {
+        termID.prepend('0');
+    }
+    QString password = termID.right(3)+pass+termID.left(2);
+    password = criptPass(password);
+    return password;
+}
+
+QString CriptPass::decryptVNCPass(QString pass)
+{
+    QString password = decriptPass(pass);
+    password = password.mid(3, password.length()-5);
+    return password;
+}
+
 

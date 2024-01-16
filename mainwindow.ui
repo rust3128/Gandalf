@@ -265,6 +265,13 @@
     <addaction name="actionAbout"/>
     <addaction name="action_AboutQt"/>
    </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Отчеты</string>
+    </property>
+    <addaction name="actionListConnections"/>
+   </widget>
+   <addaction name="menu_3"/>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
   </widget>
@@ -279,8 +286,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionParametrs"/>
    <addaction name="actionUserProfile"/>
+   <addaction name="actionListConnections"/>
+   <addaction name="actionParametrs"/>
   </widget>
   <action name="actionUserProfile">
    <property name="icon">
@@ -334,6 +342,15 @@
    </property>
    <property name="text">
     <string>Менеджер паролей</string>
+   </property>
+  </action>
+  <action name="actionListConnections">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/list_icon.png</normaloff>:/Images/list_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Журнал Подключений</string>
    </property>
   </action>
  </widget>

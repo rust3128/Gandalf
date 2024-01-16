@@ -2,6 +2,7 @@
 #include "ui_passmanagerdialog.h"
 #include "LogginCategories/loggincategories.h"
 #include <AppParameters/editpassexcepdialog.h>
+#include "AppParameters/impostpassvncdialog.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -25,6 +26,22 @@ PassManagerDialog::~PassManagerDialog()
 void PassManagerDialog::createUI()
 {
     ui->listView->setModel(model);
+
+    // Отримати індекс для першого елемента (0-й рядок, 0-й стовпець)
+    QModelIndex firstIndex = model->index(0, 0);
+
+    // Отримати модель вибору
+    QItemSelectionModel *selectionModel = ui->listView->selectionModel();
+
+    // Створити діапазон вибору для першого елемента
+    QItemSelection selection(firstIndex, firstIndex);
+
+    // Встановити діапазон вибору для моделі вибору
+    selectionModel->select(selection, QItemSelectionModel::Select);
+
+    // Зробити цей індекс видимим у списку
+    ui->listView->scrollTo(firstIndex, QAbstractItemView::PositionAtTop);
+
 }
 
 void PassManagerDialog::createModel()
@@ -55,7 +72,7 @@ void PassManagerDialog::createModel()
 
 }
 
-void PassManagerDialog::on_listView_doubleClicked(const QModelIndex &index)
+void PassManagerDialog::handleItemAction(const QModelIndex &index)
 {
     // Отримати текст вибраного елемента
     QString selectedText = model->data(index, Qt::DisplayRole).toString();
@@ -72,10 +89,17 @@ void PassManagerDialog::on_listView_doubleClicked(const QModelIndex &index)
         if (ok) {
             // Здійснюйте подальші дії з числовим значенням (terminalId)
             qDebug() << "Double-clicked on Terminal ID:" << terminalId;
+            EditPassExcepDialog *editPass = new EditPassExcepDialog(terminalId);
+            editPass->exec();
         } else {
             qDebug() << "Неможливо конвертувати в числове значення:" << terminalIdString;
         }
     }
+}
+
+void PassManagerDialog::on_listView_doubleClicked(const QModelIndex &index)
+{
+    handleItemAction(index);
 }
 
 
@@ -103,15 +127,85 @@ void PassManagerDialog::on_toolButtonRemove_clicked()
     }
 
     qDebug() << "Selected Terminals: " << selectedTerminals.join(", ");
+
+    if (!selectedTerminals.isEmpty()) {
+        QSqlQuery query;
+
+        QString placeholders = selectedTerminals.join(", ");
+        QString queryString = "DELETE FROM PASS_EXCEPTION_VNC WHERE TERMINAL_ID IN (" + placeholders + ")";
+
+        query.prepare(queryString);
+
+        if (!query.exec()) {
+            qCritical(logCritical()) << "Ошибка удаления паролей VNC " << query.lastError().text();
+            // Обробляйте помилку видалення за необхідності
+        } else {
+            qDebug() << "Записи успішно видалено з таблиці.";
+            model->deleteLater();
+            createModel();
+            createUI();
+        }
+    } else {
+        QMessageBox::information(this, tr("Внимание"), tr("Список терминалов для удаления пуст"));
+        qDebug() << "Список вибраних терміналів порожній.";
+    }
+
 }
-
-
-
-
 
 void PassManagerDialog::on_toolButtonAdd_clicked()
 {
     EditPassExcepDialog *editPass = new EditPassExcepDialog(0);
-    editPass->exec();
+    if(editPass->exec() == QDialog::Accepted) {
+        model->deleteLater();
+        createModel();
+        createUI();
+    }
+}
+
+
+void PassManagerDialog::on_toolButtonEdit_clicked()
+{
+    QModelIndex currentIndex = ui->listView->currentIndex();
+    if (currentIndex.isValid()) {
+        handleItemAction(currentIndex);
+    } else {
+        QMessageBox::information(this, tr("Ошибка"), tr("Не выбрана АЗС для редактирования!"));
+        qDebug() << "Обробка кнопки редагування: вибраного елемента немає.";
+    }
+}
+
+
+void PassManagerDialog::on_toolButton_clicked()
+{
+    ImpostPassVNCDialog *impDlg = new ImpostPassVNCDialog();
+    impDlg->exec();
+    model->deleteLater();
+    createModel();
+    createUI();
+}
+
+
+void PassManagerDialog::on_toolButton_2_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, tr("Внимание!"), tr("Вы действительно хотите убрать все исключения для паролей?"),
+                                  QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        QSqlQuery query;
+        query.prepare("DELETE FROM PASS_EXCEPTION_VNC");
+        if (query.exec()) {
+            // Вдало видалили дані з бази даних
+            qDebug() << "Дані успішно видалені з таблиці PASS_EXCEPTION_VNC";
+            model->deleteLater();
+            createModel();
+            createUI();
+        } else {
+            // Виникла помилка при видаленні
+            qDebug() << "Помилка видалення даних з таблиці PASS_EXCEPTION_VNC:" << query.lastError().text();
+        }
+
+    }
+
 }
 
