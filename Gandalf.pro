@@ -23,6 +23,7 @@ SOURCES += \
     Deploys/deploydata.cpp \
     Deploys/deploysmodel.cpp \
     Deploys/getdeploys.cpp \
+    Deploys/numericSortProxyModel.cpp \
     LogginCategories/loggincategories.cpp \
     Logs/connectionslistdialog.cpp \
     Logs/connectionsmodel.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     Deploys/deploydata.h \
     Deploys/deploysmodel.h \
     Deploys/getdeploys.h \
+    Deploys/numericSortProxyModel.h \
     LogginCategories/loggincategories.h \
     Logs/connectionslistdialog.h \
     Logs/connectionsmodel.h \

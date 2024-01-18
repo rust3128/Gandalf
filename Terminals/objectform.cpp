@@ -21,6 +21,7 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QHostInfo>
 
 
 
@@ -61,7 +62,15 @@ void ObjectForm::createUI()
     }
     ui->labelPhone->setText(m_termData->getPhone());
     ui->lineEditPingAdress->setText(connList[0]->getHostName());
+    ui->lineEditIP->setText(getIPAdrees(connList[0]->getHostName()));
     ui->tabWidget->setCurrentIndex(0);
+
+   ui->tabWidget->setTabIcon(0, QIcon(":/Images/pc_icon.png"));
+   ui->tabWidget->setTabIcon(1, QIcon(":/Images/pc_icon.png"));
+   ui->tabWidget->setTabIcon(2, QIcon(":/Images/pc_icon.png"));
+   ui->tabWidget->setTabIcon(3, QIcon(":/Images/pc_icon.png"));
+   ui->tabWidget->setTabIcon(4, QIcon(":/Images/pc_icon.png"));
+
     //Типи клієнтів VNC
     ui->comboBoxTypeVNC->addItem(QIcon(":/Images/tightvnc-logo.png"),"TightVNC", AppParameters::instance().TIGHT_CLIENT_VNC);
     ui->comboBoxTypeVNC->addItem(QIcon(":/Images/UltraVNC_Icon.png"),"UltraVNC", AppParameters::instance().ULTRA_CLIENT_VNC);
@@ -252,9 +261,10 @@ void ObjectForm::slotFinishConStatus()
                 }
             }
         } else {
-            QLabel *noConnectionsLabel = new QLabel(tr("Нет доступных\nподключений!"), ui->groupBoxConnections);
+            noConnectionsLabel = new QLabel(tr("Нет доступных\nподключений!"), ui->groupBoxConnections);
             noConnectionsLabel->setStyleSheet("font-size: 16pt; color: red;");
             noConnectionsLabel->setAlignment(Qt::AlignCenter);
+            ui->progressBar->hide();
             ui->verticalLayoutButton->addWidget(noConnectionsLabel);
         }
     }
@@ -343,6 +353,7 @@ void ObjectForm::on_toolButtonPingAddres_clicked()
     QString firstHostName = ui->lineEditPingAdress->text().trimmed();
     emit signalSendHost(&firstHostName);
     pingModel->start_command();
+    ui->lineEditIP->setText(getIPAdrees(firstHostName));
 }
 
 void ObjectForm::slotVNCButtonClicked()
@@ -403,6 +414,11 @@ void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
 void ObjectForm::on_pushButtonRefreshAcces_clicked()
 {
+    // Видаляємо виджет з лейауту
+    ui->verticalLayoutButton->removeWidget(noConnectionsLabel);
+
+    // Звільняємо виджет
+    noConnectionsLabel->deleteLater();
     QVBoxLayout *layout = ui->verticalLayoutButton;
     QList<int> sortedButtonIDs = buttonMap.keys();
     // Видаліть тільки об'єкти ButtonVNC
@@ -699,3 +715,43 @@ QString ObjectForm::getLastPackage()
     dbCenter.commit();
     return depMessages;
 }
+
+QString ObjectForm::getIPAdrees(const QString &hostName)
+{
+    QHostInfo hostInfo = QHostInfo::fromName(hostName);
+    QString ipAdress;
+    QString errorIPHost;
+    ui->labelPingInfo->show();
+    if (hostInfo.error() == QHostInfo::NoError)
+    {
+        QList<QHostAddress> addresses = hostInfo.addresses();
+
+        if (!addresses.isEmpty())
+        {
+            // Вивести перший знайдений IP-адрес
+            ipAdress = addresses.first().toString();
+            ui->labelPingInfo->hide();
+        }
+        else
+        {
+            errorIPHost = hostName + tr(": Нет доступных IP адресов.");
+            qDebug() << "Для" << hostName << "немає доступних IP-адрес";
+
+        }
+    }
+    else
+    {
+        errorIPHost = hostName + tr(": Ошибка получения IP-адреса. ") +  hostInfo.errorString();
+        qDebug() << "Помилка отримання IP-адреси для" << hostName << ": " << hostInfo.errorString();
+    }
+    ui->labelPingInfo->setText(errorIPHost);
+    return ipAdress;
+}
+
+void ObjectForm::on_toolButtonIPToClip_clicked()
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText(ui->lineEditIP->text().trimmed());
+    QToolTip::showText(ui->toolButtonIPToClip->mapToGlobal(ui->toolButtonIPToClip->rect().center()), tr("Адрес скопирован\nв буфер обмена."));
+}
+

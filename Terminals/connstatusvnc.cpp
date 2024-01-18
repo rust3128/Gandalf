@@ -21,8 +21,8 @@ void ConnStatusVNC::getConnStatus()
     }
     tcpSocket->abort();
 #ifdef QT_DEBUG
-    QThread::msleep(2000*buttonID);
-    status.isConnected = true;
+    // QThread::msleep(2000*buttonID);
+    // status.isConnected = true;
 #endif
         //Отладка все подключения доступны
     emit signalSendStatus(status);

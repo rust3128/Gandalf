@@ -132,7 +132,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <property name="iconSize">
       <size>
@@ -147,10 +147,6 @@
       <bool>true</bool>
      </property>
      <widget class="QWidget" name="tabWorkPlace">
-      <attribute name="icon">
-       <iconset resource="../resource.qrc">
-        <normaloff>:/Images/pc_icon.png</normaloff>:/Images/pc_icon.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>Рабочие места</string>
       </attribute>
@@ -163,19 +159,36 @@
             <string>Состояние канала связи</string>
            </property>
            <layout class="QGridLayout" name="gridLayout">
-            <item row="1" column="0" colspan="5">
-             <widget class="QPlainTextEdit" name="plainTextEditPing">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
+            <item row="0" column="4">
+             <widget class="QToolButton" name="toolButtonClearPing">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Очистить окно Ping&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(0, 0, 0);
-color: rgb(0, 255, 0);</string>
+              <property name="text">
+               <string>...</string>
               </property>
-              <property name="placeholderText">
-               <string/>
+              <property name="icon">
+               <iconset resource="../resource.qrc">
+                <normaloff>:/Images/clear_icon.png</normaloff>:/Images/clear_icon.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="autoRaise">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEditPingAdress"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>IP</string>
               </property>
              </widget>
             </item>
@@ -202,10 +215,45 @@ color: rgb(0, 255, 0);</string>
               </property>
              </widget>
             </item>
+            <item row="3" column="0" colspan="5">
+             <widget class="QPlainTextEdit" name="plainTextEditPing">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string/>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_3">
               <property name="text">
-               <string>ping</string>
+               <string>host</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QToolButton" name="toolButtonIPToClip">
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../resource.qrc">
+                <normaloff>:/Images/clipboard_icon.png</normaloff>:/Images/clipboard_icon.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="autoRaise">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -232,31 +280,19 @@ color: rgb(0, 255, 0);</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="4">
-             <widget class="QToolButton" name="toolButtonClearPing">
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Очистить окно Ping&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="text">
-               <string>...</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../resource.qrc">
-                <normaloff>:/Images/clear_icon.png</normaloff>:/Images/clear_icon.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-              <property name="autoRaise">
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEditIP">
+              <property name="readOnly">
                <bool>true</bool>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEditPingAdress"/>
+            <item row="2" column="0" colspan="5">
+             <widget class="QLabel" name="labelPingInfo">
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -367,30 +403,10 @@ color: rgb(0, 255, 0);</string>
       </layout>
      </widget>
      <widget class="QWidget" name="tabTanks">
-      <attribute name="icon">
-       <iconset resource="../resource.qrc">
-        <normaloff>:/Images/tanks.png</normaloff>:/Images/tanks.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>Резервуары</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="1">
-        <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <pointsize>16</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Резервуарный парк</string>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="labelTank">
          <property name="minimumSize">
@@ -416,6 +432,22 @@ color: rgb(0, 255, 0);</string>
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Резервуарный парк</string>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0" colspan="2">
         <widget class="QTableView" name="tableViewTanks">
          <property name="editTriggers">
@@ -435,7 +467,7 @@ color: rgb(0, 255, 0);</string>
          </attribute>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
+       <item row="2" column="1">
         <widget class="QLabel" name="labelWaitingTanks">
          <property name="text">
           <string/>
@@ -448,10 +480,6 @@ color: rgb(0, 255, 0);</string>
       </layout>
      </widget>
      <widget class="QWidget" name="tabTRK">
-      <attribute name="icon">
-       <iconset resource="../resource.qrc">
-        <normaloff>:/Images/dispenser.png</normaloff>:/Images/dispenser.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>ТРК</string>
       </attribute>

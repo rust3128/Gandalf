@@ -65,11 +65,14 @@ void UserProfileDialog::createUI()
         break;
     }
     ui->checkBoxIsWork->setChecked(q.value(7).toBool());
-    if(userRole != 0){
+    if(AppParameters::instance().getParameter("userRole") != "0"){
         ui->checkBoxIsWork->setDisabled(true);
         ui->checkBoxIsWork->setToolTip(tr("Доступно только администратору"));
         ui->groupBoxRole->setDisabled(true);
         ui->groupBoxRole->setToolTip(tr("Доступно только администратору"));
+    } else {
+        ui->checkBoxIsWork->setEnabled(true);
+        ui->groupBoxRole->setEnabled(true);
     }
 
 }

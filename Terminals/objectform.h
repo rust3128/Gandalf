@@ -18,6 +18,7 @@
 #include <QProcess>
 #include <QSqlDatabase>
 #include <QProgressBar>
+#include <QLabel>
 
 
 
@@ -57,6 +58,8 @@ private slots:
 
     void on_pushButtonChangePassVNC_clicked();
 
+    void on_toolButtonIPToClip_clicked();
+
 private:
     void createUI();
     void createConnList();
@@ -72,6 +75,7 @@ private:
     void writeExeptionVNC(QString typeVNC);
     void writeExceptionPass(QString passVNC);
     QString getLastPackage();
+    QString getIPAdrees(const QString &hostName);
 private:
     Ui::ObjectForm *ui;
     QSharedPointer<TermData> m_termData;
@@ -85,7 +89,7 @@ private:
     QSqlDatabase dbCenter;
     TanksInfoModel *modelTanks;
     QString m_typeVNC;
-
+    QLabel *noConnectionsLabel;
 
 };
 

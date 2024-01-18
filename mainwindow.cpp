@@ -12,6 +12,7 @@
 #include "Users/userlistdialog.h"
 #include "AppParameters/passmanagerdialog.h"
 #include "Logs/connectionslistdialog.h"
+#include "Deploys/numericSortProxyModel.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -65,6 +66,12 @@ void MainWindow::createUI()
         );
     ui->splitter->setStretchFactor(0,4);
     ui->splitter->setStretchFactor(1,1);
+
+    if(AppParameters::instance().getParameter("userRole") == "2"){
+        //Список деактивации пунктов меню
+        ui->actionParametrs->setEnabled(false);
+        ui->actionPassManager->setEnabled(false);
+    }
     deploysShow();
 
 
@@ -293,12 +300,24 @@ void MainWindow::slotFinishGetDeploys()
     showDeploysData(true);
 
     depModel = new DeploysModel(deploys);
-    proxyDep = new QSortFilterProxyModel();
+    NumericSortProxyModel *proxyDep = new NumericSortProxyModel(); // Замінено QSortFilterProxyModel на NumericSortProxyModel
     proxyDep->setSourceModel(depModel);
+    proxyDep->setDynamicSortFilter(true);
     ui->tableViewDeploys->setModel(proxyDep);
+
+    // Встановлення числового сортування для всіх стовбців
+    for (int column = 0; column < 3; ++column) {
+        ui->tableViewDeploys->sortByColumn(column, Qt::AscendingOrder);
+        ui->tableViewDeploys->horizontalHeader()->setSortIndicatorShown(true);
+        ui->tableViewDeploys->horizontalHeader()->setSortIndicator(column, Qt::AscendingOrder);
+    }
+
+    // Увімкнення можливості сортування
+    ui->tableViewDeploys->setSortingEnabled(true);
     ui->tableViewDeploys->resizeColumnsToContents();
     ui->tableViewDeploys->verticalHeader()->setDefaultSectionSize(ui->tableViewDeploys->verticalHeader()->minimumSectionSize());
 }
+
 
 void MainWindow::showDeploysData(bool show)
 {
