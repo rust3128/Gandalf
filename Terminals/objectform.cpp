@@ -22,6 +22,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QHostInfo>
+#include <QChar>
 
 
 
@@ -54,6 +55,7 @@ ObjectForm::~ObjectForm()
 
 void ObjectForm::createUI()
 {
+
     ui->labelAZSNumber->setText(("АЗС № "+QString::number(m_termData->getTerminalID())));
     if(AppParameters::instance().getParameter("showKodZem").toInt()){
         ui->labelAddress->setText(m_termData->getAdress()+tr("\nКод земельного участка: ")+QString::number(m_termData->getOwnerSystemID()));
@@ -65,12 +67,6 @@ void ObjectForm::createUI()
     ui->lineEditIP->setText(getIPAdrees(connList[0]->getHostName()));
     ui->tabWidget->setCurrentIndex(0);
 
-   ui->tabWidget->setTabIcon(0, QIcon(":/Images/pc_icon.png"));
-   ui->tabWidget->setTabIcon(1, QIcon(":/Images/pc_icon.png"));
-   ui->tabWidget->setTabIcon(2, QIcon(":/Images/pc_icon.png"));
-   ui->tabWidget->setTabIcon(3, QIcon(":/Images/pc_icon.png"));
-   ui->tabWidget->setTabIcon(4, QIcon(":/Images/pc_icon.png"));
-
     //Типи клієнтів VNC
     ui->comboBoxTypeVNC->addItem(QIcon(":/Images/tightvnc-logo.png"),"TightVNC", AppParameters::instance().TIGHT_CLIENT_VNC);
     ui->comboBoxTypeVNC->addItem(QIcon(":/Images/UltraVNC_Icon.png"),"UltraVNC", AppParameters::instance().ULTRA_CLIENT_VNC);
@@ -79,7 +75,7 @@ void ObjectForm::createUI()
     ui->comboBoxTypeVNC->setCurrentText(m_typeVNC);
 
     ui->labelLastPackage->setText(getLastPackage());
-
+    ui->groupBoxVNC->hide();
 }
 
 void ObjectForm::createConnList()
@@ -89,6 +85,9 @@ void ObjectForm::createConnList()
     case 0:
         //Avias
         connListAvias();
+        break;
+    case 1:
+        connListUkrnafta();
         break;
     default:
         break;
@@ -146,13 +145,32 @@ void ObjectForm::connListAvias()
     return;
 }
 
+void ObjectForm::connListUkrnafta()
+{
+    connList.clear();
+    int termID=m_termData->getTerminalID();
+    for(int i=0; i<AppParameters::instance().getParameter("maxCountPC").toInt(); ++i){
+        QSharedPointer<ConnectionData> conTemp = QSharedPointer<ConnectionData>::create(termID);
+        QString tempHostName = "gst";
+        if(QString::number(termID).length() == 4) {
+            tempHostName += "0"+QString::number(termID);
+        } else {
+            tempHostName += QString::number(termID);
+        }
+        tempHostName += QChar(97+i);
+        tempHostName += ".ukrnafta.local";
+        conTemp->setHostName(tempHostName);
+        conTemp->setPort(5900);
+        conTemp->setPassVNC(getVNCPassword());
+        connList.append(conTemp);
+    }
+}
+
 void ObjectForm::сheckingСonnections()
 {
 
     on_toolButtonPingAddres_clicked();
     addButtonConnections();
-
-
 }
 
 
@@ -246,9 +264,10 @@ void ObjectForm::slotFinishConStatus()
     --threadCount;
 
     if(threadCount == 0){
+        ui->groupBoxVNC->show();
+        noConnectionsLabel = nullptr;
         if(aviableConnections){
             ui->progressBar->hide();
-
             // Отримання впорядкованого списку buttonID
             QList<int> sortedButtonIDs = buttonMap.keys();
             std::sort(sortedButtonIDs.begin(), sortedButtonIDs.end());
@@ -414,22 +433,46 @@ void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
 void ObjectForm::on_pushButtonRefreshAcces_clicked()
 {
-    // Видаляємо виджет з лейауту
-    ui->verticalLayoutButton->removeWidget(noConnectionsLabel);
+    // if (noConnectionsLabel) {
+    //     // Видаляємо виджет з лейауту
+    //     ui->verticalLayoutButton->removeWidget(noConnectionsLabel);
 
-    // Звільняємо виджет
-    noConnectionsLabel->deleteLater();
+    //     // Звільняємо виджет
+    //     noConnectionsLabel->deleteLater();
+    //     noConnectionsLabel = nullptr;  // Опціонально встановлюємо вказівник на nullptr, щоб уникнути проблем подвійного видалення
+    // } else {
+    //     // Відповідне повідомлення або логіка, якщо виджет не існує
+    //     qDebug() << "noConnectionsLabel не був створений.";
+    // }
+    // QVBoxLayout *layout = ui->verticalLayoutButton;
+    // QList<int> sortedButtonIDs = buttonMap.keys();
+    // // Видаліть тільки об'єкти ButtonVNC
+    // for (const int &buttonID : sortedButtonIDs) {
+    //     ButtonVNC *button = buttonMap.value(buttonID);
+    //     if (button) {
+    //         layout->removeWidget(button); // Видалити кнопку з макету
+    //         delete button; // Видалити об'єкт кнопки
+    //     }
+    // }
+    // buttonMap.clear();
+    // сheckingСonnections();
     QVBoxLayout *layout = ui->verticalLayoutButton;
-    QList<int> sortedButtonIDs = buttonMap.keys();
-    // Видаліть тільки об'єкти ButtonVNC
-    for (const int &buttonID : sortedButtonIDs) {
-        ButtonVNC *button = buttonMap.value(buttonID);
-        if (button) {
-            layout->removeWidget(button); // Видалити кнопку з макету
-            delete button; // Видалити об'єкт кнопки
-        }
-    }
+
+    // Видалити всі кнопки
+    qDeleteAll(buttonMap);
     buttonMap.clear();
+
+    // Видалити noConnectionsLabel, якщо він існує
+    if (noConnectionsLabel) {
+        layout->removeWidget(noConnectionsLabel);
+        noConnectionsLabel->deleteLater();
+        noConnectionsLabel = nullptr;
+    } else {
+        // Відповідне повідомлення або логіка, якщо noConnectionsLabel не існує
+        qDebug() << "noConnectionsLabel не був створений.";
+    }
+
+    // Перевірка підключень
     сheckingСonnections();
 
 }
@@ -464,7 +507,7 @@ void ObjectForm::slotStartGetTanksInfo()
 
 void ObjectForm::slotFinishGetTanks()
 {
-    ui->tabWidget->setTabIcon(1,QIcon());
+    ui->tabWidget->setTabIcon(1,QIcon(":/Images/tanks.png"));
     ui->tableViewTanks->show();
     ui->labelWaitingTanks->hide();
 }
@@ -503,7 +546,7 @@ void ObjectForm::slotStartGetDispInfo()
 
 void ObjectForm::slotFinishGetDispInfo()
 {
-    ui->tabWidget->setTabIcon(2,QIcon());
+    ui->tabWidget->setTabIcon(2,QIcon(":/Images/dispenser.png"));
     ui->treeWidgetTRK->show();
     ui->labelWaitingDisp->hide();
 
@@ -706,7 +749,7 @@ QString ObjectForm::getLastPackage()
     qint64 days = secDeploy / DAY;
     QTime t = QTime(0,0).addSecs(secDeploy % DAY);
 
-    depMessages = QString(tr("Крайняя передача данных %1\n"))
+    depMessages = QString(tr("Крайняя передача данных %1 \n"))
                               .arg(q.value(0).toDateTime().toString("dd.MM.yyyy hh:mm:ss"));
     depMessages += tr("%1 дн %2 ч %3 м %4 с назад.")
                        .arg(days).arg(t.hour()).arg(t.minute()).arg(t.second());

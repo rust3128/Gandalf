@@ -29,6 +29,7 @@ SOURCES += \
     Logs/connectionsmodel.cpp \
     Logs/logdata.cpp \
     Logs/logger.cpp \
+    Terminals/TerminalListModel.cpp \
     Terminals/buttonvnc.cpp \
     Terminals/connectiondata.cpp \
     Terminals/connstatusvnc.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
     Terminals/tanksinfo.cpp \
     Terminals/tanksinfomodel.cpp \
     Terminals/termdata.cpp \
+    Terminals/terminallistdialog.cpp \
     Users/userlistdialog.cpp \
     Users/userprofiledialog.cpp \
     Users/usersmodel.cpp \
@@ -66,6 +68,7 @@ HEADERS += \
     Logs/connectionsmodel.h \
     Logs/logdata.h \
     Logs/logger.h \
+    Terminals/TerminalListModel.h \
     Terminals/buttonvnc.h \
     Terminals/connectiondata.h \
     Terminals/connstatusvnc.h \
@@ -79,6 +82,7 @@ HEADERS += \
     Terminals/tanksinfo.h \
     Terminals/tanksinfomodel.h \
     Terminals/termdata.h \
+    Terminals/terminallistdialog.h \
     Users/UsersModel.h \
     Users/userlistdialog.h \
     Users/userprofiledialog.h \
@@ -93,6 +97,7 @@ FORMS += \
     Logs/connectionslistdialog.ui \
     Terminals/objectform.ui \
     Terminals/searchform.ui \
+    Terminals/terminallistdialog.ui \
     Users/userlistdialog.ui \
     Users/userprofiledialog.ui \
     mainwindow.ui

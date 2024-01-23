@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Gandalf</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -253,9 +253,10 @@
     <property name="title">
      <string>Настройка </string>
     </property>
-    <addaction name="actionPassManager"/>
+    <addaction name="actionTerminals"/>
     <addaction name="actionUsers"/>
     <addaction name="separator"/>
+    <addaction name="actionPassManager"/>
     <addaction name="actionParametrs"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -351,6 +352,11 @@
    </property>
    <property name="text">
     <string>Журнал Подключений</string>
+   </property>
+  </action>
+  <action name="actionTerminals">
+   <property name="text">
+    <string>Справочник терминалов</string>
    </property>
   </action>
  </widget>

@@ -35,7 +35,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Управление ислючениями для паролей VNC</string>
+        <string>Управление исключениями для паролей VNC</string>
        </property>
       </widget>
      </item>

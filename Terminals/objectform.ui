@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>642</width>
-    <height>679</height>
+    <width>673</width>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,7 +132,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <property name="iconSize">
       <size>
@@ -147,6 +147,10 @@
       <bool>true</bool>
      </property>
      <widget class="QWidget" name="tabWorkPlace">
+      <attribute name="icon">
+       <iconset resource="../resource.qrc">
+        <normaloff>:/Images/pc_icon.png</normaloff>:/Images/pc_icon.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Рабочие места</string>
       </attribute>
@@ -347,7 +351,7 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QGroupBox" name="groupBox_2">
+            <widget class="QGroupBox" name="groupBoxVNC">
              <property name="title">
               <string>Параметры VNC</string>
              </property>
@@ -484,6 +488,25 @@
        <string>ТРК</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelDispenserLogo">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../resource.qrc">:/Images/dispenser.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0" colspan="2">
         <widget class="QTreeWidget" name="treeWidgetTRK">
          <property name="autoFillBackground">
@@ -503,7 +526,13 @@
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
          <property name="animated">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
           <bool>true</bool>
          </property>
          <property name="columnCount">
@@ -536,35 +565,6 @@
          </column>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelDispenserLogo">
-         <property name="maximumSize">
-          <size>
-           <width>120</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap resource="../resource.qrc">:/Images/dispenser.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
-        <widget class="QLabel" name="labelWaitingDisp">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap resource="../resource.qrc">:/Images/waiting_icon_big.png</pixmap>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="label_2">
          <property name="font">
@@ -578,6 +578,16 @@
          </property>
          <property name="scaledContents">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="labelWaitingDisp">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../resource.qrc">:/Images/waiting_icon_big.png</pixmap>
          </property>
         </widget>
        </item>

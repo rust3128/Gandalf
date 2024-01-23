@@ -67,7 +67,6 @@ QString ConnectionsListDialog::createSQLHistory()
     }
     strSQL += QString("AND l.logtype_id IN (1,2) "
                       "order BY l.dat DESC");
-    qInfo(logInfo()) << strSQL;
     return strSQL;
 }
 

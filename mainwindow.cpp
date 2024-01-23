@@ -13,6 +13,7 @@
 #include "AppParameters/passmanagerdialog.h"
 #include "Logs/connectionslistdialog.h"
 #include "Deploys/numericSortProxyModel.h"
+#include "Terminals/terminallistdialog.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -264,16 +265,16 @@ void MainWindow::slotGetDeploys(QVector<DeployData> dp)
     QColor textColor;
     if(deploys.size() == 0){
         ui->toolBox->setItemIcon(0,QIcon(":/Images/green_icon.png"));
-        mess = "  Нет проблем с отзвонами!  ";
+        mess = tr("  Нет проблем с отзвонами!  ");
         textColor= QColor("green");
     } else {
-        mess = QString(" %1 АЗС нет данных за последние %2  ")
+        mess = tr(" %1 АЗС нет данных за последние %2  ")
                            .arg(deploys.size())
                            .arg(ui->spinBoxPorog->text());
         ui->toolBox->setItemIcon(0,QIcon(":/Images/alert_icon.png"));
         textColor= QColor("red");
     }
-    ui->toolBox->setItemText(0,"Статисика обмена с АЗС");
+    ui->toolBox->setItemText(0,tr("Статисика обмена с АЗС"));
     setMarqueeText(mess, textColor);
 }
 
@@ -402,5 +403,12 @@ void MainWindow::on_tableViewDeploys_doubleClicked(const QModelIndex &index)
             }
         }
     }
+}
+
+
+void MainWindow::on_actionTerminals_triggered()
+{
+    TerminalListDialog *termDlg = new TerminalListDialog(listAzs);
+    termDlg->exec();
 }
 

@@ -42,6 +42,8 @@ private slots:
 
     void on_tableViewDeploys_doubleClicked(const QModelIndex &index);
 
+    void on_actionTerminals_triggered();
+
 protected:
 
 private:
