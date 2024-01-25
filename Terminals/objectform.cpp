@@ -76,6 +76,7 @@ void ObjectForm::createUI()
 
     ui->labelLastPackage->setText(getLastPackage());
     ui->groupBoxVNC->hide();
+
 }
 
 void ObjectForm::createConnList()
@@ -168,7 +169,7 @@ void ObjectForm::connListUkrnafta()
 
 void ObjectForm::сheckingСonnections()
 {
-
+    ui->labelLastPackage->setText(getLastPackage());
     on_toolButtonPingAddres_clicked();
     addButtonConnections();
 }
@@ -433,29 +434,6 @@ void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
 void ObjectForm::on_pushButtonRefreshAcces_clicked()
 {
-    // if (noConnectionsLabel) {
-    //     // Видаляємо виджет з лейауту
-    //     ui->verticalLayoutButton->removeWidget(noConnectionsLabel);
-
-    //     // Звільняємо виджет
-    //     noConnectionsLabel->deleteLater();
-    //     noConnectionsLabel = nullptr;  // Опціонально встановлюємо вказівник на nullptr, щоб уникнути проблем подвійного видалення
-    // } else {
-    //     // Відповідне повідомлення або логіка, якщо виджет не існує
-    //     qDebug() << "noConnectionsLabel не був створений.";
-    // }
-    // QVBoxLayout *layout = ui->verticalLayoutButton;
-    // QList<int> sortedButtonIDs = buttonMap.keys();
-    // // Видаліть тільки об'єкти ButtonVNC
-    // for (const int &buttonID : sortedButtonIDs) {
-    //     ButtonVNC *button = buttonMap.value(buttonID);
-    //     if (button) {
-    //         layout->removeWidget(button); // Видалити кнопку з макету
-    //         delete button; // Видалити об'єкт кнопки
-    //     }
-    // }
-    // buttonMap.clear();
-    // сheckingСonnections();
     QVBoxLayout *layout = ui->verticalLayoutButton;
 
     // Видалити всі кнопки

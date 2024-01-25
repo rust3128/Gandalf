@@ -35,6 +35,8 @@ SOURCES += \
     Terminals/connstatusvnc.cpp \
     Terminals/dispenserinfo.cpp \
     Terminals/dispenserproperty.cpp \
+    Terminals/editworkplacedialog.cpp \
+    Terminals/listazsdialog.cpp \
     Terminals/objectform.cpp \
     Terminals/pingmodel.cpp \
     Terminals/punpproperty.cpp \
@@ -43,7 +45,6 @@ SOURCES += \
     Terminals/tanksinfo.cpp \
     Terminals/tanksinfomodel.cpp \
     Terminals/termdata.cpp \
-    Terminals/terminallistdialog.cpp \
     Users/userlistdialog.cpp \
     Users/userprofiledialog.cpp \
     Users/usersmodel.cpp \
@@ -74,6 +75,8 @@ HEADERS += \
     Terminals/connstatusvnc.h \
     Terminals/dispenserinfo.h \
     Terminals/dispenserproperty.h \
+    Terminals/editworkplacedialog.h \
+    Terminals/listazsdialog.h \
     Terminals/objectform.h \
     Terminals/pingmodel.h \
     Terminals/punpproperty.h \
@@ -82,7 +85,6 @@ HEADERS += \
     Terminals/tanksinfo.h \
     Terminals/tanksinfomodel.h \
     Terminals/termdata.h \
-    Terminals/terminallistdialog.h \
     Users/UsersModel.h \
     Users/userlistdialog.h \
     Users/userprofiledialog.h \
@@ -95,9 +97,10 @@ FORMS += \
     AppParameters/passmanagerdialog.ui \
     DbSettingsDialog/dbsettingsdialog.ui \
     Logs/connectionslistdialog.ui \
+    Terminals/editworkplacedialog.ui \
+    Terminals/listazsdialog.ui \
     Terminals/objectform.ui \
     Terminals/searchform.ui \
-    Terminals/terminallistdialog.ui \
     Users/userlistdialog.ui \
     Users/userprofiledialog.ui \
     mainwindow.ui

@@ -35,9 +35,28 @@ QVariant TerminalListModel::data(const QModelIndex &index, int role) const
         if (col == 0 && role == Qt::DisplayRole) {
             return termData->getTerminalID();
         } else if (col == 1 && role == Qt::DisplayRole) {
-            return termData->getNameAZS();
+            return termData->getNameAZS().trimmed();
         }
     }
 
+    return QVariant();
+}
+
+
+QVariant TerminalListModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if(role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return tr("АЗС");
+            break;
+        case 1:
+            return tr("Наименование");
+            break;
+        default:
+            return QVariant();
+            break;
+        }
+    }
     return QVariant();
 }

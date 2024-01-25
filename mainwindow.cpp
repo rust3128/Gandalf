@@ -13,7 +13,7 @@
 #include "AppParameters/passmanagerdialog.h"
 #include "Logs/connectionslistdialog.h"
 #include "Deploys/numericSortProxyModel.h"
-#include "Terminals/terminallistdialog.h"
+#include "Terminals/listazsdialog.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -408,7 +408,10 @@ void MainWindow::on_tableViewDeploys_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_actionTerminals_triggered()
 {
-    TerminalListDialog *termDlg = new TerminalListDialog(listAzs);
-    termDlg->exec();
+    ListAzsDialog *listAZS = new ListAzsDialog(listAzs);
+    listAZS->exec();
 }
+
+
+
 

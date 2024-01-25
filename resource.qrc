@@ -43,5 +43,6 @@
         <file>Images/csv_file_icon.png</file>
         <file>Images/file_import_icon.png</file>
         <file>Images/list_icon.png</file>
+        <file>Images/gas_stantion.png</file>
     </qresource>
 </RCC>

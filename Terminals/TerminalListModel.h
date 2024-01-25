@@ -21,6 +21,10 @@ public:
 
 private:
     QMap<int, QSharedPointer<TermData>> terminalMap;
+
+    // QAbstractItemModel interface
+public:
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 };
 
 #endif // TERMINALLISTMODEL_H

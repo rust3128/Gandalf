@@ -355,6 +355,10 @@
    </property>
   </action>
   <action name="actionTerminals">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/gas_stantion.png</normaloff>:/Images/gas_stantion.png</iconset>
+   </property>
    <property name="text">
     <string>Справочник терминалов</string>
    </property>

@@ -765,7 +765,7 @@
     <message>
         <location filename="Terminals/objectform.cpp" line="588"/>
         <source>Резервуар</source>
-        <translation>Storage tank</translation>
+        <translation>Резервуар</translation>
     </message>
     <message>
         <location filename="Terminals/objectform.cpp" line="588"/>
