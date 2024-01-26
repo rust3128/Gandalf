@@ -12,7 +12,7 @@ class EditWorkplaceDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditWorkplaceDialog(int wID, QWidget *parent = nullptr);
+    explicit EditWorkplaceDialog(int wID, int termID, QWidget *parent = nullptr);
     ~EditWorkplaceDialog();
 private slots:
 
@@ -22,6 +22,7 @@ private:
 private:
     Ui::EditWorkplaceDialog *ui;
     int workplaceID;
+    int terminalID;
 };
 
 #endif // EDITWORKPLACEDIALOG_H

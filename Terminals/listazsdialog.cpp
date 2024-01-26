@@ -1,5 +1,6 @@
 #include "listazsdialog.h"
 #include "ui_listazsdialog.h"
+#include "Terminals/editworkplacedialog.h"
 
 #include <QSqlRelationalDelegate>
 
@@ -90,11 +91,39 @@ void ListAzsDialog::onTerminalSelectionChanged(const QModelIndex &current, const
         ui->tableViewWorkplace->hideColumn(5);
         ui->tableViewWorkplace->hideColumn(6);
         ui->tableViewWorkplace->resizeColumnsToContents();
+
+        // Отримати модель вибору
+        QItemSelectionModel *selectionModel = ui->tableViewWorkplace->selectionModel();
+
+        // Створити діапазон вибору для першого елемента (0-й рядок)
+        QItemSelection selection(modelWorkplace->index(0, 0), modelWorkplace->index(0, modelWorkplace->columnCount() - 1));
+
+        // Встановити вибір для першого рядка
+        selectionModel->select(selection, QItemSelectionModel::ClearAndSelect);
+
+        // Зробити перший індекс видимим у списку
+        ui->tableViewWorkplace->scrollTo(modelWorkplace->index(0, 0, QModelIndex()), QAbstractItemView::PositionAtTop);
     }
 }
 
 void ListAzsDialog::on_toolButtonAdd_clicked()
 {
+    // Отримати об'єкт моделі вибору з таблиці терміналів
+    QItemSelectionModel *selectionModel = ui->tableViewTerminals->selectionModel();
 
+    // Отримати вибраний рядок (або перший вибраний рядок, якщо є багато)
+    QModelIndexList selectedIndexes = selectionModel->selectedRows();
+
+    // Перевірка чи є взагалі вибрані рядки
+    if (!selectedIndexes.isEmpty()) {
+        // Отримати значення з першої ячейки першого вибраного рядка
+        int selectedTerminalID = modelTerminals->data(selectedIndexes.first().siblingAtColumn(0)).toInt();
+
+        // Тепер ви можете використати selectedTerminalID за необхідністю
+        EditWorkplaceDialog *wrpDlg = new EditWorkplaceDialog(0, selectedTerminalID);
+        wrpDlg->exec();
+    } else {
+        // Якщо немає вибраних рядків, обробте це за необхідності
+    }
 }
 

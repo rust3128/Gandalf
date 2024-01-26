@@ -22,6 +22,8 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QPropertyAnimation>
+#include <QCloseEvent>
+#include <QDate>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -73,9 +75,10 @@ void MainWindow::createUI()
         ui->actionParametrs->setEnabled(false);
         ui->actionPassManager->setEnabled(false);
     }
+    if(AppParameters::instance().getParameter("templatеHostname").toInt() != 3) {
+        ui->actionTerminals->setVisible(false);
+    }
     deploysShow();
-
-
 }
 
 void MainWindow::getListAZS()
@@ -151,7 +154,7 @@ void MainWindow::slotGetTerminalID(int terminalID)
     }
     if(listAzs.contains(terminalID)){
         QSharedPointer<TermData> termData = listAzs.value(terminalID);
-        ObjectForm *objForm = new ObjectForm(termData);
+        ObjectForm *objForm = new ObjectForm(termData,this);
         int tabIdx = ui->tabWidgetTerminals->addTab(objForm, QString::number(terminalID));
         ui->tabWidgetTerminals->setCurrentIndex(tabIdx);
         ui->tabWidgetTerminals->show();
@@ -201,7 +204,14 @@ bool MainWindow::openMposDB()
 void MainWindow::on_tabWidgetTerminals_tabCloseRequested(int index)
 {
     ui->tabWidgetTerminals->setCurrentIndex(index);
-    ui->tabWidgetTerminals->currentWidget()->deleteLater();
+    QWidget *tabWidget = ui->tabWidgetTerminals->widget(index);
+    if (tabWidget) {
+        // Закрити вкладку
+        ui->tabWidgetTerminals->removeTab(index);
+
+        // Видалити віджет та його об'єкт
+        tabWidget->deleteLater();
+    }
     if(ui->tabWidgetTerminals->count()==0)
         ui->tabWidgetTerminals->hide();
 }
@@ -339,19 +349,73 @@ void MainWindow::on_action_AboutQt_triggered()
 }
 
 
+// void MainWindow::on_actionAbout_triggered()
+// {
+//     QDate versionDate = QDate::fromString(__DATE__,"MMM dd yyyy");
+//     if (!versionDate.isValid())
+//     {
+//         versionDate = QDate::fromString(__DATE__,"MMM d yyyy");
+//     }
+//     QString aboutText = QString("Version: %1\nBuild date: %2")
+//                             .arg(QApplication::applicationVersion())
+//                             .arg(versionDate.toString("dd.MM.yyyy"));
+//     qDebug() << aboutText;
+//     QMessageBox::about(this, tr("Про програму"), aboutText);
+// }
+
+
+
 void MainWindow::on_actionAbout_triggered()
 {
-    QDate versionDate = QDate::fromString(__DATE__,"MMM dd yyyy");
-    if (!versionDate.isValid())
+    QString buildDateStr = __DATE__;
+    qDebug() << buildDateStr;
+
+    // Розбити рядок на слова
+    QStringList dateParts = buildDateStr.split(" ");
+
+    // Перевірити чи дата має три частини
+    if (dateParts.size() != 3)
     {
-        versionDate = QDate::fromString(__DATE__,"MMM d yyyy");
+        qDebug() << "Некоректний формат дати";
+        return;
     }
-    QString aboutText = QString("Version: %1\nBuild date: %2")
-                            .arg(QApplication::applicationVersion())
-                            .arg(versionDate.toString("dd.MM.yyyy"));
-    qDebug() << aboutText;
-    QMessageBox::about(this, tr("Про програму"), aboutText);
+
+    // Отримати рік, місяць і день
+    QString year = dateParts[2];
+    QString monthStr = dateParts[0];
+    QString day = dateParts[1];
+
+    // Перетворити абревіатуру місяця в числовий формат
+    QString month;
+    if (monthStr == "Jan") month = "01";
+    else if (monthStr == "Feb") month = "02";
+    else if (monthStr == "Mar") month = "03";
+    else if (monthStr == "Apr") month = "04";
+    else if (monthStr == "May") month = "05";
+    else if (monthStr == "Jun") month = "06";
+    else if (monthStr == "Jul") month = "07";
+    else if (monthStr == "Aug") month = "08";
+    else if (monthStr == "Sep") month = "09";
+    else if (monthStr == "Oct") month = "10";
+    else if (monthStr == "Nov") month = "11";
+    else if (monthStr == "Dec") month = "12";
+    else
+    {
+        qDebug() << "Некоректний формат місяця";
+        return;
+    }
+
+    QString versionDate = tr("Gandalf. Подключение к АЗС.\nVersion: %1%2%3")
+                              .arg(year)
+                              .arg(month)
+                              .arg(day);
+
+    qDebug() << versionDate;
+    QMessageBox::about(this, tr("Про програму"), versionDate);
 }
+
+
+
 
 
 void MainWindow::on_pushButtonRefreshDeploys_clicked()
@@ -415,3 +479,19 @@ void MainWindow::on_actionTerminals_triggered()
 
 
 
+
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    // Видалити всі вкладки
+    for (int i = ui->tabWidgetTerminals->count() - 1; i >= 0; --i) {
+        QWidget *tabWidget = ui->tabWidgetTerminals->widget(i);
+        if (tabWidget) {
+            ui->tabWidgetTerminals->removeTab(i);
+            tabWidget->deleteLater();
+        }
+    }
+
+    // Продовжити стандартний обробник подій закриття
+    QMainWindow::closeEvent(event);
+}

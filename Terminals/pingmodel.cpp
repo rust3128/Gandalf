@@ -13,6 +13,7 @@ PingModel::PingModel(QObject *parent) :
 }
 
 PingModel::~PingModel(){
+    ping->deleteLater();
 }
 
 void PingModel::verifyStatus(){

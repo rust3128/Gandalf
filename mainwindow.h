@@ -61,5 +61,9 @@ private:
     QSortFilterProxyModel *proxyDep;                        // Модель для сортировки неотзвонов
     QTimer *timer;                                          // Тайсер для обновления
     QTimer *marqueeTimer;
+
+    // QWidget interface
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 #endif // MAINWINDOW_H

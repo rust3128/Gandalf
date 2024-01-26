@@ -59,7 +59,20 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QTableView" name="tableViewTerminals"/>
+        <widget class="QTableView" name="tableViewTerminals">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -76,7 +89,20 @@
         </widget>
        </item>
        <item row="0" column="0" rowspan="4">
-        <widget class="QTableView" name="tableViewWorkplace"/>
+        <widget class="QTableView" name="tableViewWorkplace">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
        </item>
        <item row="0" column="1">
         <widget class="QToolButton" name="toolButtonAdd">
