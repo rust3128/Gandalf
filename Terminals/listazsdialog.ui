@@ -84,7 +84,17 @@
        <item row="1" column="1">
         <widget class="QToolButton" name="toolButtonEdit">
          <property name="text">
-          <string>...</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../resource.qrc">
+           <normaloff>:/Images/edit_icon.png</normaloff>:/Images/edit_icon.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -124,7 +134,17 @@
        <item row="2" column="1">
         <widget class="QToolButton" name="toolButtonDelete">
          <property name="text">
-          <string>...</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../resource.qrc">
+           <normaloff>:/Images/remove_icon.png</normaloff>:/Images/remove_icon.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>

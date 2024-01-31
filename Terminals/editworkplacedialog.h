@@ -2,6 +2,7 @@
 #define EDITWORKPLACEDIALOG_H
 
 #include <QDialog>
+#include <QSqlQueryModel>
 
 namespace Ui {
 class EditWorkplaceDialog;
@@ -17,12 +18,18 @@ public:
 private slots:
 
 
+    void on_buttonBox_rejected();
+
+    void on_buttonBox_accepted();
+
 private:
     void createUI();
+    void createModel();
 private:
     Ui::EditWorkplaceDialog *ui;
     int workplaceID;
     int terminalID;
+    QSqlQueryModel *modelMposType;
 };
 
 #endif // EDITWORKPLACEDIALOG_H

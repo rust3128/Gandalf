@@ -23,6 +23,8 @@
 #include <QInputDialog>
 #include <QHostInfo>
 #include <QChar>
+#include <QSqlQuery>
+#include <QSqlError>
 
 
 
@@ -36,6 +38,11 @@ ObjectForm::ObjectForm(QSharedPointer<TermData> tData, QWidget *parent) :
 
     dbCenter = QSqlDatabase::database("mpos");
     createConnList();
+    if (connList.isEmpty()) {
+        // Якщо порожній, відхиляємо діалог
+        reject();
+        return;
+    }
     getTypeVNCClient();
     createUI();
 
@@ -90,6 +97,12 @@ void ObjectForm::createConnList()
     case 1:
         connListUkrnafta();
         break;
+    case 2:
+        connListMarshal();
+        break;
+    case 3:
+        connListDatabase();
+        break;
     default:
         break;
     }
@@ -116,6 +129,7 @@ void ObjectForm::getTypeVNCClient()
         case 2:
             m_typeVNC = "UltraVNC";
             break;
+
         default:
             break;
         }
@@ -166,6 +180,58 @@ void ObjectForm::connListUkrnafta()
         connList.append(conTemp);
     }
 }
+
+void ObjectForm::connListMarshal()
+{
+    connList.clear();
+    QString hostName;
+    int termID=m_termData->getTerminalID();
+    QSharedPointer<ConnectionData> conTemp = QSharedPointer<ConnectionData>::create(termID);
+    QString strTerminalID = QString::number(termID);
+    QString ip2 = strTerminalID.left(1);
+    QString ip3 = strTerminalID.right(2);
+    hostName="10."+QString::number(200+ip2.toInt())+"."+QString::number(ip3.toInt())+".7";
+
+    //1-Pos
+    conTemp->setHostName(hostName);
+    conTemp->setPort(5900);
+    conTemp->setPassVNC(getVNCPassword());
+    connList.append(conTemp);
+
+    //2-Pos
+    QSharedPointer<ConnectionData> conTemp2 = QSharedPointer<ConnectionData>::create(termID);
+    hostName="10."+QString::number(200+ip2.toInt())+"."+QString::number(ip3.toInt())+".4";
+    conTemp2->setHostName(hostName);
+    conTemp2->setPort(5900);
+    conTemp2->setPassVNC(getVNCPassword());
+    connList.append(conTemp2);
+
+}
+
+void ObjectForm::connListDatabase()
+{
+    connList.clear();
+    int termID=m_termData->getTerminalID();
+    QSqlQuery q;
+    q.prepare("select w.version_type, w.pos_id, w.ipadr, w.passvnc, w.portvnc from workplace w "
+              "where w.terminal_id =? "
+              "order by w.version_type, w.pos_id");
+    q.bindValue(0, termID);
+    if(!q.exec()) {
+        qCritical(logCritical()) << tr("Не удалось получить список рабочих мест из базы данных!");
+        this->reject();
+    }
+    while(q.next()){
+        QSharedPointer<ConnectionData> conTemp = QSharedPointer<ConnectionData>::create(termID);
+        conTemp->setHostName(q.value(2).toString());
+        conTemp->setPort(q.value(4).toInt());
+        conTemp->setPassVNC(q.value(3).toString());
+        connList.append(conTemp);
+    }
+
+}
+
+
 
 void ObjectForm::сheckingСonnections()
 {

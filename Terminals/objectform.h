@@ -65,6 +65,8 @@ private:
     void createConnList();
     void connListAvias();
     void connListUkrnafta();
+    void connListDatabase();
+    void connListMarshal();
     QString getVNCPassword();               //Генерація паролю VNC
     QString genPassVNCUkrnafta();
     void сheckingСonnections();

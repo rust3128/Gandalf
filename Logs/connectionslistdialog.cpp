@@ -75,3 +75,9 @@ void ConnectionsListDialog::on_pushButtonRefresh_clicked()
     showHistory();
 }
 
+
+void ConnectionsListDialog::on_buttonBox_rejected()
+{
+    this->reject();
+}
+

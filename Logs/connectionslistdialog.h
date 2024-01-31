@@ -22,6 +22,8 @@ public:
 private slots:
     void on_pushButtonRefresh_clicked();
 
+    void on_buttonBox_rejected();
+
 private:
     void createUI();
     void showHistory();

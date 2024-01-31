@@ -24,9 +24,14 @@ private slots:
     void onTerminalSelectionChanged(const QModelIndex &current, const QModelIndex &previous);
     void on_toolButtonAdd_clicked();
 
+    void on_tableViewWorkplace_doubleClicked(const QModelIndex &index);
+
+    void on_toolButtonDelete_clicked();
+
 private:
     void createUI();
     void createModel();
+    void updateWorkplaceModel(int terminalID);
 private:
     Ui::ListAzsDialog *ui;
     QMap<int, QSharedPointer<TermData>> terminalMap; // Додали поле для зберігання списку терміналів
