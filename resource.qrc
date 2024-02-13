@@ -44,5 +44,9 @@
         <file>Images/file_import_icon.png</file>
         <file>Images/list_icon.png</file>
         <file>Images/gas_stantion.png</file>
+        <file>Images/Screenshot_icon.png</file>
+        <file>Images/send message.png</file>
+        <file>Images/connect_established.png</file>
+        <file>Images/connect_no_icon.png</file>
     </qresource>
 </RCC>

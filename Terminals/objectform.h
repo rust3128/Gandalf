@@ -60,6 +60,10 @@ private slots:
 
     void on_toolButtonIPToClip_clicked();
 
+
+
+    void on_pushButtonSendMessage_clicked();
+
 private:
     void createUI();
     void createConnList();

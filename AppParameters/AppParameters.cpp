@@ -64,6 +64,7 @@ void AppParameters::setDefaultParameters() {
     parameters["typeVNC"] = "TightVNC";                         //Тип сервера на АЗС
     parameters["defaultVNCPass"] = crP.criptPass("88888888");   //Пароль VNC за замовчуванням
     parameters["useTemplatePassVNC"] = "0";                     //Використовувати шаблон для пароля (0-ні, 1-Так)
+    parameters["hotlinePhone"] = "044 495-18-63, 066 354-16-71";//Телефони служби підтримки
 
 }
 
@@ -83,6 +84,7 @@ QString AppParameters::getParameter(const QString& paramName) const {
 }
 
 void AppParameters::readDatabaseParametersFromIniFile() {
+
     QSettings settings(CONFIG_FILE_NAME, QSettings::IniFormat);
     QString dbHostName = settings.value("Database/HostName").toString();
     QString dbDatabasePort = settings.value("Database/Port").toString();

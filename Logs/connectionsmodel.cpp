@@ -34,6 +34,12 @@ QVariant ConnectionsModel::data(const QModelIndex &index, int role) const
         default:
             break;
         }
+    } else if(role == Qt::DisplayRole && index.column() == 3){
+        QString fio = QSqlQueryModel::data(index).toString();
+        if(fio.isEmpty()) {
+            QModelIndex idx = QSqlQueryModel::index(index.row(), 6);
+            return QSqlQueryModel::data(idx,role);
+        }
     }
     return QSqlQueryModel::data(index, role);
 }

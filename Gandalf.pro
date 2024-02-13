@@ -29,6 +29,7 @@ SOURCES += \
     Logs/connectionsmodel.cpp \
     Logs/logdata.cpp \
     Logs/logger.cpp \
+    SendMessage/sendmessagedialog.cpp \
     Terminals/TerminalListModel.cpp \
     Terminals/buttonvnc.cpp \
     Terminals/connectiondata.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     Logs/connectionsmodel.h \
     Logs/logdata.h \
     Logs/logger.h \
+    SendMessage/sendmessagedialog.h \
     Terminals/TerminalListModel.h \
     Terminals/buttonvnc.h \
     Terminals/connectiondata.h \
@@ -97,6 +99,7 @@ FORMS += \
     AppParameters/passmanagerdialog.ui \
     DbSettingsDialog/dbsettingsdialog.ui \
     Logs/connectionslistdialog.ui \
+    SendMessage/sendmessagedialog.ui \
     Terminals/editworkplacedialog.ui \
     Terminals/listazsdialog.ui \
     Terminals/objectform.ui \

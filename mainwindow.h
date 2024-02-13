@@ -44,6 +44,8 @@ private slots:
 
     void on_actionTerminals_triggered();
 
+    void on_actionScreenshot_triggered();
+
 protected:
 
 private:

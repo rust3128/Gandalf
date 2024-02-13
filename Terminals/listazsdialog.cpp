@@ -187,3 +187,9 @@ void ListAzsDialog::on_toolButtonDelete_clicked()
 
 }
 
+
+void ListAzsDialog::on_buttonBox_rejected()
+{
+    this->reject();
+}
+

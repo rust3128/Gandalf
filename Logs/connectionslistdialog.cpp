@@ -52,13 +52,14 @@ void ConnectionsListDialog::showHistory()
     proxyModel->setSourceModel(modelLogs);
     proxyModel->setDynamicSortFilter(true);
     ui->tableView->setModel(proxyModel);
+    ui->tableView->hideColumn(6);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->resizeColumnsToContents();
 }
 
 QString ConnectionsListDialog::createSQLHistory()
 {
-    QString strSQL = QString("SELECT l.dat, l.terminal_id, l.pos_id, u.user_fio, l.logtype_id, l.comments FROM logs l "
+    QString strSQL = QString("SELECT l.dat, l.terminal_id, l.pos_id, u.user_fio, l.logtype_id, l.comments, u.user_login FROM logs l "
                              "LEFT JOIN users u ON u.user_id = l.user_id "
                              "WHERE l.dat BETWEEN '%1' and '%2' ").arg(ui->dateTimeEditFrom->dateTime().toString("yyyy-MM-dd hh:mm:ss"))
                                                                   .arg(ui->dateTimeEditTo->dateTime().toString("yyyy-MM-dd hh:mm:ss"));

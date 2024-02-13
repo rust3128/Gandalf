@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "qclipboard.h"
 #include "qdatetime.h"
 #include "ui_mainwindow.h"
 #include "AppParameters/AppParameters.h"
@@ -24,6 +25,7 @@
 #include <QPropertyAnimation>
 #include <QCloseEvent>
 #include <QDate>
+#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -63,6 +65,14 @@ void MainWindow::createUI()
     ui->tabWidgetTerminals->hide();
 //    QLabel *labelStatus =new QLabel(strTitle);
 //    ui->statusbar->addWidget(labelStatus);
+    ui->actionScreenshot->setEnabled(false);
+    QToolButton *button = qobject_cast<QToolButton*>(ui->toolBar->widgetForAction(ui->actionScreenshot));
+    if (button) {
+        button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    }
+
+
+
     ui->splitter->setStyleSheet(
         "QSplitter::handle:vertical { background-color: #3498db; border: 1px solid #2980b9; }"
         "QSplitter::handle:horizontal { background-color: #3498db; border: 1px solid #2980b9; }"
@@ -158,6 +168,7 @@ void MainWindow::slotGetTerminalID(int terminalID)
         int tabIdx = ui->tabWidgetTerminals->addTab(objForm, QString::number(terminalID));
         ui->tabWidgetTerminals->setCurrentIndex(tabIdx);
         ui->tabWidgetTerminals->show();
+        ui->actionScreenshot->setEnabled(true);
     } else {
         qInfo(logInfo()) << "Not fount terminal ID:" << terminalID;
         QMessageBox msgBox;
@@ -212,8 +223,11 @@ void MainWindow::on_tabWidgetTerminals_tabCloseRequested(int index)
         // Видалити віджет та його об'єкт
         tabWidget->deleteLater();
     }
-    if(ui->tabWidgetTerminals->count()==0)
+    if(ui->tabWidgetTerminals->count()==0){
         ui->tabWidgetTerminals->hide();
+        ui->actionScreenshot->setEnabled(false);
+    }
+
 }
 
 void MainWindow::deploysShow()
@@ -476,11 +490,6 @@ void MainWindow::on_actionTerminals_triggered()
     listAZS->exec();
 }
 
-
-
-
-
-
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     // Видалити всі вкладки
@@ -495,3 +504,29 @@ void MainWindow::closeEvent(QCloseEvent *event)
     // Продовжити стандартний обробник подій закриття
     QMainWindow::closeEvent(event);
 }
+
+void MainWindow::on_actionScreenshot_triggered()
+{
+    // Отримання індексу поточної вкладки
+    int currentIndex = ui->tabWidgetTerminals->currentIndex();
+
+    // Перевірка, чи індекс вкладки дійсний
+    if (currentIndex >= 0 && currentIndex < ui->tabWidgetTerminals->count()) {
+        // Отримання вмісту поточної вкладки
+        QWidget *currentTab = ui->tabWidgetTerminals->widget(currentIndex);
+        if (currentTab) {
+            // Створення QPixmap для зображення
+            QPixmap pixmap(currentTab->size());
+            currentTab->render(&pixmap);
+
+            // Копіювання зображення в буфер обміну
+            QClipboard *clipboard = QGuiApplication::clipboard();
+            clipboard->setPixmap(pixmap);
+
+            // Вивід повідомлення, що вміст скопійовано
+            QMessageBox::information(this, tr("Информация"), tr("Скриншот вкладки об АЗС %1 скопировано в буфер обмена.").arg(ui->tabWidgetTerminals->tabText(currentIndex)));
+        }
+    }
+
+}
+

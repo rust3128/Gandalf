@@ -14,28 +14,15 @@
    <string>Gandalf</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <property name="handleWidth">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="SearchForm" name="widgetSearch" native="true">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>114</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
+      <widget class="QWidget" name="">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
          <widget class="QTabWidget" name="tabWidgetTerminals">
           <property name="tabPosition">
            <enum>QTabWidget::North</enum>
@@ -57,6 +44,16 @@
           </property>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="SearchForm" name="widgetSearch" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>114</height>
+           </size>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QToolBox" name="toolBox">
@@ -68,7 +65,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>784</width>
+          <width>783</width>
           <height>608</height>
          </rect>
         </property>
@@ -227,7 +224,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>784</width>
+          <width>783</width>
           <height>608</height>
          </rect>
         </property>
@@ -281,6 +278,9 @@
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -290,6 +290,7 @@
    <addaction name="actionUserProfile"/>
    <addaction name="actionListConnections"/>
    <addaction name="actionParametrs"/>
+   <addaction name="actionScreenshot"/>
   </widget>
   <action name="actionUserProfile">
    <property name="icon">
@@ -361,6 +362,21 @@
    </property>
    <property name="text">
     <string>Справочник терминалов</string>
+   </property>
+  </action>
+  <action name="actionScreenshot">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/Screenshot_icon.png</normaloff>:/Images/Screenshot_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Скриншот</string>
+   </property>
+   <property name="toolTip">
+    <string>Скриншот текущей вкладки</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
  </widget>

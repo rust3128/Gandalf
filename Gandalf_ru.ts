@@ -262,11 +262,6 @@
 <context>
     <name>EditWorkplaceDialog</name>
     <message>
-        <location filename="Terminals/editworkplacedialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Terminals/editworkplacedialog.ui" line="26"/>
         <source>Рабочее место</source>
         <translation type="unfinished"></translation>
@@ -282,22 +277,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/editworkplacedialog.ui" line="86"/>
+        <location filename="Terminals/editworkplacedialog.ui" line="133"/>
         <source>Терминал</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/editworkplacedialog.ui" line="93"/>
+        <location filename="Terminals/editworkplacedialog.ui" line="126"/>
         <source>Тип MPos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/editworkplacedialog.ui" line="100"/>
+        <location filename="Terminals/editworkplacedialog.ui" line="14"/>
+        <source>Параметры рабочего места</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Terminals/editworkplacedialog.ui" line="86"/>
         <source>VNC Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/editworkplacedialog.ui" line="130"/>
+        <location filename="Terminals/editworkplacedialog.ui" line="119"/>
         <source>Хост/IP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -461,21 +461,17 @@
     <name>ListAzsDialog</name>
     <message>
         <location filename="Terminals/listazsdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Terminals/listazsdialog.ui" line="32"/>
+        <location filename="Terminals/listazsdialog.ui" line="38"/>
         <source>Справочник терминалов и рабочих мест</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/listazsdialog.ui" line="58"/>
+        <location filename="Terminals/listazsdialog.ui" line="64"/>
         <source>Список терминалов</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/listazsdialog.ui" line="81"/>
+        <location filename="Terminals/listazsdialog.ui" line="87"/>
         <source>Рабочие места</source>
         <translation type="unfinished"></translation>
     </message>
@@ -539,166 +535,186 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="113"/>
+        <location filename="mainwindow.ui" line="110"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="125"/>
+        <location filename="mainwindow.ui" line="122"/>
         <source>Отображать если нет данных более</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="135"/>
-        <location filename="mainwindow.ui" line="162"/>
+        <location filename="mainwindow.ui" line="132"/>
+        <location filename="mainwindow.ui" line="159"/>
         <source> мин.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="155"/>
+        <location filename="mainwindow.ui" line="152"/>
         <source>Интервал проверки каждые</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="190"/>
+        <location filename="mainwindow.ui" line="187"/>
         <source>Обновить</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="213"/>
+        <location filename="mainwindow.ui" line="210"/>
         <source>Задержки обена с ЦБ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="254"/>
+        <location filename="mainwindow.ui" line="251"/>
         <source>Настройка </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="261"/>
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="271"/>
+        <location filename="mainwindow.ui" line="268"/>
         <source>Отчеты</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="282"/>
+        <location filename="mainwindow.ui" line="279"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="300"/>
+        <location filename="mainwindow.ui" line="301"/>
         <source>Профиль пользователя</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="309"/>
+        <location filename="mainwindow.ui" line="310"/>
         <source>Параметры</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="318"/>
+        <location filename="mainwindow.ui" line="319"/>
         <source>О программе</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="327"/>
+        <location filename="mainwindow.ui" line="328"/>
         <source>Версия Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="336"/>
+        <location filename="mainwindow.ui" line="337"/>
         <source>Пользователи</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="345"/>
+        <location filename="mainwindow.ui" line="346"/>
         <source>Менеджер паролей</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="354"/>
+        <location filename="mainwindow.ui" line="355"/>
         <source>Журнал Подключений</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="363"/>
+        <location filename="mainwindow.ui" line="364"/>
         <source>Справочник терминалов</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="98"/>
+        <location filename="mainwindow.ui" line="373"/>
+        <source>Скриншот</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="376"/>
+        <source>Скриншот текущей вкладки</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="108"/>
         <source>Не удалось получить данные по терминалах.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="126"/>
         <source>В списке %1 АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="117"/>
+        <location filename="mainwindow.cpp" line="127"/>
         <source>Загружено записей об азс - </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="165"/>
+        <location filename="mainwindow.cpp" line="176"/>
         <source>Терминал &lt;b&gt;%1&lt;/b&gt; не найден в базе данных.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
+        <location filename="mainwindow.cpp" line="179"/>
         <source>Центральный МПос. Меню Настрока-&gt;Редактирование справочника терминалов.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="187"/>
+        <location filename="mainwindow.cpp" line="198"/>
         <source>Центрльная база данных MPos успешно открыта.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="254"/>
+        <location filename="mainwindow.cpp" line="268"/>
         <source>Ошибка подключения.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="256"/>
+        <location filename="mainwindow.cpp" line="270"/>
         <source>Произошла ошибка при подключении к центральной базе данных!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="257"/>
+        <location filename="mainwindow.cpp" line="271"/>
         <source>Текст ошибки:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="278"/>
+        <location filename="mainwindow.cpp" line="292"/>
         <source>  Нет проблем с отзвонами!  </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="281"/>
+        <location filename="mainwindow.cpp" line="295"/>
         <source> %1 АЗС нет данных за последние %2  </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="287"/>
+        <location filename="mainwindow.cpp" line="301"/>
         <source>Статисика обмена с АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="408"/>
+        <location filename="mainwindow.cpp" line="422"/>
         <source>Gandalf. Подключение к АЗС.
 Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="414"/>
+        <location filename="mainwindow.cpp" line="428"/>
         <source>Про програму</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="527"/>
+        <source>Информация</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="527"/>
+        <source>Скриншот вкладки об АЗС %1 скопировано в буфер обмена.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -809,210 +825,216 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.ui" line="399"/>
+        <location filename="Terminals/objectform.ui" line="382"/>
+        <source>Сообщение
+оператору</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Terminals/objectform.ui" line="420"/>
         <source>Перепроверить доступность</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.ui" line="411"/>
+        <location filename="Terminals/objectform.ui" line="432"/>
         <source>Резервуары</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.ui" line="448"/>
+        <location filename="Terminals/objectform.ui" line="469"/>
         <source>Резервуарный парк</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.ui" line="488"/>
+        <location filename="Terminals/objectform.ui" line="509"/>
         <source>ТРК</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.ui" line="577"/>
+        <location filename="Terminals/objectform.ui" line="598"/>
         <source>Конфигурция ТРК</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="68"/>
+        <location filename="Terminals/objectform.cpp" line="69"/>
         <source>
 Код земельного участка: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="194"/>
+        <location filename="Terminals/objectform.cpp" line="224"/>
         <source>Не удалось получить список рабочих мест из базы данных!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="279"/>
+        <location filename="Terminals/objectform.cpp" line="284"/>
         <source>Подключиться</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="293"/>
+        <location filename="Terminals/objectform.cpp" line="298"/>
         <source>1-е рабочее место</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="297"/>
+        <location filename="Terminals/objectform.cpp" line="302"/>
         <source>2-е рабочее место</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="301"/>
+        <location filename="Terminals/objectform.cpp" line="306"/>
         <source>3-е рабочее место</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="305"/>
+        <location filename="Terminals/objectform.cpp" line="310"/>
         <source>Товаровед/Директор</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="310"/>
+        <location filename="Terminals/objectform.cpp" line="315"/>
         <source>Рабочее место</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="348"/>
+        <location filename="Terminals/objectform.cpp" line="357"/>
         <source>Нет доступных
 подключений!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="400"/>
-        <location filename="Terminals/objectform.cpp" line="408"/>
-        <location filename="Terminals/objectform.cpp" line="840"/>
+        <location filename="Terminals/objectform.cpp" line="409"/>
+        <location filename="Terminals/objectform.cpp" line="417"/>
+        <location filename="Terminals/objectform.cpp" line="849"/>
         <source>Адрес скопирован
 в буфер обмена.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="470"/>
+        <location filename="Terminals/objectform.cpp" line="479"/>
         <source>Ошибка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="470"/>
+        <location filename="Terminals/objectform.cpp" line="479"/>
         <source>Файл запуска VNC клиента не найден:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="470"/>
+        <location filename="Terminals/objectform.cpp" line="479"/>
         <source>
 Проверьте настройки приложения и наличие файла по указанному пути.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="610"/>
+        <location filename="Terminals/objectform.cpp" line="619"/>
         <source>№ ТРК</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="610"/>
+        <location filename="Terminals/objectform.cpp" line="619"/>
         <source>Протокол</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="610"/>
+        <location filename="Terminals/objectform.cpp" line="619"/>
         <source>Порт</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="610"/>
+        <location filename="Terminals/objectform.cpp" line="619"/>
         <source>Скорость</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="610"/>
+        <location filename="Terminals/objectform.cpp" line="619"/>
         <source>Адрес</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="630"/>
+        <location filename="Terminals/objectform.cpp" line="639"/>
         <source>Пистолет</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="630"/>
+        <location filename="Terminals/objectform.cpp" line="639"/>
         <source>Резервуар</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="630"/>
+        <location filename="Terminals/objectform.cpp" line="639"/>
         <source>Топливо</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="656"/>
+        <location filename="Terminals/objectform.cpp" line="665"/>
         <source>Изменение типа клиента VNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="657"/>
+        <location filename="Terminals/objectform.cpp" line="666"/>
         <source>Вы действительно хотите изменить тип клиента VNC для данной АЗС?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="672"/>
+        <location filename="Terminals/objectform.cpp" line="681"/>
         <source> - По умолчанию</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="695"/>
+        <location filename="Terminals/objectform.cpp" line="704"/>
         <source>Не удалоь записать тип клиента в таблицу исключений.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="707"/>
+        <location filename="Terminals/objectform.cpp" line="716"/>
         <source>Изменение пароля VNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="708"/>
+        <location filename="Terminals/objectform.cpp" line="717"/>
         <source>Вы действительно хотите изменить пароль VNC для подключения к данной АЗС?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="713"/>
+        <location filename="Terminals/objectform.cpp" line="722"/>
         <source> Изменение пароля</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="714"/>
+        <location filename="Terminals/objectform.cpp" line="723"/>
         <source>Введите новый пароль для VNC:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="730"/>
+        <location filename="Terminals/objectform.cpp" line="739"/>
         <source>Внимание!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="730"/>
+        <location filename="Terminals/objectform.cpp" line="739"/>
         <source>Пароль был пустым. Изменения не выполнятся.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="794"/>
+        <location filename="Terminals/objectform.cpp" line="803"/>
         <source>Крайняя передача данных %1 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="796"/>
+        <location filename="Terminals/objectform.cpp" line="805"/>
         <source>%1 дн %2 ч %3 м %4 с назад.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="822"/>
+        <location filename="Terminals/objectform.cpp" line="831"/>
         <source>: Нет доступных IP адресов.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Terminals/objectform.cpp" line="829"/>
+        <location filename="Terminals/objectform.cpp" line="838"/>
         <source>: Ошибка получения IP-адреса. </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1035,133 +1057,138 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="46"/>
+        <location filename="AppParameters/parametersdialog.ui" line="123"/>
         <source>Диапазон номеров терминалов (TERMINAL_ID)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="61"/>
+        <location filename="AppParameters/parametersdialog.ui" line="138"/>
         <source>99999</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="71"/>
+        <location filename="AppParameters/parametersdialog.ui" line="148"/>
         <source>Max:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="84"/>
+        <location filename="AppParameters/parametersdialog.ui" line="161"/>
         <source>1000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="94"/>
+        <location filename="AppParameters/parametersdialog.ui" line="171"/>
         <source>Min:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="130"/>
+        <location filename="AppParameters/parametersdialog.ui" line="116"/>
         <source>Отображать код земельного участка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="139"/>
+        <location filename="AppParameters/parametersdialog.ui" line="71"/>
         <source>Максимальное количество рабочих мест на АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="174"/>
+        <location filename="AppParameters/parametersdialog.ui" line="62"/>
         <source>Метод формирования адреса для подключения АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="205"/>
+        <location filename="AppParameters/parametersdialog.ui" line="207"/>
+        <source>Телефоны службы поддержки</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppParameters/parametersdialog.ui" line="215"/>
         <source>VNC Клиент</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="211"/>
+        <location filename="AppParameters/parametersdialog.ui" line="221"/>
         <source>Тип сервера подключения на АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="217"/>
+        <location filename="AppParameters/parametersdialog.ui" line="227"/>
         <source>UltraVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="234"/>
+        <location filename="AppParameters/parametersdialog.ui" line="244"/>
         <source>TightVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="254"/>
+        <location filename="AppParameters/parametersdialog.ui" line="264"/>
         <source>Путь для запуска TightVNC клиента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="264"/>
+        <location filename="AppParameters/parametersdialog.ui" line="274"/>
         <source>Путь для запуска UltraVNC клиента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="274"/>
+        <location filename="AppParameters/parametersdialog.ui" line="284"/>
         <source>Пароль по умолчанию</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="288"/>
+        <location filename="AppParameters/parametersdialog.ui" line="298"/>
         <source>Использовать шаблон для пароля</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="303"/>
-        <location filename="AppParameters/parametersdialog.ui" line="366"/>
+        <location filename="AppParameters/parametersdialog.ui" line="313"/>
+        <location filename="AppParameters/parametersdialog.ui" line="376"/>
         <source>Образец</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="315"/>
+        <location filename="AppParameters/parametersdialog.ui" line="325"/>
         <source>Префикс</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="336"/>
+        <location filename="AppParameters/parametersdialog.ui" line="346"/>
         <source>Терминал</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="354"/>
+        <location filename="AppParameters/parametersdialog.ui" line="364"/>
         <source>Суфикс</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="380"/>
+        <location filename="AppParameters/parametersdialog.ui" line="390"/>
         <source>Центральня БД</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="388"/>
+        <location filename="AppParameters/parametersdialog.ui" line="398"/>
         <source>Пользователь</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="395"/>
+        <location filename="AppParameters/parametersdialog.ui" line="405"/>
         <source>Пароль</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="419"/>
+        <location filename="AppParameters/parametersdialog.ui" line="429"/>
         <source>Имя сервера</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="426"/>
+        <location filename="AppParameters/parametersdialog.ui" line="436"/>
         <source>Порт</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="463"/>
+        <location filename="AppParameters/parametersdialog.ui" line="473"/>
         <location filename="AppParameters/parametersdialog.cpp" line="42"/>
         <source>Файл базы данных</source>
         <translation type="unfinished"></translation>
@@ -1189,14 +1216,14 @@ Version: %1%2%3</source>
     </message>
     <message>
         <location filename="AppParameters/parametersdialog.cpp" line="54"/>
-        <location filename="AppParameters/parametersdialog.cpp" line="87"/>
-        <location filename="AppParameters/parametersdialog.cpp" line="92"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="89"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="94"/>
         <source>Открыть файл</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="AppParameters/parametersdialog.cpp" line="61"/>
-        <location filename="AppParameters/parametersdialog.cpp" line="98"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="100"/>
         <source>Показать пароль</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1340,17 +1367,17 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/AppParameters.cpp" line="79"/>
+        <location filename="AppParameters/AppParameters.cpp" line="80"/>
         <source>Не возможно найти параметр по ключу</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.cpp" line="193"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="197"/>
         <source>Параметр %1 успішно оновлено або додано.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.cpp" line="195"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="199"/>
         <source>Помилка при оновленні або додаванні параметра %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1372,22 +1399,22 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="166"/>
+        <location filename="mainwindow.cpp" line="177"/>
         <source>Проверте правильность номера терминала или его статус в базе данных. Убедитесь что он в работе и активен.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="190"/>
+        <location filename="mainwindow.cpp" line="201"/>
         <source>Ошибка открытия базы данных MPos:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="193"/>
+        <location filename="mainwindow.cpp" line="204"/>
         <source>Ошибка подключения к базе данных MPos!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="205"/>
         <source>Необходимо проверить настройки подключения.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1402,6 +1429,143 @@ Version: %1%2%3</source>
     <message>
         <location filename="Terminals/searchform.ui" line="82"/>
         <source>Введите номер АЗС</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SendMessageDialog</name>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="14"/>
+        <source>Сообщение оператору</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="20"/>
+        <source>Подключение к БД АЗС</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="31"/>
+        <source>Пользователь</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="38"/>
+        <source>Пароль</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="59"/>
+        <source>Имя сервера</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="66"/>
+        <source>Порт</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="103"/>
+        <source>Файл базы данных</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="113"/>
+        <source>Статус </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="150"/>
+        <source>Проверка связи</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="162"/>
+        <source>Добавлять номера телефонов</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="210"/>
+        <source>Максимальная длина сообщения 100 символов!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="232"/>
+        <source>Осталось </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.ui" line="247"/>
+        <source>Отправить</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="41"/>
+        <source>Это техподдержка. Позвоните по указанным телефонам. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="73"/>
+        <source>Не удалось получить запись о подключении к БД АЗС</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="162"/>
+        <source>Отправить сообщение</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="167"/>
+        <source>Не возможно отправить сообщение. Отсутсвует соединение с базой данных АЗС.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="168"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
+        <source>Внимание</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="168"/>
+        <source>Не возможно подключиться к базе данных АЗС!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="168"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
+        <source>Проверте настройки подключение и повторите попытку!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="181"/>
+        <source>Осталось символов: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="184"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="205"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
+        <source>Ошибка</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="184"/>
+        <source>Введено слишком много символов!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="205"/>
+        <source>В сообщении слишком много символов! Максимум 100!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
+        <source>Не удалось отправить сообщениена АЗС!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
+        <source>Сообщение успешно отправлено!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

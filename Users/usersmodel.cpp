@@ -46,6 +46,12 @@ QVariant UsersModel::data(const QModelIndex &index, int role) const {
         default:
             break;
         }
+    } else if(role == Qt::DisplayRole && index.column() == 2) {
+        QString fio = QSqlTableModel::data(index).toString();
+        if(fio.isEmpty()){
+            QModelIndex idx = QSqlTableModel::index(index.row(),1);
+            return QSqlTableModel::data(idx,role);
+        }
     }
 
     return QSqlTableModel::data(index, role);

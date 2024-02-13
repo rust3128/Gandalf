@@ -32,6 +32,8 @@ private slots:
 
     void on_toolButton_2_clicked();
 
+    void on_buttonBox_rejected();
+
 private:
     void createUI();
     void createModel();

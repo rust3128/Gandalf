@@ -8,6 +8,7 @@
 #include "Terminals/tanksinfo.h"
 #include "Terminals/dispenserinfo.h"
 #include "Logs/logger.h"
+#include "SendMessage/sendmessagedialog.h"
 
 
 
@@ -83,6 +84,7 @@ void ObjectForm::createUI()
 
     ui->labelLastPackage->setText(getLastPackage());
     ui->groupBoxVNC->hide();
+    ui->pushButtonSendMessage->hide();
 
 }
 
@@ -102,6 +104,7 @@ void ObjectForm::createConnList()
         break;
     case 3:
         connListDatabase();
+
         break;
     default:
         break;
@@ -331,7 +334,11 @@ void ObjectForm::slotFinishConStatus()
     --threadCount;
 
     if(threadCount == 0){
-        ui->groupBoxVNC->show();
+        if(AppParameters::instance().getParameter("templatеHostname").toInt() !=3) {
+            ui->groupBoxVNC->show();
+
+        }
+        ui->pushButtonSendMessage->show();
         noConnectionsLabel = nullptr;
         if(aviableConnections){
             ui->progressBar->hide();
@@ -840,5 +847,14 @@ void ObjectForm::on_toolButtonIPToClip_clicked()
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(ui->lineEditIP->text().trimmed());
     QToolTip::showText(ui->toolButtonIPToClip->mapToGlobal(ui->toolButtonIPToClip->rect().center()), tr("Адрес скопирован\nв буфер обмена."));
+}
+
+
+
+
+void ObjectForm::on_pushButtonSendMessage_clicked()
+{
+    SendMessageDialog *sendMsgDlg = new SendMessageDialog(m_termData->getTerminalID(),connList[0]->getHostName());
+    sendMsgDlg->exec();
 }
 

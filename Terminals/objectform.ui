@@ -54,7 +54,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../resource.qrc">
+        <iconset>
          <normaloff>:/Images/clipboard_icon.png</normaloff>:/Images/clipboard_icon.png</iconset>
        </property>
        <property name="iconSize">
@@ -148,7 +148,7 @@
      </property>
      <widget class="QWidget" name="tabWorkPlace">
       <attribute name="icon">
-       <iconset resource="../resource.qrc">
+       <iconset>
         <normaloff>:/Images/pc_icon.png</normaloff>:/Images/pc_icon.png</iconset>
       </attribute>
       <attribute name="title">
@@ -172,7 +172,7 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset resource="../resource.qrc">
+               <iconset>
                 <normaloff>:/Images/clear_icon.png</normaloff>:/Images/clear_icon.png</iconset>
               </property>
               <property name="iconSize">
@@ -205,7 +205,7 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset resource="../resource.qrc">
+               <iconset>
                 <normaloff>:/Images/ping_icon.png</normaloff>:/Images/ping_icon.png</iconset>
               </property>
               <property name="iconSize">
@@ -247,7 +247,7 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset resource="../resource.qrc">
+               <iconset>
                 <normaloff>:/Images/clipboard_icon.png</normaloff>:/Images/clipboard_icon.png</iconset>
               </property>
               <property name="iconSize">
@@ -270,7 +270,7 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset resource="../resource.qrc">
+               <iconset>
                 <normaloff>:/Images/clipboard_icon.png</normaloff>:/Images/clipboard_icon.png</iconset>
               </property>
               <property name="iconSize">
@@ -377,6 +377,27 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="pushButtonSendMessage">
+             <property name="text">
+              <string>Сообщение
+оператору</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>:/Images/send message.png</normaloff>:/Images/send message.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>32</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -399,7 +420,7 @@
           <string>Перепроверить доступность</string>
          </property>
          <property name="icon">
-          <iconset resource="../resource.qrc">
+          <iconset>
            <normaloff>:/Images/refresh_icon.png</normaloff>:/Images/refresh_icon.png</iconset>
          </property>
         </widget>
@@ -429,7 +450,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resource.qrc">:/Images/tanks.png</pixmap>
+          <pixmap>:/Images/tanks.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -477,7 +498,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resource.qrc">:/Images/waiting_icon_big.png</pixmap>
+          <pixmap>:/Images/waiting_icon_big.png</pixmap>
          </property>
         </widget>
        </item>
@@ -500,7 +521,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resource.qrc">:/Images/dispenser.png</pixmap>
+          <pixmap>:/Images/dispenser.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -587,7 +608,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resource.qrc">:/Images/waiting_icon_big.png</pixmap>
+          <pixmap>:/Images/waiting_icon_big.png</pixmap>
          </property>
         </widget>
        </item>
@@ -597,8 +618,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -209,3 +209,9 @@ void PassManagerDialog::on_toolButton_2_clicked()
 
 }
 
+
+void PassManagerDialog::on_buttonBox_rejected()
+{
+    this->reject();
+}
+
