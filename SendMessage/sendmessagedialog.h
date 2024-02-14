@@ -31,7 +31,9 @@ private:
     void createUI();
     void createDBconnections();
     void readDBConnections();
+    void dbConnAvias();
     void dbConnUrknafta();
+    void dbConnMarshal();
     void dbConnDatabase();
     void writeDBParametrs();
 private:

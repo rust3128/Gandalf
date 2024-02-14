@@ -40,7 +40,7 @@
        <string>Общие</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="7" column="0">
+       <item row="9" column="0">
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -53,13 +53,30 @@
          </property>
         </spacer>
        </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>Телефоны службы поддержки</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxShowKodZem">
+         <property name="text">
+          <string>Отображать код земельного участка</string>
+         </property>
+        </widget>
+       </item>
        <item row="6" column="0">
         <widget class="QLineEdit" name="lineEditHotlinePhone"/>
        </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>Метод формирования адреса для подключения АЗС</string>
+       <item row="4" column="0">
+        <widget class="QComboBox" name="comboBoxHostTemplate">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string/>
          </property>
         </widget>
        </item>
@@ -100,20 +117,10 @@
          </item>
         </layout>
        </item>
-       <item row="4" column="0">
-        <widget class="QComboBox" name="comboBoxHostTemplate">
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="currentText">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QCheckBox" name="checkBoxShowKodZem">
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Отображать код земельного участка</string>
+          <string>Метод формирования адреса для подключения АЗС</string>
          </property>
         </widget>
        </item>
@@ -201,10 +208,17 @@
          </layout>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_19">
+       <item row="8" column="0">
+        <widget class="QLineEdit" name="lineEditPassFBTerminals">
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_20">
          <property name="text">
-          <string>Телефоны службы поддержки</string>
+          <string>Пароль по умолчанию для подключения к БД АЗС</string>
          </property>
         </widget>
        </item>

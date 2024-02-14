@@ -18,9 +18,6 @@ SendMessageDialog::SendMessageDialog(int termID, QString dbHost, QWidget *parent
 
     connect(ui->plainTextEditMessage, &QPlainTextEdit::textChanged, this, &SendMessageDialog::on_plainTextEditMessage_textChanged);
 
-
-
-
 }
 
 SendMessageDialog::~SendMessageDialog()
@@ -76,22 +73,23 @@ void SendMessageDialog::readDBConnections()
         // Помилка підготовки запиту або прив'язки значень
         qDebug() << "Помилка підготовки запиту або прив'язки значень:" << query.lastError().text();
     }
-
-
 }
+
+
 
 void SendMessageDialog::createDBconnections()
 {
     switch (AppParameters::instance().getParameter("templatеHostname").toInt()) {
     case 0:
         //Avias
-
+        dbConnAvias();
         break;
     case 1:
         dbConnUrknafta();
         break;
     case 2:
         //Marshal
+        dbConnMarshal();
         break;
     case 3:
         //Database
@@ -101,10 +99,14 @@ void SendMessageDialog::createDBconnections()
         break;
     }
 
-
 }
 
-
+void SendMessageDialog::dbConnAvias()
+{
+    CriptPass crP;
+    dbPort = 13051;
+    dbPass = crP.decriptPass(AppParameters::instance().getParameter("passFBTerminal"));
+}
 
 void SendMessageDialog::dbConnUrknafta()
 {
@@ -113,10 +115,18 @@ void SendMessageDialog::dbConnUrknafta()
     dbPass = "PaSSun" + strTermID.left(strTermID.length() - 3).rightJustified(2, '0');
 }
 
+void SendMessageDialog::dbConnMarshal()
+{
+    CriptPass crP;
+    dbPort = 3050;
+    dbPass = crP.decriptPass(AppParameters::instance().getParameter("passFBTerminal"));
+}
+
 void SendMessageDialog::dbConnDatabase()
 {
+    CriptPass crP;
     dbPort = 3050;
-    dbPass = "masterkey";
+    dbPass = crP.decriptPass(AppParameters::instance().getParameter("passFBTerminal"));
 }
 
 void SendMessageDialog::writeDBParametrs()
@@ -206,8 +216,6 @@ void SendMessageDialog::on_pushButtonSendMessage_clicked()
         return;
     }
     QString strSQL = QString("EXECUTE PROCEDURE show_operator_message('%1');").arg(ui->plainTextEditMessage->toPlainText());
-
-    qInfo(logInfo()) << "STR show" << strSQL;
     QSqlDatabase dbT = QSqlDatabase::database("dbazs");
     QSqlQuery q = QSqlQuery(dbT);
     q.prepare(strSQL);
@@ -215,16 +223,13 @@ void SendMessageDialog::on_pushButtonSendMessage_clicked()
         MyMessage::showNotification(QMessageBox::Critical, tr("Ошибка"), tr("Не удалось отправить сообщениена АЗС!"),
                                     tr("Проверте настройки подключение и повторите попытку!"), q.lastError().text());
         qCritical(logCritical()) << "Dont send Message" <<  q.lastError().text();
+        return;
     } else {
         q.finish();
         dbT.commit();
-        QMessageBox::information(this, tr("Внимание"), tr("Сообщение успешно отправлено!"));
     }
-
+    QMessageBox::information(this, tr("Внимание"), tr("Сообщение успешно отправлено!"));
 }
-
-
-
 
 void SendMessageDialog::showEvent(QShowEvent *event)
 {
@@ -235,8 +240,6 @@ void SendMessageDialog::showEvent(QShowEvent *event)
     // Очікування певного часу перед викликом dbAzsOpen
     const int delayBeforeDbAzsOpen = 100;
     QTimer::singleShot(delayBeforeDbAzsOpen, this, &SendMessageDialog::dbAzsOpen);
-
-
 }
 
 void SendMessageDialog::on_pushButtonTestConnection_clicked()

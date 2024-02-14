@@ -1057,138 +1057,143 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="123"/>
+        <location filename="AppParameters/parametersdialog.ui" line="130"/>
         <source>Диапазон номеров терминалов (TERMINAL_ID)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="138"/>
+        <location filename="AppParameters/parametersdialog.ui" line="145"/>
         <source>99999</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="148"/>
+        <location filename="AppParameters/parametersdialog.ui" line="155"/>
         <source>Max:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="161"/>
+        <location filename="AppParameters/parametersdialog.ui" line="168"/>
         <source>1000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="171"/>
+        <location filename="AppParameters/parametersdialog.ui" line="178"/>
         <source>Min:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="116"/>
+        <location filename="AppParameters/parametersdialog.ui" line="66"/>
         <source>Отображать код земельного участка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="71"/>
+        <location filename="AppParameters/parametersdialog.ui" line="88"/>
         <source>Максимальное количество рабочих мест на АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="62"/>
+        <location filename="AppParameters/parametersdialog.ui" line="123"/>
         <source>Метод формирования адреса для подключения АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="207"/>
+        <location filename="AppParameters/parametersdialog.ui" line="59"/>
         <source>Телефоны службы поддержки</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="215"/>
+        <location filename="AppParameters/parametersdialog.ui" line="221"/>
+        <source>Пароль по умолчанию для подключения к БД АЗС</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppParameters/parametersdialog.ui" line="229"/>
         <source>VNC Клиент</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="221"/>
+        <location filename="AppParameters/parametersdialog.ui" line="235"/>
         <source>Тип сервера подключения на АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="227"/>
+        <location filename="AppParameters/parametersdialog.ui" line="241"/>
         <source>UltraVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="244"/>
+        <location filename="AppParameters/parametersdialog.ui" line="258"/>
         <source>TightVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="264"/>
+        <location filename="AppParameters/parametersdialog.ui" line="278"/>
         <source>Путь для запуска TightVNC клиента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="274"/>
+        <location filename="AppParameters/parametersdialog.ui" line="288"/>
         <source>Путь для запуска UltraVNC клиента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="284"/>
+        <location filename="AppParameters/parametersdialog.ui" line="298"/>
         <source>Пароль по умолчанию</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="298"/>
+        <location filename="AppParameters/parametersdialog.ui" line="312"/>
         <source>Использовать шаблон для пароля</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="313"/>
-        <location filename="AppParameters/parametersdialog.ui" line="376"/>
+        <location filename="AppParameters/parametersdialog.ui" line="327"/>
+        <location filename="AppParameters/parametersdialog.ui" line="390"/>
         <source>Образец</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="325"/>
+        <location filename="AppParameters/parametersdialog.ui" line="339"/>
         <source>Префикс</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="346"/>
+        <location filename="AppParameters/parametersdialog.ui" line="360"/>
         <source>Терминал</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="364"/>
+        <location filename="AppParameters/parametersdialog.ui" line="378"/>
         <source>Суфикс</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="390"/>
+        <location filename="AppParameters/parametersdialog.ui" line="404"/>
         <source>Центральня БД</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="398"/>
+        <location filename="AppParameters/parametersdialog.ui" line="412"/>
         <source>Пользователь</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="405"/>
+        <location filename="AppParameters/parametersdialog.ui" line="419"/>
         <source>Пароль</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="429"/>
+        <location filename="AppParameters/parametersdialog.ui" line="443"/>
         <source>Имя сервера</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="436"/>
+        <location filename="AppParameters/parametersdialog.ui" line="450"/>
         <source>Порт</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.ui" line="473"/>
+        <location filename="AppParameters/parametersdialog.ui" line="487"/>
         <location filename="AppParameters/parametersdialog.cpp" line="42"/>
         <source>Файл базы данных</source>
         <translation type="unfinished"></translation>
@@ -1367,17 +1372,17 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/AppParameters.cpp" line="80"/>
+        <location filename="AppParameters/AppParameters.cpp" line="81"/>
         <source>Не возможно найти параметр по ключу</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.cpp" line="197"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="200"/>
         <source>Параметр %1 успішно оновлено або додано.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/parametersdialog.cpp" line="199"/>
+        <location filename="AppParameters/parametersdialog.cpp" line="202"/>
         <source>Помилка при оновленні або додаванні параметра %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1500,61 +1505,61 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="41"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="38"/>
         <source>Это техподдержка. Позвоните по указанным телефонам. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="73"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="70"/>
         <source>Не удалось получить запись о подключении к БД АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="162"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="164"/>
         <source>Отправить сообщение</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="167"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="169"/>
         <source>Не возможно отправить сообщение. Отсутсвует соединение с базой данных АЗС.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="168"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
         <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
         <source>Внимание</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="168"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
         <source>Не возможно подключиться к базе данных АЗС!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="168"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
         <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
         <source>Проверте настройки подключение и повторите попытку!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="181"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="183"/>
         <source>Осталось символов: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="184"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="205"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="186"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="207"/>
         <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
         <source>Ошибка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="184"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="186"/>
         <source>Введено слишком много символов!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="205"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="207"/>
         <source>В сообщении слишком много символов! Максимум 100!</source>
         <translation type="unfinished"></translation>
     </message>

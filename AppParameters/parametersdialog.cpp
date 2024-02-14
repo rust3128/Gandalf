@@ -72,7 +72,7 @@ void ParametersDialog::createUI()
     ui->checkBoxShowKodZem->setChecked(AppParameters::instance().getParameter("showKodZem").toInt());
     ui->spinBoxMaxPC->setValue(AppParameters::instance().getParameter("maxCountPC").toInt());
     ui->lineEditHotlinePhone->setText(AppParameters::instance().getParameter("hotlinePhone"));
-
+    ui->lineEditPassFBTerminals->setText(crP.decriptPass(AppParameters::instance().getParameter("passFBTerminal")));
     // Вивести TEMPLATE_HOSTNAME
     QMap<int, QString> templateHostnameMap = AppParameters::instance().TEMPLATE_HOSTNAME;
     for (auto it = templateHostnameMap.begin(); it != templateHostnameMap.end(); ++it) {
@@ -179,6 +179,9 @@ void ParametersDialog::on_buttonBox_accepted()
     updateParam("TemplPassSufix");
     AppParameters::instance().setParameter("hotlinePhone", ui->lineEditHotlinePhone->text().trimmed());
     updateParam("hotlinePhone");
+    AppParameters::instance().setParameter("passFBTerminal", crP.criptPass(ui->lineEditPassFBTerminals->text().trimmed()));
+    updateParam("passFBTerminal");
+
     this->accept();
 }
 

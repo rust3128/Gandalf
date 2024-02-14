@@ -65,6 +65,7 @@ void AppParameters::setDefaultParameters() {
     parameters["defaultVNCPass"] = crP.criptPass("88888888");   //Пароль VNC за замовчуванням
     parameters["useTemplatePassVNC"] = "0";                     //Використовувати шаблон для пароля (0-ні, 1-Так)
     parameters["hotlinePhone"] = "044 495-18-63, 066 354-16-71";//Телефони служби підтримки
+    parameters["passFBTerminal"] = crP.criptPass("masterkey");                 //Пароль для подключения к базе АЗС
 
 }
 
