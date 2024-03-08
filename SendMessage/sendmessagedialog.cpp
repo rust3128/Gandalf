@@ -3,6 +3,7 @@
 #include "AppParameters/AppParameters.h"
 #include "LogginCategories/loggincategories.h"
 #include "AppParameters/criptpass.h"
+#include "Logs/logger.h"
 
 #include <QClipboard>
 #include <QSqlQuery>
@@ -228,7 +229,11 @@ void SendMessageDialog::on_pushButtonSendMessage_clicked()
         q.finish();
         dbT.commit();
     }
+    QString strComments = ui->plainTextEditMessage->toPlainText().trimmed();
+    LogData logDat(AppParameters::instance().getParameter("userID").toInt(),terminalID,0,AppParameters::LOG_TYPE_SEND_MESSAGE, strComments);
+    Logger logger(logDat);
     QMessageBox::information(this, tr("Внимание"), tr("Сообщение успешно отправлено!"));
+    logger.writeToLog();
 }
 
 void SendMessageDialog::showEvent(QShowEvent *event)

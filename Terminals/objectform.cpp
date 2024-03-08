@@ -388,6 +388,7 @@ QString ObjectForm::getVNCPassword()
             passVNC = crP.decriptPass(AppParameters::instance().getParameter("defaultVNCPass"));
         }
     }
+    qInfo(logInfo()) << "Return passVNC" << passVNC;
     return passVNC;
 }
 
@@ -463,13 +464,14 @@ void ObjectForm::slotVNCButtonClicked()
     int port = connList.at(button->getButtonID())->getPort();
     QString passVNC = connList.at(button->getButtonID())->getPassVNC();
     // Аргументи для передачі
-    QStringList arguments;
+    QString arguments;
     if (m_typeVNC == "TightVNC") {
         clientVNCpath = AppParameters::instance().getParameter("clientVNCPath");
-        arguments << QString("-host=%1").arg(hostName) << QString("-port=%2").arg(port) << QString("-password=%3").arg(passVNC);
+        arguments = QString("-host=%1 -port=%2 -password=%3").arg(hostName).arg(port).arg(passVNC);
     } else if (m_typeVNC == "UltraVNC") {
         clientVNCpath = AppParameters::instance().getParameter("clientUltraVNCPath");
-        arguments << QString("-password %3").arg(passVNC) << QString("%1::%2").arg(hostName).arg(port);
+        arguments = QString("%1::%2 -password %3").arg(hostName).arg(port).arg(passVNC);
+
     } else {
         // Обробка невідомого типу VNC, якщо потрібно
     }
@@ -479,8 +481,6 @@ void ObjectForm::slotVNCButtonClicked()
         QMessageBox::critical(this, tr("Ошибка"), tr("Файл запуска VNC клиента не найден:\n")+clientVNCpath+tr("\nПроверьте настройки приложения и наличие файла по указанному пути."));
         return;
     }
-    qInfo(logInfo()) << "VNC arguments" << arguments;
-
     // Створення об'єкту QProcess
     myProcess = new QProcess();
 
@@ -489,10 +489,11 @@ void ObjectForm::slotVNCButtonClicked()
         slotVNCProcessFinished(exitCode, exitStatus, ld);
     });
 
-
+    myProcess->setNativeArguments(arguments);
     // Запуск програми з аргументами
-    myProcess->start(clientVNCpath, arguments);
-
+    myProcess->start(clientVNCpath);
+    qInfo(logInfo()) << "Command line:" << clientVNCpath+" "+arguments;
+    qInfo(logInfo()) << "native Arguments" << myProcess->nativeArguments();
     log.writeToLog();
 }
 
@@ -501,7 +502,7 @@ void ObjectForm::slotVNCProcessFinished(int exitCode, QProcess::ExitStatus exitS
     _ld.setLogTypeID(AppParameters::LOG_TYPE_DISCONNECT);
     Logger lg(_ld);
     lg.writeToLog();
-    qDebug() << "vncviewer.exe finished with exit code:" << exitCode;
+    qDebug() << "vncviewer finished with exit code:" << exitCode;
     qDebug() << "Exit status:" << (exitStatus == QProcess::NormalExit ? "Normal Exit" : "Crash Exit");
 }
 

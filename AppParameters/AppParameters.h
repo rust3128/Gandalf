@@ -25,7 +25,8 @@ public:
         Disconnect,
         UpdateUserProfile,
         ChangeVNCClient,
-        ChangePassVNC
+        ChangePassVNC,
+        SendMessage
         // Додайте інші типи логу, якщо потрібно
     };
     static const LogType LOG_TYPE_CONNECT;
@@ -33,6 +34,7 @@ public:
     static const LogType LOG_TYPE_UPDATE_USER_PROFILE;
     static const LogType LOG_TYPE_CHANGE_VNC_CLIENT;
     static const LogType LOG_TYPE_CHANGE_VNC_PASS;
+    static const LogType LOG_TYPE_SEND_MESSAGE;
 
     static const QMap<int, QString> TEMPLATE_VNC_PASS;
 

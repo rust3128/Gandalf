@@ -73,13 +73,18 @@
 <context>
     <name>ConnectionsModel</name>
     <message>
-        <location filename="Logs/connectionsmodel.cpp" line="29"/>
+        <location filename="Logs/connectionsmodel.cpp" line="30"/>
         <source>Подключение</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Logs/connectionsmodel.cpp" line="32"/>
+        <location filename="Logs/connectionsmodel.cpp" line="33"/>
         <source>Отключение</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Logs/connectionsmodel.cpp" line="36"/>
+        <source>Сообщение</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1372,7 +1377,7 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="AppParameters/AppParameters.cpp" line="81"/>
+        <location filename="AppParameters/AppParameters.cpp" line="82"/>
         <source>Не возможно найти параметр по ключу</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1505,71 +1510,71 @@ Version: %1%2%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="38"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="39"/>
         <source>Это техподдержка. Позвоните по указанным телефонам. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="70"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="71"/>
         <source>Не удалось получить запись о подключении к БД АЗС</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="164"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="173"/>
         <source>Отправить сообщение</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="169"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="178"/>
         <source>Не возможно отправить сообщение. Отсутсвует соединение с базой данных АЗС.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="179"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="235"/>
         <source>Внимание</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="179"/>
         <source>Не возможно подключиться к базе данных АЗС!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="179"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="225"/>
         <source>Проверте настройки подключение и повторите попытку!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="183"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="192"/>
         <source>Осталось символов: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="186"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="207"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="195"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="224"/>
         <source>Ошибка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="186"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="195"/>
         <source>Введено слишком много символов!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="207"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
         <source>В сообщении слишком много символов! Максимум 100!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="224"/>
         <source>Не удалось отправить сообщениена АЗС!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="235"/>
         <source>Сообщение успешно отправлено!</source>
         <translation type="unfinished"></translation>
     </message>

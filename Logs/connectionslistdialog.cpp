@@ -53,8 +53,8 @@ void ConnectionsListDialog::showHistory()
     proxyModel->setDynamicSortFilter(true);
     ui->tableView->setModel(proxyModel);
     ui->tableView->hideColumn(6);
-    ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->resizeColumnsToContents();
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
 }
 
 QString ConnectionsListDialog::createSQLHistory()
@@ -66,7 +66,7 @@ QString ConnectionsListDialog::createSQLHistory()
     if(!ui->lineEditAZS->text().trimmed().isEmpty()){
         strSQL += QString("AND l.terminal_id = %1 ").arg(ui->lineEditAZS->text().trimmed());
     }
-    strSQL += QString("AND l.logtype_id IN (1,2) "
+    strSQL += QString("AND l.logtype_id IN (1,2,6) "
                       "order BY l.dat DESC");
     return strSQL;
 }

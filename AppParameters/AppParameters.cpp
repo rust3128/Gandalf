@@ -13,7 +13,7 @@ const QString AppParameters::CONFIG_FILE_NAME = "Gandalf.ini";          // Фа�
 const QString AppParameters::LOG_FILE_NAME = "Gandalf.log";             // Лог файл
 const QString AppParameters::KEY_SOLT = "SapForever";
 const QString AppParameters::VEKTOR_KEY = "Poltava1970Rust";
-const QString AppParameters::LOG_DIRECTORY = "c:/MPos3/Logs";
+const QString AppParameters::LOG_DIRECTORY = "d:/MPos3/Logs";
 //Типи гкекрайії адреси підключень
 const QMap<int, QString> AppParameters::TEMPLATE_HOSTNAME = {
     {0, "Avias"},
@@ -27,7 +27,8 @@ const AppParameters::LogType AppParameters::LOG_TYPE_DISCONNECT = AppParameters:
 const AppParameters::LogType AppParameters::LOG_TYPE_UPDATE_USER_PROFILE = AppParameters::UpdateUserProfile;
 const AppParameters::LogType AppParameters::LOG_TYPE_CHANGE_VNC_CLIENT = AppParameters::ChangeVNCClient;
 const AppParameters::LogType AppParameters::LOG_TYPE_CHANGE_VNC_PASS = AppParameters::ChangePassVNC;
-//Типи клієнтів МТС
+const AppParameters::LogType AppParameters::LOG_TYPE_SEND_MESSAGE = AppParameters::SendMessage;
+//Типи клієнтів VNC
 const AppParameters::clientVNC AppParameters::TIGHT_CLIENT_VNC = AppParameters::TightVNC;
 const AppParameters::clientVNC AppParameters::ULTRA_CLIENT_VNC = AppParameters::UltraVNC;
 

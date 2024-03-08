@@ -19,6 +19,7 @@ QVariant ConnectionsModel::data(const QModelIndex &index, int role) const
             backgroundColor = QColor(255, 200, 200);
             break;
         default:
+            backgroundColor = QColor(255,255,255);
             break;
         }
         return QBrush(backgroundColor);
@@ -30,6 +31,9 @@ QVariant ConnectionsModel::data(const QModelIndex &index, int role) const
             break;
         case 2:
             return tr("Отключение");
+            break;
+        case 6:
+            return tr("Сообщение");
             break;
         default:
             break;

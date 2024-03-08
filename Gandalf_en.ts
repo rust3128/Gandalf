@@ -73,14 +73,19 @@
 <context>
     <name>ConnectionsModel</name>
     <message>
-        <location filename="Logs/connectionsmodel.cpp" line="29"/>
+        <location filename="Logs/connectionsmodel.cpp" line="30"/>
         <source>Подключение</source>
         <translation>Connection</translation>
     </message>
     <message>
-        <location filename="Logs/connectionsmodel.cpp" line="32"/>
+        <location filename="Logs/connectionsmodel.cpp" line="33"/>
         <source>Отключение</source>
         <translation>Disconnection</translation>
+    </message>
+    <message>
+        <location filename="Logs/connectionsmodel.cpp" line="36"/>
+        <source>Сообщение</source>
+        <translation>Message</translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1406,7 @@ Check the application settings and the presence of the file in the specified pat
         <translation>The application settings have been successfully loaded.</translation>
     </message>
     <message>
-        <location filename="AppParameters/AppParameters.cpp" line="81"/>
+        <location filename="AppParameters/AppParameters.cpp" line="82"/>
         <source>Не возможно найти параметр по ключу</source>
         <translation>It is not possible to find a parameter by key</translation>
     </message>
@@ -1534,71 +1539,71 @@ Check the application settings and the presence of the file in the specified pat
         <translation>Send</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="38"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="39"/>
         <source>Это техподдержка. Позвоните по указанным телефонам. </source>
         <translation>This is technical support. Call the indicated numbers. </translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="70"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="71"/>
         <source>Не удалось получить запись о подключении к БД АЗС</source>
         <translation>Failed to obtain a record of connection to the gas station database</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="164"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="173"/>
         <source>Отправить сообщение</source>
         <translation>Send a message</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="169"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="178"/>
         <source>Не возможно отправить сообщение. Отсутсвует соединение с базой данных АЗС.</source>
         <translation>It is not possible to send a message. There is no connection to the gas station database.</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="179"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="235"/>
         <source>Внимание</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="179"/>
         <source>Не возможно подключиться к базе данных АЗС!</source>
         <translation>It is not possible to connect to the gas station database!</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="170"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="179"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="225"/>
         <source>Проверте настройки подключение и повторите попытку!</source>
         <translation>Check your connection settings and try again!</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="183"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="192"/>
         <source>Осталось символов: %1</source>
         <translation>Characters left: %1</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="186"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="207"/>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="195"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="224"/>
         <source>Ошибка</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="186"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="195"/>
         <source>Введено слишком много символов!</source>
         <translation>Too many characters entered!</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="207"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="216"/>
         <source>В сообщении слишком много символов! Максимум 100!</source>
         <translation>There are too many characters in the message! Maximum 100!</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="215"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="224"/>
         <source>Не удалось отправить сообщениена АЗС!</source>
         <translation>Failed to send a message to the gas station!</translation>
     </message>
     <message>
-        <location filename="SendMessage/sendmessagedialog.cpp" line="221"/>
+        <location filename="SendMessage/sendmessagedialog.cpp" line="235"/>
         <source>Сообщение успешно отправлено!</source>
         <translation>Message sent successfully!</translation>
     </message>
